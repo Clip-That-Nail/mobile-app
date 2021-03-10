@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LogBox } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { enableScreens } from 'react-native-screens';
@@ -6,6 +7,7 @@ import { enableScreens } from 'react-native-screens';
 import AppNavigator from './navigation/AppNavigator';
 
 enableScreens();
+LogBox.ignoreLogs(['Your project is accessing the following APIs from a deprecated global rather than a module import: Constants (expo-constants).']);
 
 const fetchFonts = () => {
   return Font.loadAsync({
