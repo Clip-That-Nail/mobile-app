@@ -32,4 +32,6 @@ const sessionReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
+
+export default sessionReducer;
