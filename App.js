@@ -3,7 +3,9 @@ import { LogBox } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { enableScreens } from 'react-native-screens';
+import { Provider } from 'react-redux';
 
+import store from './redux/store';
 import AppNavigator from './navigation/AppNavigator';
 
 enableScreens();
@@ -40,6 +42,8 @@ export default function App() {
   }
 
   return (
-    <AppNavigator />
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
   );
 }
