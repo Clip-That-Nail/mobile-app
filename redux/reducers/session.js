@@ -1,3 +1,5 @@
+import sessionTypes from '../types/session';
+
 const initialState = {
   frontLeftPaw: {
     firstClaw: 'unchecked',
@@ -29,6 +31,14 @@ const initialState = {
 
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
+    case sessionTypes.UPDATE_FRONT_LEFT_PAW:
+      return { ...state, frontLeftPaw: action.pawData };
+    case sessionTypes.UPDATE_FRONT_RIGHT_PAW:
+      return { ...state, frontRightPaw: action.pawData };
+    case sessionTypes.UPDATE_BACK_LEFT_PAW:
+      return { ...state, backLeftPaw: action.pawData };
+    case sessionTypes.UPDATE_BACK_RIGHT_PAW:
+      return { ...state, backRightPaw: action.pawData };
     default:
       return state;
   }
