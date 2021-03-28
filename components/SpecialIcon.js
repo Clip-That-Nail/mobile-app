@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 
-const SpecialCheckbox = (props) => {
-  const [status, setStatus] = useState(props.initialStatus);
+const SpecialIcon = (props) => {
+  const { status } = props;
 
   const displayContent = () => {
     switch (status) {
@@ -13,7 +13,7 @@ const SpecialCheckbox = (props) => {
         return (
           <View style={{ ...styles.checkbox, ...styles.checked }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="checkmark" size={40} color='white' />
+              <Ionicons name="checkmark" size={20} color='white' />
             </View>
           </View>
         );
@@ -21,7 +21,7 @@ const SpecialCheckbox = (props) => {
         return (
           <View style={{ ...styles.checkbox, ...styles.bleeded }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="water" size={40} color='white' />
+              <Ionicons name="water" size={20} color='white' />
             </View>
           </View>
         );
@@ -29,7 +29,7 @@ const SpecialCheckbox = (props) => {
         return (
           <View style={{ ...styles.checkbox, ...styles.warning }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="alert" size={40} color='black' />
+              <Ionicons name="alert" size={20} color='black' />
             </View>
           </View>
         );
@@ -37,7 +37,7 @@ const SpecialCheckbox = (props) => {
         return (
           <View style={{ ...styles.checkbox, ...styles.disabled }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="close" size={40} color='white' />
+              <Ionicons name="close" size={20} color='white' />
             </View>
           </View>
         );
@@ -70,22 +70,17 @@ const SpecialCheckbox = (props) => {
   }
 
   return (
-    <TouchableNativeFeedback onPress={handleOnPress}>
-      <View>
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>{props.badgeText}</Text>
-        </View>
-        {displayContent()}
-      </View>
-    </TouchableNativeFeedback>
+    <View>
+      {displayContent()}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   checkbox: {
     padding: 0,
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
     borderRadius: 5,
     borderWidth: 5,
     zIndex: 1
@@ -115,23 +110,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#999999',
     borderColor: 'grey'
   },
-  badge: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: -8,
-    right: -8,
-    width: 20,
-    height: 20,
-    borderRadius: 100,
-    backgroundColor: 'grey',
-    zIndex: 2
-  },
-  badgeText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
 });
 
-export default SpecialCheckbox;
+export default SpecialIcon;

@@ -1,88 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View, Text } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { NavigationActions } from 'react-navigation';
 
 import HeaderButton from '../components/HeaderButton';
 import SpecialCheckbox from '../components/SpecialCheckbox';
+import { updateFrontLeftPaw } from '../redux/actions/session';
 
 import Colors from '../constants/Colors';
 
 const FrontLeftPawScreen = (props) => {
-  const [toggleCheckBoxes, setToggleCheckBoxes] = useState({
-    firstClaw: 'unchecked',
-    secondClaw: false,
-    thirdClaw: false,
-    fourthClaw: false,
-    dewClaw: false,
-  });
+  const initialCheckBoxData = useSelector(state => state.session.frontLeftPaw);
 
-  const handleOnCheckboxPress = (status) => {
-    console.log(status);
-    setToggleCheckBoxes({ ...toggleCheckBoxes, firstClaw: status })
-  }
+  const [toggleCheckBoxes, setToggleCheckBoxes] = useState(initialCheckBoxData);
+
+  const dispatch = useDispatch();
+
+  const handleFirstClawOnCheckboxPress = (status) => {
+    setToggleCheckBoxes({ ...toggleCheckBoxes, firstClaw: status });
+  };
+
+  const handleSecondClawOnCheckboxPress = (status) => {
+    setToggleCheckBoxes({ ...toggleCheckBoxes, secondClaw: status });
+  };
+
+  const handleThirdClawOnCheckboxPress = (status) => {
+    setToggleCheckBoxes({ ...toggleCheckBoxes, thirdClaw: status });
+  };
+
+  const handleFourthClawOnCheckboxPress = (status) => {
+    setToggleCheckBoxes({ ...toggleCheckBoxes, fourthClaw: status });
+  };
+
+  const handleDewClawOnCheckboxPress = (status) => {
+    setToggleCheckBoxes({ ...toggleCheckBoxes, dewClaw: status });
+  };
+
+  const handlePawDataChange = useCallback(() => {
+    dispatch(updateFrontLeftPaw(toggleCheckBoxes));
+  }, [dispatch, toggleCheckBoxes]);
+
+  useEffect(() => {
+    handlePawDataChange();
+  }, [handlePawDataChange]);
 
   return (
     <View style={styles.screen}>
       <View style={styles.checkboxes}>
         <View style={styles.checkboxContainer}>
-          <SpecialCheckbox initialStatus={toggleCheckBoxes.firstClaw} onPress={handleOnCheckboxPress} />
-          {/*<CheckBox
-            disabled={false}
-            value={toggleCheckBoxes.firstClaw}
-            onValueChange={(newValue) => setToggleCheckBoxes({ ...toggleCheckBoxes, firstClaw: newValue })}
-            tintColors={{ true: Colors.greenColor, false: Colors.greenColor }}
-            checkedIcon="paw"
-            style={{ ...styles.checkbox, marginTop: 50 }}
-          />*/}
+          <SpecialCheckbox initialStatus={toggleCheckBoxes.firstClaw} onPress={handleFirstClawOnCheckboxPress} badgeText='1' />
         </View>
         <View style={styles.checkboxContainer}>
-          <CheckBox
-            disabled={false}
-            value={toggleCheckBoxes.secondClaw}
-            onValueChange={(newValue) => setToggleCheckBoxes({ ...toggleCheckBoxes, secondClaw: newValue })}
-            tintColors={{ true: Colors.greenColor, false: Colors.greenColor }}
-            style={styles.checkbox}
-          />
+          <SpecialCheckbox initialStatus={toggleCheckBoxes.secondClaw} onPress={handleSecondClawOnCheckboxPress} badgeText='2' />
         </View>
         <View style={styles.checkboxContainer}>
-          <CheckBox
-            disabled={false}
-            value={toggleCheckBoxes.thirdClaw}
-            onValueChange={(newValue) => setToggleCheckBoxes({ ...toggleCheckBoxes, thirdClaw: newValue })}
-            tintColors={{ true: Colors.greenColor, false: Colors.greenColor }}
-            style={styles.checkbox}
-          />
+          <SpecialCheckbox initialStatus={toggleCheckBoxes.thirdClaw} onPress={handleThirdClawOnCheckboxPress} badgeText='3' />
         </View>
         <View style={styles.checkboxContainer}>
-          <CheckBox
-            disabled={false}
-            value={toggleCheckBoxes.fourthClaw}
-            onValueChange={(newValue) => setToggleCheckBoxes({ ...toggleCheckBoxes, fourthClaw: newValue })}
-            tintColors={{ true: Colors.greenColor, false: Colors.greenColor }}
-            style={{ ...styles.checkbox, marginTop: 50 }}
-          />
+          <SpecialCheckbox initialStatus={toggleCheckBoxes.fourthClaw} onPress={handleFourthClawOnCheckboxPress} badgeText='4' />
         </View>
       </View>
       <View style={styles.paw}>
         <Ionicons name="paw" size={180} color={Colors.greenColor} />
       </View>
       <View style={styles.dewclawCheckboxContainer}>
-        <Text>dewclaw</Text>
-        <CheckBox
-          disabled={false}
-          value={toggleCheckBoxes.dewClaw}
-          onValueChange={(newValue) => setToggleCheckBoxes({ ...toggleCheckBoxes, dewClaw: newValue })}
-          tintColors={{ true: Colors.greenColor, false: Colors.greenColor }}
-          style={{ ...styles.checkbox }}
-        />
+        <SpecialCheckbox initialStatus={toggleCheckBoxes.dewClaw} onPress={handleDewClawOnCheckboxPress} badgeText='D' />
       </View>
-      <View>
+      <View style={styles.buttonWrapper}>
         <Button icon="check" mode="contained" color="green" onPress={() => props.navigation.navigate({ routeName: 'FrontLeftPawSummary' })}>
           Summarise
-        </Button>
+    </Button>
       </View>
     </View>
   );
@@ -93,7 +83,9 @@ FrontLeftPawScreen.navigationOptions = (navData) => {
     headerTitle: 'Front Left Paw',
     headerLeft: () => { },
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Stop session" iconName='close' onPress={navData.navigation.getParam('save')} />
+      <Item title="Stop session" iconName='close' onPress={() => {
+        navData.navigation.navigate('Home', {}, NavigationActions.navigate({ routeName: 'Home' }))
+      }} />
     </HeaderButtons>)
   };
 };
@@ -112,16 +104,20 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15
   },
-  dewclawCheckboxContainer: {
-    alignItems: 'flex-end'
-  },
-  checkbox: {
-    transform: [{ scaleX: 2 }, { scaleY: 2 }]
-  },
   paw: {
     // flex: 1,
     // justifyContent: 'center',
     // alignItems: 'center'
+  },
+  dewclawCheckboxContainer: {
+    alignItems: 'center'
+  },
+  clawText: {
+    fontFamily: 'roboto',
+    fontSize: 14,
+  },
+  buttonWrapper: {
+    marginTop: 20
   }
 });
 
