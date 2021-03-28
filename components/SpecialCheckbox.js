@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableNativeFeedback } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Entypo } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 
@@ -13,7 +13,7 @@ const SpecialCheckbox = (props) => {
         return (
           <View style={{ ...styles.checkbox, ...styles.checked }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="checkmark" size={40} color='white' />
+              <Entypo name="scissors" size={40} color='white' />
             </View>
           </View>
         );

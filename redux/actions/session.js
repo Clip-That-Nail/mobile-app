@@ -15,3 +15,19 @@ export const updateBackLeftPaw = (pawData) => {
 export const updateBackRightPaw = (pawData) => {
   return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW, pawData: pawData };
 };
+
+export const updateCompleteFrontLeftPaw = (complete) => {
+  return { type: sessionTypes.COMPLETE_FRONT_LEFT_PAW, complete: complete };
+};
+
+export const updateCompleteFrontRightPaw = (complete) => {
+  return { type: sessionTypes.COMPLETE_FRONT_RIGHT_PAW, complete: complete };
+};
+
+export const updateCompleteBackLeftPaw = (complete) => {
+  return { type: sessionTypes.COMPLETE_BACK_LEFT_PAW, complete: complete };
+};
+
+export const updateCompleteBackRightPaw = (complete) => {
+  return { type: sessionTypes.COMPLETE_BACK_RIGHT_PAW, complete: complete };
+};

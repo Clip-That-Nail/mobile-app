@@ -7,16 +7,16 @@ import HeaderButton from '../components/HeaderButton';
 import SummaryRow from '../components/SummaryRow';
 
 const FrontLeftPawSummaryScreen = (props) => {
-  const frontLeftPawData = useSelector(state => state.session.frontLeftPaw);
+  const clawsData = useSelector(state => state.session.frontLeftPaw.claws);
 
   return (
     <ScrollView style={styles.screen}>
       <View style={styles.summaryList}>
-        <SummaryRow clawText='CLAW 1' status={frontLeftPawData.firstClaw} />
-        <SummaryRow clawText='CLAW 2' status={frontLeftPawData.secondClaw} />
-        <SummaryRow clawText='CLAW 3' status={frontLeftPawData.thirdClaw} />
-        <SummaryRow clawText='CLAW 4' status={frontLeftPawData.fourthClaw} />
-        <SummaryRow clawText='DEWCLAW' status={frontLeftPawData.dewClaw} />
+        <SummaryRow clawText='CLAW 1' status={clawsData.firstClaw} />
+        <SummaryRow clawText='CLAW 2' status={clawsData.secondClaw} />
+        <SummaryRow clawText='CLAW 3' status={clawsData.thirdClaw} />
+        <SummaryRow clawText='CLAW 4' status={clawsData.fourthClaw} />
+        <SummaryRow clawText='DEWCLAW' status={clawsData.dewClaw} />
       </View>
     </ScrollView>
   );
