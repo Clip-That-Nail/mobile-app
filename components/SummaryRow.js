@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import SpecialIcon from '../components/SpecialIcon';
 import SummaryPicker from '../components/SummaryPicker';
 
-const FrontLeftPawSummaryScreen = (props) => {
+const SummaryRow = (props) => {
   const { clawText, status } = props;
 
   return (
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FrontLeftPawSummaryScreen;
+export default SummaryRow;
