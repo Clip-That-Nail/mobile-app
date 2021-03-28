@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from 'react-native-paper';
-import { StyleSheet, View, Text } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { NavigationActions } from 'react-navigation';
@@ -13,7 +13,13 @@ import { updateFrontLeftPaw } from '../redux/actions/session';
 import Colors from '../constants/Colors';
 
 const FrontLeftPawScreen = (props) => {
-  const initialCheckBoxData = useSelector(state => state.session.frontLeftPaw);
+  const initialCheckBoxData = {
+    firstClaw: 'unchecked',
+    secondClaw: 'unchecked',
+    thirdClaw: 'unchecked',
+    fourthClaw: 'unchecked',
+    dewClaw: 'unchecked',
+  };
 
   const [toggleCheckBoxes, setToggleCheckBoxes] = useState(initialCheckBoxData);
 
@@ -70,9 +76,9 @@ const FrontLeftPawScreen = (props) => {
         <SpecialCheckbox initialStatus={toggleCheckBoxes.dewClaw} onPress={handleDewClawOnCheckboxPress} badgeText='D' />
       </View>
       <View style={styles.buttonWrapper}>
-        <Button icon="check" mode="contained" color="green" onPress={() => props.navigation.navigate({ routeName: 'FrontLeftPawSummary' })}>
+        <Button icon="check" mode="contained" color={Colors.greenColor} onPress={() => props.navigation.navigate({ routeName: 'FrontLeftPawSummary' })}>
           Summarise
-    </Button>
+        </Button>
       </View>
     </View>
   );
@@ -81,10 +87,14 @@ const FrontLeftPawScreen = (props) => {
 FrontLeftPawScreen.navigationOptions = (navData) => {
   return {
     headerTitle: 'Front Left Paw',
-    headerLeft: () => { },
-    headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+    headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Stop session" iconName='close' onPress={() => {
         navData.navigation.navigate('Home', {}, NavigationActions.navigate({ routeName: 'Home' }))
+      }} />
+    </HeaderButtons>),
+    headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <Item title="Paw Summary" iconName='checkmark' onPress={() => {
+        navData.navigation.navigate({ routeName: 'FrontLeftPawSummary' });
       }} />
     </HeaderButtons>)
   };
@@ -105,9 +115,6 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   paw: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center'
   },
   dewclawCheckboxContainer: {
     alignItems: 'center'

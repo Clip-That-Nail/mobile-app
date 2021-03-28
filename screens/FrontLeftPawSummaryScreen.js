@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
@@ -25,12 +24,8 @@ const FrontLeftPawSummaryScreen = (props) => {
 
 FrontLeftPawSummaryScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: 'Front Left Paw - Summary',
-    // headerLeft: () => { },
+    headerTitle: 'FLP - Summary',
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, NavigationActions.navigate({ routeName: 'Home' }));
-      }} />
       <Item title="Finish paw" iconName='checkmark' onPress={() => {
         navData.navigation.navigate({ routeName: 'FrontRightPaw' });
       }} />
