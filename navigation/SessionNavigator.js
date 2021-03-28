@@ -27,12 +27,7 @@ const FrontLeftPawNavigator = createStackNavigator({
 });
 
 const FrontRightPawNavigator = createStackNavigator({
-  FrontRightPawChecker: {
-    screen: FrontRightPawScreen,
-    navigationOptions: {
-      headerLeft: () => { }
-    }
-  },
+  FrontRightPawChecker: FrontRightPawScreen,
   FrontRightPawSummary: FrontRightPawSummaryScreen
 }, {
   defaultNavigationOptions: {
@@ -45,12 +40,7 @@ const FrontRightPawNavigator = createStackNavigator({
 });
 
 const BackLeftPawNavigator = createStackNavigator({
-  BackLeftPawChecker: {
-    screen: BackLeftPawScreen,
-    navigationOptions: {
-      headerLeft: () => { }
-    }
-  },
+  BackLeftPawChecker: BackLeftPawScreen,
   BackLeftPawSummary: BackLeftPawSummaryScreen
 }, {
   defaultNavigationOptions: {
@@ -63,12 +53,7 @@ const BackLeftPawNavigator = createStackNavigator({
 });
 
 const BackRightPawNavigator = createStackNavigator({
-  BackRightPawChecker: {
-    screen: BackRightPawScreen,
-    navigationOptions: {
-      headerLeft: () => { }
-    }
-  },
+  BackRightPawChecker: BackRightPawScreen,
   BackRightPawSummary: BackRightPawSummaryScreen
 }, {
   defaultNavigationOptions: {
