@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-import SpecialIcon from '../components/SpecialIcon';
+import SummarySpecialIcon from './SummarySpecialIcon';
 import SummaryPicker from '../components/SummaryPicker';
 
 const SummaryRow = (props) => {
@@ -10,7 +10,7 @@ const SummaryRow = (props) => {
   return (
     <View style={styles.listItemsContainer}>
       <View style={{ ...styles.summaryRow, justifyContent: 'flex-start' }}>
-        <SpecialIcon status={status} />
+        <SummarySpecialIcon status={status} />
         <View style={styles.itemText}>
           <Text>{clawText}</Text>
         </View>

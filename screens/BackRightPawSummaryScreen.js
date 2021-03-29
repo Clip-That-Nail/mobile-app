@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
 import SummaryRow from '../components/SummaryRow';
+import { updateCompleteBackRightPaw } from '../redux/actions/session';
 
 const BackRightPawSummaryScreen = (props) => {
+  const { navigation } = props;
+
   const clawsData = useSelector(state => state.session.backRightPaw.claws);
+  const complete = useSelector(state => state.session.backRightPaw.complete);
+
+  const dispatch = useDispatch();
+
+  const completePaw = useCallback(() => {
+    // TODO: validation before setting complete
+    dispatch(updateCompleteBackRightPaw(!complete));
+    navigation.navigate({ routeName: 'BackRightPawComplete' });
+  }, [dispatch, complete]);
+
+  useEffect(() => {
+    navigation.setParams({ complete: completePaw });
+  }, [completePaw]);
 
   return (
     <ScrollView style={styles.screen}>
@@ -22,12 +38,12 @@ const BackRightPawSummaryScreen = (props) => {
 };
 
 BackRightPawSummaryScreen.navigationOptions = (navData) => {
+  const complete = navData.navigation.getParam('complete');
+
   return {
     headerTitle: 'BRP - Summary',
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Finish paw" iconName='checkmark' onPress={() => {
-        navData.navigation.navigate({ routeName: 'FrontLeftPaw' });
-      }} />
+      <Item title="Finish paw" iconName='checkmark' onPress={complete} />
     </HeaderButtons>)
   };
 };

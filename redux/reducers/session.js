@@ -78,7 +78,7 @@ const sessionReducer = (state = initialState, action) => {
     case sessionTypes.COMPLETE_FRONT_LEFT_PAW:
       return {
         ...state,
-        backRightPaw: {
+        frontLeftPaw: {
           ...state.frontLeftPaw,
           complete: action.complete
         }
@@ -86,7 +86,7 @@ const sessionReducer = (state = initialState, action) => {
     case sessionTypes.COMPLETE_FRONT_RIGHT_PAW:
       return {
         ...state,
-        backRightPaw: {
+        frontRightPaw: {
           ...state.frontRightPaw,
           complete: action.complete
         }
@@ -94,7 +94,7 @@ const sessionReducer = (state = initialState, action) => {
     case sessionTypes.COMPLETE_BACK_LEFT_PAW:
       return {
         ...state,
-        backRightPaw: {
+        backLeftPaw: {
           ...state.backLeftPaw,
           complete: action.complete
         }

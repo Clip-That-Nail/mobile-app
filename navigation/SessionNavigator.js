@@ -7,12 +7,16 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 
 import FrontLeftPawScreen from '../screens/FrontLeftPawScreen';
 import FrontLeftPawSummaryScreen from '../screens/FrontLeftPawSummaryScreen';
+import FrontLeftPawCompleteScreen from '../screens/FrontLeftPawCompleteScreen';
 import FrontRightPawScreen from '../screens/FrontRightPawScreen';
 import FrontRightPawSummaryScreen from '../screens/FrontRightPawSummaryScreen';
+import FrontRightPawCompleteScreen from '../screens/FrontRightPawCompleteScreen';
 import BackLeftPawScreen from '../screens/BackLeftPawScreen';
 import BackLeftPawSummaryScreen from '../screens/BackLeftPawSummaryScreen';
+import BackLeftPawCompleteScreen from '../screens/BackLeftPawCompleteScreen';
 import BackRightPawScreen from '../screens/BackRightPawScreen';
 import BackRightPawSummaryScreen from '../screens/BackRightPawSummaryScreen';
+import BackRightPawCompleteScreen from '../screens/BackRightPawCompleteScreen';
 import SummaryScreen from '../screens/SummaryScreen';
 
 import DefaultStackNavOptions from './DefaultStackNavOptions';
@@ -21,14 +25,16 @@ import Colors from '../constants/Colors';
 
 const FrontLeftPawNavigator = createStackNavigator({
   FrontLeftPawChecker: FrontLeftPawScreen,
-  FrontLeftPawSummary: FrontLeftPawSummaryScreen
+  FrontLeftPawSummary: FrontLeftPawSummaryScreen,
+  FrontLeftPawComplete: FrontLeftPawCompleteScreen
 }, {
   defaultNavigationOptions: DefaultStackNavOptions
 });
 
 const FrontRightPawNavigator = createStackNavigator({
   FrontRightPawChecker: FrontRightPawScreen,
-  FrontRightPawSummary: FrontRightPawSummaryScreen
+  FrontRightPawSummary: FrontRightPawSummaryScreen,
+  FrontRightPawComplete: FrontRightPawCompleteScreen
 }, {
   defaultNavigationOptions: {
     ...DefaultStackNavOptions,
@@ -41,7 +47,8 @@ const FrontRightPawNavigator = createStackNavigator({
 
 const BackLeftPawNavigator = createStackNavigator({
   BackLeftPawChecker: BackLeftPawScreen,
-  BackLeftPawSummary: BackLeftPawSummaryScreen
+  BackLeftPawSummary: BackLeftPawSummaryScreen,
+  BackLeftPawComplete: BackLeftPawCompleteScreen
 }, {
   defaultNavigationOptions: {
     ...DefaultStackNavOptions,
@@ -54,7 +61,8 @@ const BackLeftPawNavigator = createStackNavigator({
 
 const BackRightPawNavigator = createStackNavigator({
   BackRightPawChecker: BackRightPawScreen,
-  BackRightPawSummary: BackRightPawSummaryScreen
+  BackRightPawSummary: BackRightPawSummaryScreen,
+  BackRightPawComplete: BackRightPawCompleteScreen
 }, {
   defaultNavigationOptions: {
     ...DefaultStackNavOptions,

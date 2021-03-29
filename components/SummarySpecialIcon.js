@@ -4,7 +4,7 @@ import { Ionicons, Entypo } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 
-const SpecialIcon = (props) => {
+const SummarySpecialIcon = (props) => {
   const { status } = props;
 
   const displayContent = () => {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 5,
-    borderWidth: 5,
+    borderWidth: 3,
     zIndex: 1
   },
   checkboxBody: {
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SpecialIcon;
+export default SummarySpecialIcon;
