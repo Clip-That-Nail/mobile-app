@@ -3,9 +3,13 @@ import { StyleSheet, View, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { NavigationActions } from 'react-navigation';
 
+import HeaderButton from '../components/HeaderButton';
 import CompleteSpecialIcon from '../components/CompleteSpecialIcon';
 import { updateCompleteFrontLeftPaw } from '../redux/actions/session';
+import { goToNextPaw, isSessionComplete } from '../helper/session';
 
 import Colors from '../constants/Colors';
 
@@ -40,11 +44,16 @@ const FrontLeftPawCompleteScreen = (props) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Button icon="pencil" mode="contained" color={Colors.greenColor} onPress={() => {
+        <Button style={styles.button} icon="pencil" mode="contained" color={Colors.greenColor} onPress={() => {
           dispatch(updateCompleteFrontLeftPaw(false));
           props.navigation.navigate({ routeName: 'FrontLeftPawChecker' })
         }}>
           Change
+        </Button>
+        <Button style={styles.button} icon={isSessionComplete() ? 'check-bold' : 'arrow-right-thick'} mode="contained" color={Colors.greenColor} contentStyle={{ flexDirection: 'row-reverse' }} onPress={() => {
+          goToNextPaw(props.navigation);
+        }}>
+          {isSessionComplete() ? 'Finish' : 'Next Paw'}
         </Button>
       </View>
     </View>
@@ -55,15 +64,19 @@ FrontLeftPawCompleteScreen.navigationOptions = (navData) => {
   navData.navigation.getParam('complete');
 
   return {
-    headerTitle: 'FLP - Completed',
-    headerLeft: () => { }
+    headerTitle: 'Front Left Paw',
+    headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+      <Item title="Stop session" iconName='close' onPress={() => {
+        navData.navigation.navigate('Home', {}, NavigationActions.navigate({ routeName: 'Home' }))
+      }} />
+    </HeaderButtons>),
   };
 };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center'
   },
   mainText: {
@@ -79,7 +92,13 @@ const styles = StyleSheet.create({
     margin: 5
   },
   buttonContainer: {
-    margin: 10
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginTop: 30
+  },
+  button: {
+    marginHorizontal: 10,
+    width: 150
   }
 });
 
