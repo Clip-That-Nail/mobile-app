@@ -1,25 +1,29 @@
-import { createAppContainer } from 'react-navigation';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import React from 'react';
+import { Text } from 'react-native';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import HomeNavigator from './HomeNavigator';
-import SettingsNavigator from './SettingsNavigator';
+import NewSessionNavigator from './NewSessionNavigator';
 
 import Colors from '../constants/Colors';
 
-const AppNavigator = createDrawerNavigator({
+const AppNavigator = createSwitchNavigator({
   Home: {
     screen: HomeNavigator,
-    navigationOptions: {
-      drawerLabel: 'Home'
-    }
   },
-  Settings: SettingsNavigator
-}, {
-  contentOptions: {
-    activeTintColor: Colors.greenColor,
-    labelStyle: {
-      fontFamily: 'roboto'
+  NewSession: {
+    screen: NewSessionNavigator,
+    navigationOptions: {
+      headerShown: false
     }
+  }
+}, {
+  activeColor: 'white',
+  shifting: true,
+  barStyle: {
+    backgroundColor: Colors.greenColor
   }
 });
 

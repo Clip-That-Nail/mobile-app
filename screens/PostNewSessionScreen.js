@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const SessionScreen = (props) => {
+const PostNewSessionScreen = (props) => {
   return (
-    <View><Text>Session Screen</Text></View>
+    <View><Text>Post New Session Screen</Text></View>
   );
 };
 
 const styles = StyleSheet.create({});
 
-export default SessionScreen;
+export default PostNewSessionScreen;

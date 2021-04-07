@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const SummaryScreen = (props) => {
+const SessionsScreen = (props) => {
   return (
-    <View><Text>Summary Screen</Text></View>
+    <View><Text>Sessions Screen</Text></View>
   );
 };
 
 const styles = StyleSheet.create({});
 
-export default SummaryScreen;
+export default SessionsScreen;

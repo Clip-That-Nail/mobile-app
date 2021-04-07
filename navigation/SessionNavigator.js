@@ -17,7 +17,6 @@ import BackLeftPawCompleteScreen from '../screens/BackLeftPawCompleteScreen';
 import BackRightPawScreen from '../screens/BackRightPawScreen';
 import BackRightPawSummaryScreen from '../screens/BackRightPawSummaryScreen';
 import BackRightPawCompleteScreen from '../screens/BackRightPawCompleteScreen';
-import SummaryScreen from '../screens/SummaryScreen';
 
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 
