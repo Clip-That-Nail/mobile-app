@@ -82,7 +82,7 @@ const PreNewSessionScreen = (props) => {
       </View>
       <View style={styles.startButtonContainer}>
         <Button disabled={selectedDog === ''} icon="paw" mode="contained" color={Colors.greenColor} contentStyle={styles.startButton}
-          onPress={() => props.navigation.navigate({ routeName: 'Session' })}>
+          onPress={() => props.navigation.navigate({ routeName: 'Paws' })}>
           Start
       </Button>
       </View>
