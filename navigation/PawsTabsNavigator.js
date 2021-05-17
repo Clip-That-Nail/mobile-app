@@ -7,10 +7,8 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 
 import FrontLeftPawNavigator from './paws/FrontLeftPawNavigator';
 import FrontRightPawNavigator from './paws/FrontRightPawNavigator';
+import BackLeftPawNavigator from './paws/BackLeftPawNavigator';
 
-import BackLeftPawScreen from '../screens/BackLeftPawScreen';
-import BackLeftPawSummaryScreen from '../screens/BackLeftPawSummaryScreen';
-import BackLeftPawCompleteScreen from '../screens/BackLeftPawCompleteScreen';
 import BackRightPawScreen from '../screens/BackRightPawScreen';
 import BackRightPawSummaryScreen from '../screens/BackRightPawSummaryScreen';
 import BackRightPawCompleteScreen from '../screens/BackRightPawCompleteScreen';
@@ -18,20 +16,6 @@ import BackRightPawCompleteScreen from '../screens/BackRightPawCompleteScreen';
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 
 import Colors from '../constants/Colors';
-
-const BackLeftPawNavigator = createStackNavigator({
-  BackLeftPawChecker: BackLeftPawScreen,
-  BackLeftPawSummary: BackLeftPawSummaryScreen,
-  BackLeftPawComplete: BackLeftPawCompleteScreen
-}, {
-  defaultNavigationOptions: {
-    ...DefaultStackNavOptions,
-    headerStyle: {
-      ...DefaultStackNavOptions.headerStyle,
-      backgroundColor: Colors.redColor,
-    }
-  }
-});
 
 const BackRightPawNavigator = createStackNavigator({
   BackRightPawChecker: BackRightPawScreen,
