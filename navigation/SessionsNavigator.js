@@ -1,18 +1,22 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import SessionsScreen from '../screens/SessionsScreen';
-
+import SessionsScreen, { screenOptions } from '../screens/SessionsScreen';
 import DefaultStackNavOptions from './DefaultStackNavOptions';
-
 import Colors from '../constants/Colors';
 
-const SessionsNavigator = createStackNavigator({
-  Sessions: {
-    screen: SessionsScreen
-  },
-}, {
-  defaultNavigationOptions: DefaultStackNavOptions
-});
+const SessionsStack = createStackNavigator();
 
-export default createAppContainer(SessionsNavigator);
+const SessionsNavigator = () => {
+  return <SessionsStack.Navigator screenOptions={{
+    ...DefaultStackNavOptions,
+    headerStyle: {
+      ...DefaultStackNavOptions.headerStyle,
+      backgroundColor: Colors.blueColor,
+    }
+  }}>
+    <SessionsStack.Screen name="Sessions" component={SessionsScreen} options={screenOptions} />
+  </SessionsStack.Navigator>
+};
+
+export default SessionsNavigator;

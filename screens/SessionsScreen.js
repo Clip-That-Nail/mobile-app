@@ -7,6 +7,12 @@ const SessionsScreen = (props) => {
   );
 };
 
+export const screenOptions = (navData) => {
+  return {
+    headerTitle: 'All Sessions',
+  };
+};
+
 const styles = StyleSheet.create({});
 
 export default SessionsScreen;
