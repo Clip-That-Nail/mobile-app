@@ -1,16 +1,16 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import PostNewSessionScreen from '../screens/PostNewSessionScreen';
+import PostNewSessionScreen, {screenOptions as postNewSessionScreenOptions} from '../screens/PostNewSessionScreen';
 
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 
-const PostNewSessionNavigator = createStackNavigator({
-  PostNewSession: {
-    screen: PostNewSessionScreen,
-  }
-}, {
-  defaultNavigationOptions: DefaultStackNavOptions
-});
+const PostSessionStack = createStackNavigator();
 
-export default createAppContainer(PostNewSessionNavigator);
+const PostNewSessionNavigator = () => {
+  return <PostSessionStack.Navigator screenOptions={DefaultStackNavOptions}>
+    <PostSessionStack.Screen name="PostNewSession" component={PostNewSessionScreen} options={postNewSessionScreenOptions} />
+  </PostSessionStack.Navigator>
+};
+
+export default PostNewSessionNavigator;
