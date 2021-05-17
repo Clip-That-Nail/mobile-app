@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { NavigationActions } from 'react-navigation';
+import { CommonActions } from '@react-navigation/native';
 
 import HeaderButton from '../components/HeaderButton';
 import CompleteSpecialIcon from '../components/CompleteSpecialIcon';
@@ -60,14 +60,14 @@ const FrontRightPawCompleteScreen = (props) => {
   );
 };
 
-FrontRightPawCompleteScreen.navigationOptions = (navData) => {
+export const screenOptions = (navData) => {
   navData.navigation.getParam('complete');
 
   return {
     headerTitle: 'Front Right Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, NavigationActions.navigate({ routeName: 'Home' }))
+        navData.navigation.navigate('Home', {}, CommonActions.navigate({ routeName: 'Home' }))
       }} />
     </HeaderButtons>),
   };

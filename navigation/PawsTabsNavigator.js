@@ -6,10 +6,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import FrontLeftPawNavigator from './paws/FrontLeftPawNavigator';
+import FrontRightPawNavigator from './paws/FrontRightPawNavigator';
 
-import FrontRightPawScreen from '../screens/FrontRightPawScreen';
-import FrontRightPawSummaryScreen from '../screens/FrontRightPawSummaryScreen';
-import FrontRightPawCompleteScreen from '../screens/FrontRightPawCompleteScreen';
 import BackLeftPawScreen from '../screens/BackLeftPawScreen';
 import BackLeftPawSummaryScreen from '../screens/BackLeftPawSummaryScreen';
 import BackLeftPawCompleteScreen from '../screens/BackLeftPawCompleteScreen';
@@ -20,20 +18,6 @@ import BackRightPawCompleteScreen from '../screens/BackRightPawCompleteScreen';
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 
 import Colors from '../constants/Colors';
-
-const FrontRightPawNavigator = createStackNavigator({
-  FrontRightPawChecker: FrontRightPawScreen,
-  FrontRightPawSummary: FrontRightPawSummaryScreen,
-  FrontRightPawComplete: FrontRightPawCompleteScreen
-}, {
-  defaultNavigationOptions: {
-    ...DefaultStackNavOptions,
-    headerStyle: {
-      ...DefaultStackNavOptions.headerStyle,
-      backgroundColor: Colors.blueColor,
-    }
-  }
-});
 
 const BackLeftPawNavigator = createStackNavigator({
   BackLeftPawChecker: BackLeftPawScreen,
