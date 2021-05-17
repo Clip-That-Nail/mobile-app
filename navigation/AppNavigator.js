@@ -1,30 +1,21 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { Ionicons } from '@expo/vector-icons';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeNavigator from './HomeNavigator';
 import NewSessionNavigator from './NewSessionNavigator';
 
 import Colors from '../constants/Colors';
 
-const AppNavigator = createSwitchNavigator({
-  Home: {
-    screen: HomeNavigator,
-  },
-  NewSession: {
-    screen: NewSessionNavigator,
-    navigationOptions: {
-      headerShown: false
-    }
-  }
-}, {
-  activeColor: 'white',
-  shifting: true,
-  barStyle: {
-    backgroundColor: Colors.greenColor
-  }
-});
+const Stack = createStackNavigator();
 
-export default createAppContainer(AppNavigator);
+const AppNavigator = props => {
+  return <NavigationContainer>
+    <Stack.Navigator screenOptions={{ headerShown: false, headerBackground: Colors.greenColor }}>
+      <Stack.Screen name="Home" component={HomeNavigator} />
+      <Stack.Screen name="NewSession" component={NewSessionNavigator} />
+    </Stack.Navigator>
+  </NavigationContainer>;
+};
+
+export default AppNavigator;
