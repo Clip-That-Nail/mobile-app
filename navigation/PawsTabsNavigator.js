@@ -5,9 +5,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-import FrontLeftPawScreen from '../screens/FrontLeftPawScreen';
-import FrontLeftPawSummaryScreen from '../screens/FrontLeftPawSummaryScreen';
-import FrontLeftPawCompleteScreen from '../screens/FrontLeftPawCompleteScreen';
+import FrontLeftPawNavigator from './paws/FrontLeftPawNavigator';
+
 import FrontRightPawScreen from '../screens/FrontRightPawScreen';
 import FrontRightPawSummaryScreen from '../screens/FrontRightPawSummaryScreen';
 import FrontRightPawCompleteScreen from '../screens/FrontRightPawCompleteScreen';
@@ -21,14 +20,6 @@ import BackRightPawCompleteScreen from '../screens/BackRightPawCompleteScreen';
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 
 import Colors from '../constants/Colors';
-
-const FrontLeftPawNavigator = createStackNavigator({
-  FrontLeftPawChecker: FrontLeftPawScreen,
-  FrontLeftPawSummary: FrontLeftPawSummaryScreen,
-  FrontLeftPawComplete: FrontLeftPawCompleteScreen
-}, {
-  defaultNavigationOptions: DefaultStackNavOptions
-});
 
 const FrontRightPawNavigator = createStackNavigator({
   FrontRightPawChecker: FrontRightPawScreen,

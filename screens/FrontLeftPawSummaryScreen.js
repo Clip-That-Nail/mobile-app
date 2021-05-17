@@ -38,7 +38,7 @@ const FrontLeftPawSummaryScreen = (props) => {
   );
 };
 
-FrontLeftPawSummaryScreen.navigationOptions = (navData) => {
+export const screenOptions = (navData) => {
   const complete = navData.navigation.getParam('complete');
 
   return {
