@@ -1,35 +1,15 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import FrontLeftPawNavigator from './paws/FrontLeftPawNavigator';
 import FrontRightPawNavigator from './paws/FrontRightPawNavigator';
 import BackLeftPawNavigator from './paws/BackLeftPawNavigator';
-
-import BackRightPawScreen from '../screens/BackRightPawScreen';
-import BackRightPawSummaryScreen from '../screens/BackRightPawSummaryScreen';
-import BackRightPawCompleteScreen from '../screens/BackRightPawCompleteScreen';
-
-import DefaultStackNavOptions from './DefaultStackNavOptions';
+import BackRightPawNavigator from './paws/BackRightPawNavigator';
 
 import Colors from '../constants/Colors';
-
-const BackRightPawNavigator = createStackNavigator({
-  BackRightPawChecker: BackRightPawScreen,
-  BackRightPawSummary: BackRightPawSummaryScreen,
-  BackRightPawComplete: BackRightPawCompleteScreen
-}, {
-  defaultNavigationOptions: {
-    ...DefaultStackNavOptions,
-    headerStyle: {
-      ...DefaultStackNavOptions.headerStyle,
-      backgroundColor: Colors.violetColor,
-    }
-  }
-});
 
 const SessionTabNavigator = createMaterialBottomTabNavigator(
   {
