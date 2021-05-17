@@ -19,7 +19,7 @@ const HomeScreen = (props) => {
       </View>
       <Button icon="paw" mode="contained" color={Colors.greenColor} contentStyle={styles.startButton}
         onPress={() => {
-          props.navigation.navigate('NewSession', {}, CommonActions.navigate({ routeName: 'PreNewSession' }))
+          props.navigation.navigate('NewSession', {}, CommonActions.navigate('PreNewSession'))
         }
         }>
         Start new clipping

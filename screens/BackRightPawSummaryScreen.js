@@ -18,7 +18,7 @@ const BackRightPawSummaryScreen = (props) => {
   const completePaw = useCallback(() => {
     // TODO: validation before setting complete
     dispatch(updateCompleteBackRightPaw(!complete));
-    navigation.navigate({ routeName: 'BackRightPawComplete' });
+    navigation.navigate('BackRightPawComplete');
   }, [dispatch, complete]);
 
   useEffect(() => {

@@ -46,7 +46,7 @@ const FrontLeftPawCompleteScreen = (props) => {
       <View style={styles.buttonContainer}>
         <Button style={styles.button} icon="pencil" mode="contained" color={Colors.greenColor} onPress={() => {
           dispatch(updateCompleteFrontLeftPaw(false));
-          props.navigation.navigate({ routeName: 'FrontLeftPawChecker' })
+          props.navigation.navigate('FrontLeftPawChecker')
         }}>
           Change
         </Button>
@@ -67,7 +67,7 @@ export const screenOptions = (navData) => {
     headerTitle: 'Front Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate({ routeName: 'Home' }))
+        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
       }} />
     </HeaderButtons>),
   };

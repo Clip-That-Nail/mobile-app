@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BackRightPawScreen, { screenOptions as backRightPawScreenOptions } from '../../screens/BackRightPawScreen';
 import BackRightPawSummaryScreen, { screenOptions as backRightPawSummaryScreenOptions } from '../../screens/BackRightPawSummaryScreen';
 import BackRightPawCompleteScreen, { screenOptions as backRightPawCompleteScreenOptions } from '../../screens/BackRightPawCompleteScreen';
+import DefaultStackNavOptions from '../DefaultStackNavOptions';
 import Colors from '../../constants/Colors';
 
 const BackRightPawStack = createStackNavigator();

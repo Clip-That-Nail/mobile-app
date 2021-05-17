@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FrontLeftPawScreen, { screenOptions as frontLeftPawScreenOptions } from '../../screens/FrontLeftPawScreen';
 import FrontLeftPawSummaryScreen, { screenOptions as frontLeftPawSummaryScreenOptions } from '../../screens/FrontLeftPawSummaryScreen';
 import FrontLeftPawCompleteScreen, { screenOptions as frontLeftPawCompleteScreenOptions } from '../../screens/FrontLeftPawCompleteScreen';
+import DefaultStackNavOptions from '../DefaultStackNavOptions';
 import Colors from '../../constants/Colors';
 
 const FrontLeftPawStack = createStackNavigator();

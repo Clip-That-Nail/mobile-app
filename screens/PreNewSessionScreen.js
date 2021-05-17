@@ -82,7 +82,7 @@ const PreNewSessionScreen = (props) => {
       </View>
       <View style={styles.startButtonContainer}>
         <Button disabled={selectedDog === ''} icon="paw" mode="contained" color={Colors.greenColor} contentStyle={styles.startButton}
-          onPress={() => props.navigation.navigate({ routeName: 'Paws' })}>
+          onPress={() => props.navigation.navigate('Paws')}>
           Start
       </Button>
       </View>
@@ -95,12 +95,12 @@ export const screenOptions = (navData) => {
     headerTitle: 'New session conditions',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate({ routeName: 'Home' }))
+        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
       }} />
     </HeaderButtons>),
     // headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
     //   <Item title="Paw Summary" iconName='checkmark' onPress={() => {
-    //     navData.navigation.navigate({ routeName: 'FrontLeftPawSummary' });
+    //     navData.navigation.navigate('FrontLeftPawSummary');
     //   }} />
     // </HeaderButtons>)
   };

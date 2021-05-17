@@ -68,7 +68,7 @@ const BackRightPawScreen = (props) => {
         <Ionicons name="paw" size={180} color={Colors.violetColor} />
       </View>
       <View style={styles.buttonWrapper}>
-        <Button icon="check" mode="contained" color={Colors.violetColor} onPress={() => props.navigation.navigate({ routeName: 'BackRightPawSummary' })}>
+        <Button icon="check" mode="contained" color={Colors.violetColor} onPress={() => props.navigation.navigate('BackRightPawSummary')}>
           Summarise
         </Button>
       </View>
@@ -81,12 +81,12 @@ export const screenOptions = (navData) => {
     headerTitle: 'Back Right Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate({ routeName: 'Home' }))
+        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
       }} />
     </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Paw Summary" iconName='checkmark' onPress={() => {
-        navData.navigation.navigate({ routeName: 'BackRightPawSummary' });
+        navData.navigation.navigate('BackRightPawSummary');
       }} />
     </HeaderButtons>)
   };

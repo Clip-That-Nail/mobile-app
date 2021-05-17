@@ -76,7 +76,7 @@ const FrontLeftPawScreen = (props) => {
         <SpecialCheckbox initialStatus={toggleCheckBoxes.dewClaw} onPress={handleDewClawOnCheckboxPress} badgeText='D' />
       </View>
       <View style={styles.buttonWrapper}>
-        <Button icon="check" mode="contained" color={Colors.greenColor} onPress={() => props.navigation.navigate({ routeName: 'FrontLeftPawSummary' })}>
+        <Button icon="check" mode="contained" color={Colors.greenColor} onPress={() => props.navigation.navigate('FrontLeftPawSummary')}>
           Summarise
         </Button>
       </View>
@@ -89,12 +89,12 @@ export const screenOptions = (navData) => {
     headerTitle: 'Front Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate({ routeName: 'Home' }))
+        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
       }} />
     </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Paw Summary" iconName='checkmark' onPress={() => {
-        navData.navigation.navigate({ routeName: 'FrontLeftPawSummary' });
+        navData.navigation.navigate('FrontLeftPawSummary');
       }} />
     </HeaderButtons>)
   };
