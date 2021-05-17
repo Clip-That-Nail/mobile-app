@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Button } from 'react-native-paper';
-import { NavigationActions } from 'react-navigation';
+import { CommonActions } from '@react-navigation/native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { Picker } from '@react-native-picker/picker';
 // import DateTimePicker from '@react-native-community/datetimepicker';
@@ -40,25 +40,25 @@ const PreNewSessionScreen = (props) => {
   //   showMode('time');
   // };
 
-  
-//   <View style={styles.datePickerContainer}>
-//   <View>
-//     <Button onPress={showDatepicker} title="Show date picker!" />
-//   </View>
-//   <View>
-//     <Button onPress={showTimepicker} title="Show time picker!" />
-//   </View>
-//   {show && (
-//     <DateTimePicker
-//       testID="dateTimePicker"
-//       value={date}
-//       mode={mode}
-//       is24Hour={true}
-//       display="default"
-//       onChange={onChange}
-//     />
-//   )}
-// </View>
+
+  //   <View style={styles.datePickerContainer}>
+  //   <View>
+  //     <Button onPress={showDatepicker} title="Show date picker!" />
+  //   </View>
+  //   <View>
+  //     <Button onPress={showTimepicker} title="Show time picker!" />
+  //   </View>
+  //   {show && (
+  //     <DateTimePicker
+  //       testID="dateTimePicker"
+  //       value={date}
+  //       mode={mode}
+  //       is24Hour={true}
+  //       display="default"
+  //       onChange={onChange}
+  //     />
+  //   )}
+  // </View>
 
   return (
     <View style={styles.screen}>
@@ -90,12 +90,12 @@ const PreNewSessionScreen = (props) => {
   );
 };
 
-PreNewSessionScreen.navigationOptions = (navData) => {
+export const screenOptions = (navData) => {
   return {
     headerTitle: 'New session conditions',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, NavigationActions.navigate({ routeName: 'Home' }))
+        navData.navigation.navigate('Home', {}, CommonActions.navigate({ routeName: 'Home' }))
       }} />
     </HeaderButtons>),
     // headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>

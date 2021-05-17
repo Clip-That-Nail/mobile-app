@@ -1,16 +1,16 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import PreNewSessionScreen from '../screens/PreNewSessionScreen';
+import PreNewSessionScreen, { screenOptions as preNewSessionScreenOptions } from '../screens/PreNewSessionScreen';
 
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 
-const PreNewSessionNavigator = createStackNavigator({
-  PreNewSession: {
-    screen: PreNewSessionScreen,
-  }
-}, {
-  defaultNavigationOptions: DefaultStackNavOptions
-});
+const PreNewSessionStack = createStackNavigator();
 
-export default createAppContainer(PreNewSessionNavigator);
+const PreNewSessionNavigator = () => {
+  return <PreNewSessionStack.Navigator screenOptions={DefaultStackNavOptions}>
+    <PreNewSessionStack.Screen name="PreNewSession" component={PreNewSessionScreen} options={preNewSessionScreenOptions} />
+  </PreNewSessionStack.Navigator>
+};
+
+export default PreNewSessionNavigator;
