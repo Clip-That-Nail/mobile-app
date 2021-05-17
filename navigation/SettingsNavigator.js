@@ -1,18 +1,22 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import SettingsScreen from '../screens/SettingsScreen';
-
+import SettingsScreen, { screenOptions } from '../screens/SettingsScreen';
 import DefaultStackNavOptions from './DefaultStackNavOptions';
-
 import Colors from '../constants/Colors';
 
-const SettingsNavigator = createStackNavigator({
-  Settings: {
-    screen: SettingsScreen
-  },
-}, {
-  defaultNavigationOptions: DefaultStackNavOptions
-});
+const SettingsStack = createStackNavigator();
 
-export default createAppContainer(SettingsNavigator);
+const SettingsNavigator = () => {
+  return <SettingsStack.Navigator screenOptions={{
+    ...DefaultStackNavOptions,
+    headerStyle: {
+      ...DefaultStackNavOptions.headerStyle,
+      backgroundColor: Colors.violetColor,
+    }
+  }}>
+    <SettingsStack.Screen name="Settings" component={SettingsScreen} options={screenOptions} />
+  </SettingsStack.Navigator>
+};
+
+export default SettingsNavigator;

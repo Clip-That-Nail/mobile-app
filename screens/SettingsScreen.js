@@ -1,8 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-
-import HeaderButton from '../components/HeaderButton';
 
 const SettingsScreen = (props) => {
   return (
@@ -10,14 +7,9 @@ const SettingsScreen = (props) => {
   );
 };
 
-SettingsScreen.navigationOptions = (navData) => {
+export const screenOptions = (navData) => {
   return {
-    headerTitle: 'Clip That Nails',
-    headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Menu" iconName='ios-menu' onPress={() => {
-        navData.navigation.toggleDrawer();
-      }} />
-    </HeaderButtons>)
+    headerTitle: 'App Settings',
   };
 };
 
