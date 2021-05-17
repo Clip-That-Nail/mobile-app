@@ -13,7 +13,7 @@ import Colors from '../constants/Colors';
 
 const HomeBottomTabs = createMaterialBottomTabNavigator();
 
-const HomeNavigator = () => {
+const HomeTabsNavigator = () => {
   return <HomeBottomTabs.Navigator
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
@@ -48,4 +48,4 @@ const HomeNavigator = () => {
   </HomeBottomTabs.Navigator>
 };
 
-export default HomeNavigator;
+export default HomeTabsNavigator;
