@@ -1,10 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View, Text, ImageBackground, Image } from 'react-native';
-import { NavigationActions } from 'react-navigation';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-
-import HeaderButton from '../components/HeaderButton';
+import { CommonActions } from '@react-navigation/native';
 
 import Colors from '../constants/Colors';
 
@@ -21,22 +18,14 @@ const HomeScreen = (props) => {
         <Image source={require('../assets/images/logo.png')} style={styles.logo} />
       </View>
       <Button icon="paw" mode="contained" color={Colors.greenColor} contentStyle={styles.startButton}
-        onPress={() => props.navigation.navigate('NewSession', {}, NavigationActions.navigate({ routeName: 'PreNewSession' }))}>
+        onPress={() => {
+          props.navigation.navigate('NewSession', {}, CommonActions.navigate({ routeName: 'PreNewSession' }))
+        }
+        }>
         Start new clipping
       </Button>
     </View>
   );
-};
-
-HomeScreen.navigationOptions = (navData) => {
-  return {
-    headerTitle: 'Clip That Nails',
-    headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Menu" iconName='ios-menu' onPress={() => {
-        navData.navigation.toggleDrawer();
-      }} />
-    </HeaderButtons>)
-  };
 };
 
 const styles = StyleSheet.create({

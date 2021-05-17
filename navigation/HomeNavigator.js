@@ -1,9 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
 import { Ionicons } from '@expo/vector-icons';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import HomeScreen from '../screens/HomeScreen';
 import SessionsNavigator from './SessionsNavigator';
@@ -13,51 +11,41 @@ import DefaultStackNavOptions from './DefaultStackNavOptions';
 
 import Colors from '../constants/Colors';
 
-const HomeNavigator = createMaterialBottomTabNavigator({
-  Home: {
-    screen: HomeScreen,
-    navigationOptions: {
-      tabBarIcon: tabInfo => {
-        return (<Ionicons
-          name="home"
-          size={25}
-          color={tabInfo.tintColor}
-        />);
+const HomeBottomTabs = createMaterialBottomTabNavigator();
+
+const HomeNavigator = () => {
+  return <HomeBottomTabs.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === 'Home') {
+          iconName = focused ? 'home' : 'home-outline';
+        } else if (route.name === 'Sessions') {
+          iconName = focused ? 'paw' : 'paw-outline';
+        } else if (route.name === 'Settings') {
+          iconName = focused ? 'settings' : 'settings-outline';
+        }
+
+        return <Ionicons name={iconName} size={25} color={color} />;
       },
+      ...DefaultStackNavOptions
+    })}
+    shifting={true}
+  >
+    <HomeBottomTabs.Screen name="Home" component={HomeScreen} options={{
       tabBarColor: Colors.greenColor,
       tabBarLabel: <Text style={{ fontFamily: 'roboto' }}>Home</Text>
-    }
-  },
-  Sessions: {
-    screen: SessionsNavigator,
-    navigationOptions: {
-      tabBarIcon: tabInfo => {
-        return (<Ionicons
-          name="paw-outline"
-          size={25}
-          color={tabInfo.tintColor}
-        />);
-      },
+    }} />
+    <HomeBottomTabs.Screen name="Sessions" component={SessionsNavigator} options={{
       tabBarColor: Colors.blueColor,
       tabBarLabel: <Text style={{ fontFamily: 'roboto' }}>Sessions</Text>
-    }
-  },
-  Settings: {
-    screen: SettingsNavigator,
-    navigationOptions: {
-      tabBarIcon: tabInfo => {
-        return (<Ionicons
-          name="settings-sharp"
-          size={25}
-          color={tabInfo.tintColor}
-        />);
-      },
+    }} />
+    <HomeBottomTabs.Screen name="Settings" component={SettingsNavigator} options={{
       tabBarColor: Colors.violetColor,
       tabBarLabel: <Text style={{ fontFamily: 'roboto' }}>Settings</Text>
-    }
-  }
-}, {
-  defaultNavigationOptions: DefaultStackNavOptions
-});
+    }} />
+  </HomeBottomTabs.Navigator>
+};
 
-export default createAppContainer(HomeNavigator);
+export default HomeNavigator;
