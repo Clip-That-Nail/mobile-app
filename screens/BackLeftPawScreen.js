@@ -76,7 +76,7 @@ const BackLeftPawScreen = (props) => {
   );
 };
 
-BackLeftPawScreen.navigationOptions = (navData) => {
+export const screenOptions = (navData) => {
   return {
     headerTitle: 'Back Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
