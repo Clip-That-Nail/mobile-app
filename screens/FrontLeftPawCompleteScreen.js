@@ -61,8 +61,6 @@ const FrontLeftPawCompleteScreen = (props) => {
 };
 
 export const screenOptions = (navData) => {
-  navData.navigation.getParam('complete');
-
   return {
     headerTitle: 'Front Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>

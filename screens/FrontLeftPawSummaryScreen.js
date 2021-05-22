@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useLayoutEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -21,9 +21,13 @@ const FrontLeftPawSummaryScreen = (props) => {
     navigation.navigate('FrontLeftPawComplete');
   }, [dispatch, complete]);
 
-  useEffect(() => {
-    navigation.setParams({ complete: completePaw });
-  }, [completePaw]);
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item title="Finish paw" iconName='checkmark' onPress={completePaw} />
+      </HeaderButtons>)
+    });
+  }, [navigation, completePaw]);
 
   return (
     <ScrollView style={styles.screen}>
@@ -39,13 +43,8 @@ const FrontLeftPawSummaryScreen = (props) => {
 };
 
 export const screenOptions = (navData) => {
-  const complete = navData.navigation.getParam('complete');
-
   return {
     headerTitle: 'FLP - Summary',
-    headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Finish paw" iconName='checkmark' onPress={complete} />
-    </HeaderButtons>)
   };
 };
 
