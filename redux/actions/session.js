@@ -40,6 +40,88 @@ export const updateBackRightPawStatus = (pawData) => {
   return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW_STATUS, pawData: pawData };
 };
 
+/**
+ * Update front left paw's claws outcomes
+ * 
+ * @param {object} outcomes The paw's claws outcomes
+ * @returns {object} update status action
+ */
+export const updateFrontLeftPawOutcomes = (outcomes) => {
+  return { type: sessionTypes.UPDATE_FRONT_LEFT_PAW_OUTCOME, outcomes: outcomes };
+};
+
+/**
+ * Update front right paw's claws outcomes
+ * 
+ * @param {object} outcomes The paw's claws outcomes
+ * @returns {object} update status action
+ */
+export const updateFrontRightPawOutcomes = (outcomes) => {
+  return { type: sessionTypes.UPDATE_FRONT_RIGHT_PAW_OUTCOME, outcomes: outcomes };
+};
+
+/**
+ * Update back left paw's claws outcomes
+ * 
+ * @param {object} outcomes The paw's claws outcomes
+ * @returns {object} update status action
+ */
+export const updateBackLeftPawOutcomes = (outcomes) => {
+  return { type: sessionTypes.UPDATE_BACK_LEFT_PAW_OUTCOME, outcomes: outcomes };
+};
+
+/**
+ * Update back right paw's claws outcomes
+ * 
+ * @param {object} outcomes The paw's claws outcomes
+ * @returns {object} update status action
+ */
+export const updateBackRightPawOutcomes = (outcomes) => {
+  return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW_OUTCOME, outcomes: outcomes };
+};
+
+/**
+ * Update front left paw's claws behaviours
+ * 
+ * @param {object} behaviours The paw's claws behaviours
+ * @returns {object} update status action
+ */
+export const updateFrontLeftPawBehaviours = (behaviours) => {
+  return { type: sessionTypes.UPDATE_FRONT_LEFT_PAW_BEHAVIOR, behaviours: behaviours };
+};
+
+/**
+ * Update front right paw's claws behaviours
+ * 
+ * @param {object} behaviours The paw's claws behaviours
+ * @returns {object} update status action
+ */
+export const updateFrontRightPawBehaviours = (behaviours) => {
+  return { type: sessionTypes.UPDATE_FRONT_RIGHT_PAW_BEHAVIOR, behaviours: behaviours };
+};
+
+/**
+ * Update back left paw's claws behaviours
+ * 
+ * @param {object} behaviours The paw's claws behaviours
+ * @returns {object} update status action
+ */
+export const updateBackLeftPawBehaviours = (behaviours) => {
+  return { type: sessionTypes.UPDATE_BACK_LEFT_PAW_BEHAVIOR, behaviours: behaviours };
+};
+
+/**
+ * Update back right paw's claws behaviours
+ * 
+ * @param {object} behaviours The paw's claws behaviours
+ * @returns {object} update status action
+ */
+export const updateBackRightPawBehaviours = (behaviours) => {
+  return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW_BEHAVIOR, behaviours: behaviours };
+};
+
+
+
 export const updateCompleteFrontLeftPaw = (complete) => {
   return { type: sessionTypes.COMPLETE_FRONT_LEFT_PAW, complete: complete };
 };
