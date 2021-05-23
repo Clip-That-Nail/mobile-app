@@ -30,7 +30,7 @@ const pickerData = {
     ],
   },
   futureBehaviour: [
-    { key: 'not-selected', text: 'Select future behavior' },
+    { key: 'not-selected', text: 'Select future behaviour' },
     { key: 'allow-to-cut', text: 'Allow to cut in next session' },
     { key: 'skip-1-session', text: 'Skip next session' },
     { key: 'skip-2-session', text: 'Skip next 2 sessions' },
@@ -48,9 +48,7 @@ const SummaryPicker = (props) => {
       }
     } else if (type === 'futureBehaviour') {
       if (pickerData.hasOwnProperty(type)) {
-        return pickerData.futureBehaviour.map(item => {
-          return <Picker.Item label={item.text} value={item.key} key={item.key} />;
-        });
+        return pickerData.futureBehaviour.map(item => <Picker.Item label={item.text} value={item.key} key={item.key} />);
       }
     }
   };

@@ -7,27 +7,27 @@ const initialState = {
       firstClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       secondClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       thirdClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       fourthClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       dewClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
     }
   },
@@ -37,27 +37,27 @@ const initialState = {
       firstClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       secondClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       thirdClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       fourthClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       dewClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
     }
   },
@@ -67,22 +67,22 @@ const initialState = {
       firstClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       secondClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       thirdClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       fourthClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       }
     }
   },
@@ -92,22 +92,22 @@ const initialState = {
       firstClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       secondClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       thirdClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       },
       fourthClaw: {
         status: 'unchecked',
         outcome: 'not-selected',
-        behavior: 'not-selected'
+        behaviour: 'not-selected'
       }
     }
   },

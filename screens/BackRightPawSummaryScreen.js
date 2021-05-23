@@ -20,10 +20,10 @@ const BackRightPawSummaryScreen = (props) => {
     fourthClaw: clawsData.fourthClaw.outcome,
   });
   const [behaviours, setBehaviours] = useState({
-    firstClaw: clawsData.firstClaw.behavior,
-    secondClaw: clawsData.secondClaw.behavior,
-    thirdClaw: clawsData.thirdClaw.behavior,
-    fourthClaw: clawsData.fourthClaw.behavior,
+    firstClaw: clawsData.firstClaw.behaviour,
+    secondClaw: clawsData.secondClaw.behaviour,
+    thirdClaw: clawsData.thirdClaw.behaviour,
+    fourthClaw: clawsData.fourthClaw.behaviour,
   });
 
   const dispatch = useDispatch();
