@@ -1,17 +1,32 @@
-import React, { useEffect, useCallback, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
 import SummaryRow from '../components/SummaryRow';
-import { updateCompleteBackLeftPaw } from '../redux/actions/session';
+import { updateBackLeftPawOutcomes, updateBackLeftPawBehaviours, updateCompleteBackLeftPaw } from '../redux/actions/session';
 
 const BackLeftPawSummaryScreen = (props) => {
   const { navigation } = props;
 
   const clawsData = useSelector(state => state.session.backLeftPaw.claws);
   const complete = useSelector(state => state.session.backLeftPaw.complete);
+
+  const [outcomes, setOutcomes] = useState({
+    firstClaw: clawsData.firstClaw.outcome,
+    secondClaw: clawsData.secondClaw.outcome,
+    thirdClaw: clawsData.thirdClaw.outcome,
+    fourthClaw: clawsData.fourthClaw.outcome,
+    dewClaw: clawsData.dewClaw.outcome,
+  });
+  const [behaviours, setBehaviours] = useState({
+    firstClaw: clawsData.firstClaw.behavior,
+    secondClaw: clawsData.secondClaw.behavior,
+    thirdClaw: clawsData.thirdClaw.behavior,
+    fourthClaw: clawsData.fourthClaw.behavior,
+    dewClaw: clawsData.dewClaw.behavior,
+  });
 
   const dispatch = useDispatch();
 
@@ -29,13 +44,58 @@ const BackLeftPawSummaryScreen = (props) => {
     });
   }, [navigation, completePaw]);
 
+  const handleOnOutcomeChange = (claw, outcome) => {
+    setOutcomes({ ...outcomes, [claw]: outcome });
+  };
+
+  const handleOnBehaviourChange = (claw, behaviour) => {
+    setBehaviours({ ...behaviours, [claw]: behaviour });
+  };
+
+  const handleOutcomesChange = useCallback(() => {
+    dispatch(updateBackLeftPawOutcomes(outcomes));
+  }, [dispatch, outcomes]);
+
+  useEffect(() => {
+    handleOutcomesChange();
+  }, [handleOutcomesChange]);
+
+  const handleBehavioursChange = useCallback(() => {
+    dispatch(updateBackLeftPawBehaviours(behaviours));
+  }, [dispatch, behaviours]);
+
+  useEffect(() => {
+    handleBehavioursChange();
+  }, [handleBehavioursChange]);
+
   return (
     <ScrollView style={styles.screen}>
       <View style={styles.summaryList}>
-        <SummaryRow clawText='CLAW 1' status={clawsData.firstClaw} />
-        <SummaryRow clawText='CLAW 2' status={clawsData.secondClaw} />
-        <SummaryRow clawText='CLAW 3' status={clawsData.thirdClaw} />
-        <SummaryRow clawText='CLAW 4' status={clawsData.fourthClaw} />
+        <SummaryRow
+          claw={{ id: 'firstClaw', text: 'CLAW 1', ...clawsData.firstClaw }}
+          onOutcomeChange={handleOnOutcomeChange}
+          onBehaviourChange={handleOnBehaviourChange}
+        />
+        <SummaryRow
+          claw={{ id: 'secondClaw', text: 'CLAW 2', ...clawsData.secondClaw }}
+          onOutcomeChange={handleOnOutcomeChange}
+          onBehaviourChange={handleOnBehaviourChange}
+        />
+        <SummaryRow
+          claw={{ id: 'thirdClaw', text: 'CLAW 3', ...clawsData.thirdClaw }}
+          onOutcomeChange={handleOnOutcomeChange}
+          onBehaviourChange={handleOnBehaviourChange}
+        />
+        <SummaryRow
+          claw={{ id: 'fourthClaw', text: 'CLAW 4', ...clawsData.fourthClaw }}
+          onOutcomeChange={handleOnOutcomeChange}
+          onBehaviourChange={handleOnBehaviourChange}
+        />
+        <SummaryRow
+          claw={{ id: 'dewClaw', text: 'DEWCLAW', ...clawsData.dewClaw }}
+          onOutcomeChange={handleOnOutcomeChange}
+          onBehaviourChange={handleOnBehaviourChange}
+        />
       </View>
     </ScrollView>
   );
