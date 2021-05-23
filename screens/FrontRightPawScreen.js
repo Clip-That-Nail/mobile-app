@@ -8,7 +8,7 @@ import { CommonActions } from '@react-navigation/native';
 
 import HeaderButton from '../components/HeaderButton';
 import SpecialCheckbox from '../components/SpecialCheckbox';
-import { updateFrontRightPaw } from '../redux/actions/session';
+import { updateFrontRightPawStatus } from '../redux/actions/session';
 
 import Colors from '../constants/Colors';
 
@@ -46,7 +46,7 @@ const FrontRightPawScreen = (props) => {
   };
 
   const handlePawDataChange = useCallback(() => {
-    dispatch(updateFrontRightPaw(toggleCheckBoxes));
+    dispatch(updateFrontRightPawStatus(toggleCheckBoxes));
   }, [dispatch, toggleCheckBoxes]);
 
   useEffect(() => {

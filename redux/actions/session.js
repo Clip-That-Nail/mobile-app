@@ -1,19 +1,43 @@
 import sessionTypes from '../types/session';
 
-export const updateFrontLeftPaw = (pawData) => {
-  return { type: sessionTypes.UPDATE_FRONT_LEFT_PAW, pawData: pawData };
+/**
+ * Update front left paw status
+ * 
+ * @param {object} pawData The paw's claws statuses
+ * @returns {object} update status action
+ */
+export const updateFrontLeftPawStatus = (pawData) => {
+  return { type: sessionTypes.UPDATE_FRONT_LEFT_PAW_STATUS, pawData: pawData };
 };
 
-export const updateFrontRightPaw = (pawData) => {
-  return { type: sessionTypes.UPDATE_FRONT_RIGHT_PAW, pawData: pawData };
+/**
+ * Update front right paw status
+ * 
+ * @param {object} pawData The paw's claws statuses
+ * @returns {object} update status action
+ */
+export const updateFrontRightPawStatus = (pawData) => {
+  return { type: sessionTypes.UPDATE_FRONT_RIGHT_PAW_STATUS, pawData: pawData };
 };
 
-export const updateBackLeftPaw = (pawData) => {
-  return { type: sessionTypes.UPDATE_BACK_LEFT_PAW, pawData: pawData };
+/**
+ * Update back left paw status
+ * 
+ * @param {object} pawData The paw's claws statuses
+ * @returns {object} update status action
+ */
+export const updateBackLeftPawStatus = (pawData) => {
+  return { type: sessionTypes.UPDATE_BACK_LEFT_PAW_STATUS, pawData: pawData };
 };
 
-export const updateBackRightPaw = (pawData) => {
-  return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW, pawData: pawData };
+/**
+ * Update back right paw status
+ * 
+ * @param {object} pawData The paw's claws statuses
+ * @returns {object} update status action
+ */
+export const updateBackRightPawStatus = (pawData) => {
+  return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW_STATUS, pawData: pawData };
 };
 
 export const updateCompleteFrontLeftPaw = (complete) => {
