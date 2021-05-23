@@ -18,14 +18,12 @@ const BackLeftPawSummaryScreen = (props) => {
     secondClaw: clawsData.secondClaw.outcome,
     thirdClaw: clawsData.thirdClaw.outcome,
     fourthClaw: clawsData.fourthClaw.outcome,
-    dewClaw: clawsData.dewClaw.outcome,
   });
   const [behaviours, setBehaviours] = useState({
     firstClaw: clawsData.firstClaw.behavior,
     secondClaw: clawsData.secondClaw.behavior,
     thirdClaw: clawsData.thirdClaw.behavior,
     fourthClaw: clawsData.fourthClaw.behavior,
-    dewClaw: clawsData.dewClaw.behavior,
   });
 
   const dispatch = useDispatch();
@@ -88,11 +86,6 @@ const BackLeftPawSummaryScreen = (props) => {
         />
         <SummaryRow
           claw={{ id: 'fourthClaw', text: 'CLAW 4', ...clawsData.fourthClaw }}
-          onOutcomeChange={handleOnOutcomeChange}
-          onBehaviourChange={handleOnBehaviourChange}
-        />
-        <SummaryRow
-          claw={{ id: 'dewClaw', text: 'DEWCLAW', ...clawsData.dewClaw }}
           onOutcomeChange={handleOnOutcomeChange}
           onBehaviourChange={handleOnBehaviourChange}
         />
