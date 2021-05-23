@@ -28,19 +28,19 @@ const FrontLeftPawCompleteScreen = (props) => {
       </View>
       <View style={styles.iconsRow}>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.firstClaw} badgeText='1' />
+          <CompleteSpecialIcon status={clawsData.firstClaw.status} badgeText='1' />
         </View>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.secondClaw} badgeText='2' />
+          <CompleteSpecialIcon status={clawsData.secondClaw.status} badgeText='2' />
         </View>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.thirdClaw} badgeText='3' />
+          <CompleteSpecialIcon status={clawsData.thirdClaw.status} badgeText='3' />
         </View>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.fourthClaw} badgeText='4' />
+          <CompleteSpecialIcon status={clawsData.fourthClaw.status} badgeText='4' />
         </View>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.dewClaw} badgeText='D' />
+          <CompleteSpecialIcon status={clawsData.dewClaw.status} badgeText='D' />
         </View>
       </View>
       <View style={styles.buttonContainer}>
