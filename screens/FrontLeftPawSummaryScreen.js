@@ -5,7 +5,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
 import SummaryRow from '../components/SummaryRow';
-import { updateFrontLeftPawOutcomes, updateCompleteFrontLeftPaw } from '../redux/actions/session';
+import { updateFrontLeftPawOutcomes, updateFrontLeftPawBehaviours, updateCompleteFrontLeftPaw } from '../redux/actions/session';
 
 const FrontLeftPawSummaryScreen = (props) => {
   const { navigation } = props;
