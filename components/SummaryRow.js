@@ -5,21 +5,38 @@ import SummarySpecialIcon from './SummarySpecialIcon';
 import SummaryPicker from '../components/SummaryPicker';
 
 const SummaryRow = (props) => {
-  const { clawText, status } = props;
+  const { claw, onOutcomeChange, onBehaviourChange } = props;
+
+  const handleOnOutcomeChange = (outcomeId) => {
+    onOutcomeChange(claw.id, outcomeId);
+  };
+
+  const handleOnBehaviourChange = (behaviourId) => {
+    onBehaviourChange(claw.id, behaviourId);
+  };
 
   return (
     <View style={styles.listItemsContainer}>
       <View style={{ ...styles.summaryRow, justifyContent: 'flex-start' }}>
-        <SummarySpecialIcon status={status} />
+        <SummarySpecialIcon status={claw.status} />
         <View style={styles.itemText}>
-          <Text>{clawText}</Text>
+          <Text>{claw.text}</Text>
         </View>
       </View>
       <View style={styles.summaryRow}>
-        <SummaryPicker type='outcome' status={status} />
+        <SummaryPicker
+          value={claw.outcome}
+          type='outcome'
+          status={claw.status}
+          onValueChange={handleOnOutcomeChange}
+        />
       </View>
       <View style={styles.summaryRow}>
-        <SummaryPicker type='futureBehaviour' />
+        <SummaryPicker
+          value={claw.behaviour}
+          type='futureBehaviour'
+          onValueChange={handleOnBehaviourChange}
+        />
       </View>
     </View>
   );

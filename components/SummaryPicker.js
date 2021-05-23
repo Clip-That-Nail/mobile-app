@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { useSelector } from 'react-redux';
 import { Picker } from '@react-native-picker/picker';
 
 const pickerData = {
@@ -40,9 +39,7 @@ const pickerData = {
 }
 
 const SummaryPicker = (props) => {
-  const [selectedValue, setSelectedValue] = useState('not-selected');
-
-  const { type, status } = props;
+  const { value, type, status, onValueChange } = props;
 
   const pickerContent = () => {
     if (type === 'outcome') {
@@ -62,10 +59,10 @@ const SummaryPicker = (props) => {
     <View style={styles.pickerContainer}>
       <Picker
         style={styles.picker}
-        selectedValue={selectedValue}
-        onValueChange={(itemValue, itemIndex) =>
-          setSelectedValue(itemValue)
-        }>
+        selectedValue={value}
+        onValueChange={(itemValue, itemIndex) => {
+          onValueChange(itemValue)
+        }}>
         {
           pickerContent()
         }
