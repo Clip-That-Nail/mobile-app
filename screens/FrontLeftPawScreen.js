@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from 'react-native-paper';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -8,6 +8,7 @@ import { CommonActions } from '@react-navigation/native';
 
 import HeaderButton from '../components/HeaderButton';
 import SpecialCheckbox from '../components/SpecialCheckbox';
+import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
 import { updateFrontLeftPawStatus } from '../redux/actions/session';
 
 import Colors from '../constants/Colors';
@@ -88,9 +89,7 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'Front Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
-      }} />
+      <CloseSessionHeaderButton navData={navData} />
     </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Paw Summary" iconName='checkmark' onPress={() => {

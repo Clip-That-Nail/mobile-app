@@ -7,6 +7,7 @@ import { Picker } from '@react-native-picker/picker';
 // import DateTimePicker from '@react-native-community/datetimepicker';
 
 import HeaderButton from '../components/HeaderButton';
+import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
 
 import Colors from '../constants/Colors';
 
@@ -94,9 +95,7 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'New session conditions',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
-      }} />
+      <CloseSessionHeaderButton navData={navData} />
     </HeaderButtons>),
     // headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
     //   <Item title="Paw Summary" iconName='checkmark' onPress={() => {

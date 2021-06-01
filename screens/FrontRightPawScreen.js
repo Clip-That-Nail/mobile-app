@@ -8,6 +8,7 @@ import { CommonActions } from '@react-navigation/native';
 
 import HeaderButton from '../components/HeaderButton';
 import SpecialCheckbox from '../components/SpecialCheckbox';
+import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
 import { updateFrontRightPawStatus } from '../redux/actions/session';
 
 import Colors from '../constants/Colors';
@@ -88,9 +89,7 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'Front Right Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
-      }} />
+      <CloseSessionHeaderButton navData={navData} />
     </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Paw Summary" iconName='checkmark' onPress={() => {

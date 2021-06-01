@@ -4,6 +4,7 @@ import { CommonActions } from '@react-navigation/native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
+import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
 
 const PostNewSessionScreen = (props) => {
   return (
@@ -15,9 +16,7 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'New session conditions',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
-      }} />
+      <CloseSessionHeaderButton navData={navData} />
     </HeaderButtons>),
   };
 };

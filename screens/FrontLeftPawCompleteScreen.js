@@ -8,6 +8,7 @@ import { CommonActions } from '@react-navigation/native';
 
 import HeaderButton from '../components/HeaderButton';
 import CompleteSpecialIcon from '../components/CompleteSpecialIcon';
+import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
 import { updateCompleteFrontLeftPaw } from '../redux/actions/session';
 import { goToNextPaw, isSessionComplete } from '../helper/session';
 
@@ -64,9 +65,7 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'Front Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Stop session" iconName='close' onPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
-      }} />
+      <CloseSessionHeaderButton navData={navData} />
     </HeaderButtons>),
   };
 };
