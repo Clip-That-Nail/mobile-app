@@ -62,7 +62,9 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'Back Right Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <CloseSessionHeaderButton navData={navData} />
+      <CloseSessionHeaderButton onYesPress={() => {
+            navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
+          }} />
     </HeaderButtons>),
   };
 };

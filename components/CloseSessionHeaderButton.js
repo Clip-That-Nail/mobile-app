@@ -9,9 +9,7 @@ const CloseSessionHeaderButton = (props) => {
       Alert.alert('Are you sure?', 'Do you really want to end this clipping session?', [
         { text: 'No', style: 'default' },
         {
-          text: 'Yes', style: 'destructive', onPress: () => {
-            props.navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
-          }
+          text: 'Yes', style: 'destructive', onPress: props.onYesPress
         }
       ]);
     }} />

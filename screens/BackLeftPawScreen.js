@@ -81,7 +81,9 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'Back Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <CloseSessionHeaderButton navData={navData} />
+      <CloseSessionHeaderButton onYesPress={() => {
+            navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
+          }} />
     </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Paw Summary" iconName='checkmark' onPress={() => {
