@@ -51,9 +51,20 @@ const FrontLeftPawCompleteScreen = (props) => {
         }}>
           Change
         </Button>
-        <Button style={styles.button} icon={isSessionComplete() ? 'check-bold' : 'arrow-right-thick'} mode="contained" color={Colors.greenColor} contentStyle={{ flexDirection: 'row-reverse' }} onPress={() => {
-          goToNextPaw(props.navigation);
-        }}>
+        <Button
+          style={styles.button}
+          icon={isSessionComplete() ? 'check-bold' : 'arrow-right-thick'}
+          mode="contained"
+          color={Colors.greenColor}
+          contentStyle={{ flexDirection: 'row-reverse' }}
+          onPress={() => {
+            if (isSessionComplete) {
+              props.navigation.navigate('Home', {}, CommonActions.navigate('Home'));
+            } else {
+              goToNextPaw(props.navigation);
+            }
+          }}
+        >
           {isSessionComplete() ? 'Finish' : 'Next Paw'}
         </Button>
       </View>
@@ -66,8 +77,8 @@ export const screenOptions = (navData) => {
     headerTitle: 'Front Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <CloseSessionHeaderButton onYesPress={() => {
-            navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
-          }} />
+        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
+      }} />
     </HeaderButtons>),
   };
 };

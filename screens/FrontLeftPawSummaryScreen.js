@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
 import SummaryRow from '../components/SummaryRow';
+import { validateFrontPawSummary } from '../helper/validation';
 import { updateFrontLeftPawOutcomes, updateFrontLeftPawBehaviours, updateCompleteFrontLeftPaw } from '../redux/actions/session';
 
 const FrontLeftPawSummaryScreen = (props) => {
@@ -29,11 +30,20 @@ const FrontLeftPawSummaryScreen = (props) => {
 
   const dispatch = useDispatch();
 
-  const completePaw = useCallback(() => {
-    // TODO: validation before setting complete
-    dispatch(updateCompleteFrontLeftPaw(!complete));
-    navigation.navigate('FrontLeftPawComplete');
-  }, [dispatch, complete]);
+  const completePaw = useCallback(async () => {
+    try {
+      await validateFrontPawSummary(outcomes, behaviours);
+      dispatch(updateCompleteFrontLeftPaw(!complete));
+      navigation.navigate('FrontLeftPawComplete');
+    } catch (err) {
+      Alert.alert(`You can't complete this paw`, err.message, [
+        { text: 'Okay', style: 'default' },
+        // {
+        //   text: 'Yes', style: 'destructive', onPress: props.onYesPress
+        // }
+      ]);
+    }
+  }, [dispatch, complete, outcomes, behaviours]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
