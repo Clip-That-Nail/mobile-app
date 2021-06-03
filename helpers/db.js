@@ -82,10 +82,7 @@ export const insertSession = (dogId, paws) => {
           reject(err);
         }
       );
-    }).then(() => {
       resolve();
-    }).catch(error => {
-      reject(error);
     });
   });
   return promise;

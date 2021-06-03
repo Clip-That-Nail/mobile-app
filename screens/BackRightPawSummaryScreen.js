@@ -31,15 +31,12 @@ const BackRightPawSummaryScreen = (props) => {
 
   const completePaw = useCallback(async () => {
     try {
-      await validateFrontPawSummary(outcomes, behaviours);
+      // await validateFrontPawSummary(outcomes, behaviours);
       dispatch(updateCompleteBackRightPaw(!complete));
       navigation.navigate('BackRightPawComplete');
     } catch (err) {
       Alert.alert(`You can't complete this paw`, err.message, [
         { text: 'Okay', style: 'default' },
-        // {
-        //   text: 'Yes', style: 'destructive', onPress: props.onYesPress
-        // }
       ]);
     }
   }, [dispatch, complete]);

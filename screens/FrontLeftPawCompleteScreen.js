@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useCallback, useLayoutEffect } from 'react';
+import { StyleSheet, View, Text, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
@@ -9,15 +9,48 @@ import { CommonActions } from '@react-navigation/native';
 import HeaderButton from '../components/HeaderButton';
 import CompleteSpecialIcon from '../components/CompleteSpecialIcon';
 import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
-import { updateCompleteFrontLeftPaw } from '../redux/actions/session';
+import { updateCompleteFrontLeftPaw, finishSession } from '../redux/actions/session';
 import { goToNextPaw, isSessionComplete } from '../helpers/session';
 
 import Colors from '../constants/Colors';
 
 const FrontLeftPawCompleteScreen = (props) => {
+  const { navigation } = props;
   const clawsData = useSelector(state => state.session.frontLeftPaw.claws);
+  const frontLeftPawComplete = useSelector(state => state.session.frontLeftPaw.complete);
+  const frontRightPawComplete = useSelector(state => state.session.frontRightPaw.complete);
+  const backLeftPawComplete = useSelector(state => state.session.backLeftPaw.complete);
+  const backRightPawComplete = useSelector(state => state.session.backRightPaw.complete);
 
   const dispatch = useDispatch();
+
+  const completeSession = useCallback(async () => {
+    try {
+      await dispatch(finishSession());
+      navigation.navigate('Home', {}, CommonActions.navigate('Home'));
+    } catch (err) {
+      Alert.alert(`Something went wrong`, err.message, [
+        { text: 'Okay', style: 'default' },
+      ]);
+    }
+  }, [dispatch]);
+
+  useLayoutEffect(() => {
+    if (frontLeftPawComplete && frontRightPawComplete && backLeftPawComplete && backRightPawComplete) {
+      navigation.setOptions({
+        headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item title="Finish session" iconName='checkmark' onPress={() => {
+            Alert.alert('Finish session?', 'Are you sure you want to finish this clipping session?', [
+              { text: 'No', style: 'default' },
+              {
+                text: 'Yes', style: 'destructive', onPress: completeSession
+              }
+            ]);
+          }} />
+        </HeaderButtons>)
+      });
+    }
+  }, [navigation, frontLeftPawComplete, frontRightPawComplete, backLeftPawComplete, backRightPawComplete, completeSession]);
 
   return (
     <View style={styles.screen}>
@@ -47,7 +80,7 @@ const FrontLeftPawCompleteScreen = (props) => {
       <View style={styles.buttonContainer}>
         <Button style={styles.button} icon="pencil" mode="contained" color={Colors.greenColor} onPress={() => {
           dispatch(updateCompleteFrontLeftPaw(false));
-          props.navigation.navigate('FrontLeftPawChecker')
+          navigation.navigate('FrontLeftPawChecker')
         }}>
           Change
         </Button>
@@ -59,9 +92,9 @@ const FrontLeftPawCompleteScreen = (props) => {
           contentStyle={{ flexDirection: 'row-reverse' }}
           onPress={() => {
             if (isSessionComplete) {
-              props.navigation.navigate('Home', {}, CommonActions.navigate('Home'));
+              navigation.navigate('Home', {}, CommonActions.navigate('Home'));
             } else {
-              goToNextPaw(props.navigation);
+              goToNextPaw(navigation);
             }
           }}
         >
