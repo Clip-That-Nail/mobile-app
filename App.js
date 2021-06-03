@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 
 import store from './redux/store';
 import AppNavigator from './navigation/AppNavigator';
+import { init, insertSession } from './helpers/db';
 
 enableScreens();
 LogBox.ignoreLogs(['Your project is accessing the following APIs from a deprecated global rather than a module import: Constants (expo-constants).']);
@@ -27,6 +28,13 @@ const fetchFonts = () => {
     'roboto-black-italic': require('./assets/fonts/Roboto-BlackItalic.ttf'),
   });
 };
+
+init().then(() => {
+  console.log('Initialised database.');
+}).catch(err => {
+  console.log('Initialising db failed.');
+  console.log(err);
+});
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);

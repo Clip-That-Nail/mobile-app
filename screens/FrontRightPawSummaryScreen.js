@@ -5,7 +5,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
 import SummaryRow from '../components/SummaryRow';
-import { validateFrontPawSummary } from '../helper/validation';
+import { validateFrontPawSummary } from '../helpers/validation';
 import { updateFrontRightPawOutcomes, updateFrontRightPawBehaviours, updateCompleteFrontRightPaw } from '../redux/actions/session';
 
 const FrontRightPawSummaryScreen = (props) => {

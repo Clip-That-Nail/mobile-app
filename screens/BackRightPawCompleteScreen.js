@@ -10,7 +10,7 @@ import HeaderButton from '../components/HeaderButton';
 import CompleteSpecialIcon from '../components/CompleteSpecialIcon';
 import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
 import { updateCompleteBackRightPaw } from '../redux/actions/session';
-import { goToNextPaw, isSessionComplete } from '../helper/session';
+import { goToNextPaw, isSessionComplete } from '../helpers/session';
 
 import Colors from '../constants/Colors';
 
