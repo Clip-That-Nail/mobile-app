@@ -1,4 +1,5 @@
 import sessionTypes from '../types/session';
+import { insertSession } from '../../helpers/db';
 
 /**
  * Update front left paw status
@@ -136,4 +137,30 @@ export const updateCompleteBackLeftPaw = (complete) => {
 
 export const updateCompleteBackRightPaw = (complete) => {
   return { type: sessionTypes.COMPLETE_BACK_RIGHT_PAW, complete: complete };
+};
+
+export const finishSession = () => {
+  return async (dispatch, getState) => {
+    const frontLeftPawClaws = getState().session.frontLeftPaw.claws;
+    const frontRightPawClaws = getState().session.frontRightPaw.claws;
+    const backLeftPawClaws = getState().session.backLeftPaw.claws;
+    const backRightPawClaws = getState().session.backRightPaw.claws;
+    
+    try {
+      const sessionData = {
+        frontLeft: frontLeftPawClaws,
+        frontRight: frontRightPawClaws,
+        backLeft: backLeftPawClaws,
+        backRight: backRightPawClaws,
+      };
+
+      console.log('[insertSession sessionData]', sessionData);
+      const dbResult = await insertSession(1, sessionData);
+      console.log('[insertSession result]', dbResult);
+      dispatch({ type: sessionTypes.FINISH_SESSION, session: sessionData });
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
 };
