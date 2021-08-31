@@ -1,12 +1,33 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../../components/HeaderButton';
+import * as dogsActions from '../../redux/actions/dogs';
 
 const DogsListScreen = (props) => {
+  const dispatch = useDispatch();
+  const dogs = useSelector(state => state.dogs.dogs);
+
+  useEffect(() => {
+    dispatch(dogsActions.loadDogs());
+  }, [dispatch]);
+
+  console.log('dogs', dogs);
+
   return (
-    <View><Text>Dogs List Screen</Text></View>
+    <View>
+      <Text>TEST</Text>
+      <FlatList
+        data={dogs}
+        keyExtractor={item => item.id}
+        renderItem={itemData => <Text>{JSON.stringify(itemData.item)}</Text>}
+        // renderItem={itemData => <DogItem image={itemData.item.imageUri} name={itemData.item.name} breed={itemData.item.breed} onSelect={() => {
+        //   props.navigation.navigate('DogDetail', { dogName: itemData.item.name, dogId: itemData.item.id });
+        // }} />}
+      />
+    </View>
   );
 };
 

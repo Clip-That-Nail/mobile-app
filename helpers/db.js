@@ -5,7 +5,10 @@ const db = SQLite.openDatabase('clipThatNail.db');
 export const init = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
-      tx.executeSql('CREATE TABLE IF NOT EXISTS dogs (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, breed TEXT NOT NULL);', [], () => { }, (_, err) => { reject(err); });
+      // tx.executeSql('DROP TABLE dogs;', [], () => { }, (_, err) => { reject(err); });
+      // tx.executeSql('DROP TABLE sessions;', [], () => { }, (_, err) => { reject(err); });
+      // tx.executeSql('DROP TABLE claws;', [], () => { }, (_, err) => { reject(err); });
+      tx.executeSql('CREATE TABLE IF NOT EXISTS dogs (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, breed TEXT NOT NULL, imageUri TEXT NOT NULL);', [], () => { }, (_, err) => { reject(err); });
       tx.executeSql('CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY NOT NULL, dogId INTEGER NOT NULL, createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP);', [], () => { }, (_, err) => { reject(err); });
       tx.executeSql('CREATE TABLE IF NOT EXISTS claws (id INTEGER PRIMARY KEY NOT NULL, sessionId INTEGER NOT NULL, paw TEXT NOT NULL, claw TEXT NOT NULL, status TEXT NOT NULL, outcome TEXT NOT NULL, behaviour TEXT NOT NULL);', [], () => { }, (_, err) => { reject(err); });
       resolve();
@@ -14,11 +17,29 @@ export const init = () => {
   return promise;
 };
 
-export const insertDog = (name, breed) => {
+export const insertDog = (name, breed, imageUri) => {
+  console.log('test', [name, breed, imageUri]);
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
-      tx.executeSql('INSERT INTO dogs (name, breed) VALUES (?,?)',
-        [name, breed],
+      tx.executeSql('INSERT INTO dogs (name, breed, imageUri) VALUES (?,?,?)',
+        [name, breed, imageUri],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => {
+          reject(err);
+        }
+      );
+    });
+  });
+  return promise;
+}
+
+export const fetchDogs = () => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql('SELECT * FROM dogs',
+        [],
         (_, result) => {
           resolve(result);
         },
@@ -95,20 +116,3 @@ const pawInsertSuccess = () => {
 const pawInsertFail = (err) => {
   console.log('paw insert fail, err.message: ' + err.message);
 }
-
-// export const fetchPlaces = () => {
-//   const promise = new Promise((resolve, reject) => {
-//     db.transaction((tx) => {
-//       tx.executeSql('SELECT * FROM places',
-//         [],
-//         (_, result) => {
-//           resolve(result);
-//         },
-//         (_, err) => {
-//           reject(err);
-//         }
-//       );
-//     });
-//   });
-//   return promise;
-// }
