@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-const SessionsScreen = (props) => {
+const SessionsListScreen = (props) => {
   return (
-    <View><Text>Sessions Screen</Text></View>
+    <View><Text>Sessions List Screen</Text></View>
   );
 };
 
@@ -15,4 +15,4 @@ export const screenOptions = (navData) => {
 
 const styles = StyleSheet.create({});
 
-export default SessionsScreen;
+export default SessionsListScreen;
