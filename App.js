@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 
 import store from './redux/store';
 import AppNavigator from './navigation/AppNavigator';
-import { init, insertSession } from './helpers/db';
+import { init } from './helpers/db';
 
 enableScreens();
 LogBox.ignoreLogs(['Your project is accessing the following APIs from a deprecated global rather than a module import: Constants (expo-constants).']);
