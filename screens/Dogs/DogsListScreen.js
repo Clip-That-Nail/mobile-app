@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../../components/HeaderButton';
+import DogItem from '../../components/DogItem';
 import * as dogsActions from '../../redux/actions/dogs';
 
 const DogsListScreen = (props) => {
@@ -14,18 +15,14 @@ const DogsListScreen = (props) => {
     dispatch(dogsActions.loadDogs());
   }, [dispatch]);
 
-  console.log('dogs', dogs);
-
   return (
     <View>
-      <Text>TEST</Text>
       <FlatList
         data={dogs}
         keyExtractor={item => item.id}
-        renderItem={itemData => <Text>{JSON.stringify(itemData.item)}</Text>}
-        // renderItem={itemData => <DogItem image={itemData.item.imageUri} name={itemData.item.name} breed={itemData.item.breed} onSelect={() => {
-        //   props.navigation.navigate('DogDetail', { dogName: itemData.item.name, dogId: itemData.item.id });
-        // }} />}
+        renderItem={itemData => <DogItem image={itemData.item.imageUri} name={itemData.item.name} breed={itemData.item.breed} onSelect={() => {
+          props.navigation.navigate('DogDetail', { dogName: itemData.item.name, dogId: itemData.item.id });
+        }} />}
       />
     </View>
   );
