@@ -1,5 +1,5 @@
 import Database from "./Database";
-import m_0001 from "./m_0001";
+import m_0001 from "./migrations/m_0001";
 
 //When adding new migrations in already deployed app, append them to the end of array, do not re-arrange
 //Do not modify migration after app version containing it is published
