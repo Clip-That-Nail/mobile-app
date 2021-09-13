@@ -4,8 +4,8 @@ import { fetchSessions, insertSession } from '../../helpers/db';
 export const loadSessions = () => {
   return async (dispatch) => {
     try {
-      const dbResult = await fetchSessions();
-      dispatch({ type: sessionsTypes.SET_SESSIONS, sessions: dbResult.rows._array });
+      const sessionsResult = await fetchSessions();
+      dispatch({ type: sessionsTypes.SET_SESSIONS, sessions: sessionsResult });
     } catch (err) {
       console.log(err);
       throw err;
