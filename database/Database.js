@@ -1,5 +1,8 @@
 import Connection from './Connection';
 
+/**
+ * https://blog.gennady.pp.ua/wrapper-for-expo-sqlite-with-async-await-migrations-and-transactions-support/
+ */
 class Database {
     constructor(name = "main", { prepareConnFn, migrateFn } = {}) {
         this._dbName = name;

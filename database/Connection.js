@@ -1,5 +1,8 @@
 import * as SQLite from "expo-sqlite";
 
+/**
+ * https://blog.gennady.pp.ua/wrapper-for-expo-sqlite-with-async-await-migrations-and-transactions-support/
+ */
 class Connection {
   constructor(databaseName) {
     this._db = SQLite.openDatabase(databaseName);
