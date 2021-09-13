@@ -7,7 +7,7 @@ export const loadDogs = () => {
   return async (dispatch) => {
     try {
       const dbResult = await fetchDogs();
-      dispatch({ type: dogsTypes.SET_DOGS, dogs: dbResult.rows._array });
+      dispatch({ type: dogsTypes.SET_DOGS, dogs: dbResult.rows });
     } catch (err) {
       console.log(err);
       throw err;
