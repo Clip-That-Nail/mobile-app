@@ -5,7 +5,7 @@ const initialState = {
   dogs: []
 }
 
-const sessionReducer = (state = initialState, action) => {
+const dogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case dogsTypes.SET_DOGS:
       return {
@@ -26,4 +26,4 @@ const sessionReducer = (state = initialState, action) => {
   }
 };
 
-export default sessionReducer;
+export default dogsReducer;
