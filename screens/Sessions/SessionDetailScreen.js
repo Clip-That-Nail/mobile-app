@@ -28,7 +28,7 @@ const SessionDetailScreen = (props) => {
 
 export const screenOptions = (navData) => {
   return {
-    headerTitle: navData.route.params.dogName,
+    headerTitle: navData.route.params.sessionCreateDate,
   }
 };
 
