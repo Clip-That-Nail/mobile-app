@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     elevation: 2,
     backgroundColor: 'white',
-    borderRadius: 5
+    borderRadius: 20
   },
   titleContainer: {
     flex: 1,

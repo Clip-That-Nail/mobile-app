@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import DogsListScreen, { screenOptions as dogsListScreenOptions} from '../screens/Dogs/DogsListScreen';
+import DogsListScreen, { screenOptions as dogsListScreenOptions } from '../screens/Dogs/DogsListScreen';
 import AddNewDogScreen, { screenOptions as addNewDogScreenOptions } from '../screens/Dogs/AddNewDogScreen';
 import DogDetailScreen, { screenOptions as dogDetailScreenOptions } from '../screens/Dogs/DogDetailScreen';
 import DefaultStackNavOptions from './DefaultStackNavOptions';
@@ -14,9 +14,9 @@ const DogsNavigator = () => {
     ...DefaultStackNavOptions,
     headerStyle: {
       ...DefaultStackNavOptions.headerStyle,
-      backgroundColor: Colors.redColor,
-    }
-  }}>
+        backgroundColor: Colors.redColor,
+      }
+    }}>
     <SessionsStack.Screen name="DogsList" component={DogsListScreen} options={dogsListScreenOptions} />
     <SessionsStack.Screen name="AddNewDog" component={AddNewDogScreen} options={addNewDogScreenOptions} />
     <SessionsStack.Screen name="DogDetail" component={DogDetailScreen} options={dogDetailScreenOptions} />
