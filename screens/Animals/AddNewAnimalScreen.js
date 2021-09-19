@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, View, Button, ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { Picker } from '@react-native-picker/picker';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import HeaderButton from '../../components/HeaderButton';
 import ImagePicker from '../../components/ImagePicker';
+import CustomInput from '../../components/CustomInput';
+import CustomPicker from '../../components/CustomPicker';
 
 import * as animalsActions from '../../redux/actions/animals';
 
@@ -49,19 +50,12 @@ const AddNewAnimalScreen = (props) => {
         style={styles.background}
       />
       <View style={styles.form}>
-        <Text style={styles.label}>Animal Name</Text>
-        <TextInput style={styles.textInput} onChange={animalNameChangeHandler} value={animalName} placeholder="Animal Name" />
-        <Text style={styles.label}>Type</Text>
-        <View style={styles.animalPicker}>
-          <Picker
-            selectedValue={animalType}
-            onValueChange={animalTypeChangeHandler}>
-            <Picker.Item label="Dog" value="dog" key="dog" />
-            <Picker.Item label="Cat" value="cat" key="cat" />
-          </Picker>
-        </View>
-        <Text style={styles.label}>Breed</Text>
-        <TextInput style={styles.textInput} onChange={animalBreedChangeHandler} value={animalBreed} />
+        <CustomInput label="Name" placeholder="Type animal name" value={animalName} handleChange={animalNameChangeHandler} />
+        <CustomPicker label="Type" value={animalType} handleChange={animalTypeChangeHandler} options={[
+          { label: "Dog", value: "dog" },
+          { label: "Cat", value: "cat" },
+        ]} />
+        <CustomInput label="Breed" placeholder="Type animal breed" value={animalBreed} handleChange={animalBreedChangeHandler} />
         <ImagePicker onImageTaken={imageTakenHandler} />
         <Button title="Save Animal" color={Colors.redColor} onPress={saveAnimalHandler} />
       </View>
@@ -83,8 +77,6 @@ export const screenOptions = (navData) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
     backgroundColor: '#eff1f5',
   },
   background: {
@@ -95,24 +87,8 @@ const styles = StyleSheet.create({
     bottom: 0
   },
   form: {
-    margin: 30,
+    margin: 15,
   },
-  label: {
-    fontSize: 18,
-    marginBottom: 15,
-  },
-  textInput: {
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-    marginBottom: 15,
-    paddingVertical: 4,
-    paddingHorizontal: 2
-  },
-  animalPicker: {
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-    marginBottom: 15,
-  }
 });
 
 export default AddNewAnimalScreen;
