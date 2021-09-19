@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Button, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, CheckBox, ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Button } from 'react-native-paper';
 
 import HeaderButton from '../../components/HeaderButton';
 import ImagePicker from '../../components/ImagePicker';
@@ -18,6 +19,7 @@ const AddNewAnimalScreen = (props) => {
   const [animalName, setAnimalName] = useState('');
   const [animalType, setAnimalType] = useState('');
   const [animalBreed, setAnimalBreed] = useState('');
+  const [animalDisabled, setAnimalDisabled] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
 
   const animalNameChangeHandler = (event) => {
@@ -57,7 +59,17 @@ const AddNewAnimalScreen = (props) => {
         ]} />
         <CustomInput label="Breed" placeholder="Type animal breed" value={animalBreed} handleChange={animalBreedChangeHandler} />
         <ImagePicker onImageTaken={imageTakenHandler} />
-        <Button title="Save Animal" color={Colors.redColor} onPress={saveAnimalHandler} />
+        <View style={styles.checkboxContainer}>{/* TODO: move it to the seperate component : CustomCheckbox */}
+          <CheckBox
+            value={animalDisabled}
+            onValueChange={setAnimalDisabled}
+            style={styles.checkbox}
+          />
+          <Text style={styles.label}>Disabled?</Text>
+        </View>
+        <Button style={styles.button} icon="paw" mode="contained" color={Colors.redColor} onPress={saveAnimalHandler}>
+          Save Animal
+        </Button>
       </View>
     </ScrollView>
   );
@@ -88,6 +100,21 @@ const styles = StyleSheet.create({
   },
   form: {
     margin: 15,
+  },
+  button: {
+    borderRadius: 20,
+    fontSize: 18,
+    paddingVertical: 5
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  checkbox: {
+    alignSelf: "center",
+  },
+  label: {
+    margin: 8,
   },
 });
 
