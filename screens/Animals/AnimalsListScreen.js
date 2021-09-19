@@ -43,6 +43,7 @@ const AnimalsListScreen = (props) => {
           Your Animals
         </Text>
       </View>
+      {/* TODO: create component for lists because you are using it in a few places : CustomList or CustomFlatList */}
       <FlatList
         contentContainerStyle={styles.list}
         data={animals}
@@ -50,6 +51,11 @@ const AnimalsListScreen = (props) => {
         renderItem={itemData => <AnimalItem animalData={itemData.item} onSelect={() => {
           props.navigation.navigate('AnimalDetail', { animalName: itemData.item.name, animalId: itemData.item.id });
         }} />}
+        ListEmptyComponent={() => (
+          <View style={styles.emptyListContainer}>
+            <Text style={styles.emptyListMessage}>You haven't added any animals yet</Text>
+          </View>
+        )}
       />
     </View>
   );
@@ -95,6 +101,16 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingBottom: 10
+  },
+  emptyListContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 15,
+  },
+  emptyListMessage: {
+    color: '#777',
+    fontSize: 13
   }
 });
 
