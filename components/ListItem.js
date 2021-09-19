@@ -1,13 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
-import Colors from '../constants/Colors';
+import { View, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 
 const ListItem = props => {
+  let TouchableCmp = TouchableOpacity;
+
+  if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback;
+  }
+
   return (
-    <TouchableOpacity onPress={props.onSelect} style={styles.listItem}>
-      {props.children}
-    </TouchableOpacity>
+    <TouchableCmp onPress={props.onSelect} useForeground>
+      <View style={styles.listItem}>
+        {props.children}
+      </View>
+    </TouchableCmp>
   );
 };
 
@@ -21,6 +27,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     backgroundColor: 'white',
     borderRadius: 20,
+    overflow: 'hidden',
   },
 });
 

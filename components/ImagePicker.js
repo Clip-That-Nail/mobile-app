@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, Alert, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { Ionicons } from '@expo/vector-icons';
 
 const ImgPicker = (props) => {
+  let TouchableCmp = TouchableOpacity;
+
+  if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback;
+  }
+
   const [pickedImage, setPickedImage] = useState();
 
   const verifyPermissions = async () => {
@@ -35,14 +41,18 @@ const ImgPicker = (props) => {
     <View style={styles.imagePicker}>
       <View style={styles.imagePreview}>
         {!pickedImage ? (
-          <TouchableOpacity style={styles.imagePreviewIcon} onPress={takeImageHandler}>
-            <Ionicons name="camera-outline" size={100} color="#dadada" />
-            <Text style={styles.imagePreviewIconText}>Take animal picture.</Text>
-          </TouchableOpacity>
+          <TouchableCmp onPress={takeImageHandler} useForeground>
+            <View style={styles.imagePreviewIcon}>
+              <Ionicons name="camera-outline" size={100} color="#dadada" />
+              <Text style={styles.imagePreviewIconText}>Take animal picture.</Text>
+            </View>
+          </TouchableCmp>
         ) : (
-          <TouchableOpacity style={styles.imageContainer} onPress={takeImageHandler}>
-            <Image style={styles.image} source={{ uri: pickedImage }} />
-          </TouchableOpacity>
+          <TouchableCmp onPress={takeImageHandler} useForeground>
+            <View style={styles.imageContainer}>
+              <Image style={styles.image} source={{ uri: pickedImage }} />
+            </View>
+          </TouchableCmp>
         )}
       </View>
     </View>
@@ -68,6 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   imagePreviewIconText: {
     color: "#999"
@@ -75,12 +86,15 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     width: '100%',
+    borderRadius: 20,
+    overflow: 'hidden',
   },
   image: {
     flex: 1,
     elevation: 1,
     borderRadius: 20,
-    zIndex: 1
+    overflow: 'hidden',
+    zIndex: 1,
   },
 });
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
-import Colors from '../constants/Colors';
+import { View, Text, StyleSheet } from 'react-native';
+
+import ListItem from './ListItem';
 
 const SessionItem = props => {
   return (
-    <TouchableOpacity onPress={props.onSelect} style={styles.sessionItem}>
+    <ListItem onSelect={props.onSelect}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{props.session.createDate}</Text>
       </View>
@@ -17,20 +17,11 @@ const SessionItem = props => {
           <Text style={styles.status}>Status: finished</Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </ListItem>
   );
 };
 
 const styles = StyleSheet.create({
-  sessionItem: {
-    marginVertical: 7.5,
-    marginHorizontal: 15,
-    padding: 10,
-    alignItems: 'center',
-    elevation: 2,
-    backgroundColor: 'white',
-    borderRadius: 20
-  },
   titleContainer: {
     flex: 1,
     width: '100%',

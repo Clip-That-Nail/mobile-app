@@ -1,14 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 
 const ScreenActionButtons = ({ buttonsData }) => {
+  let TouchableCmp = TouchableOpacity;
+
+  if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback;
+  }
+
   const displayButtons = () => {
     return buttonsData.map(button => {
       return (
         <View style={styles.buttonContainer} key={button.text}>
-          <TouchableOpacity onPress={button.onPress} style={styles.iconContainer}>
-            {button.icon}
-          </TouchableOpacity>
+          <TouchableCmp onPress={button.onPress} useForeground>
+            <View style={styles.iconContainer}>
+              {button.icon}
+            </View>
+          </TouchableCmp>
           <View style={styles.textContainer}>
             <Text style={styles.text}>{button.text}</Text>
           </View>
@@ -42,6 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: "white",
+    overflow: 'hidden',
     elevation: 1
   },
   textContainer: {
