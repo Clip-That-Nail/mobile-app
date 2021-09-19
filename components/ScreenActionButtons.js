@@ -2,26 +2,25 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const ScreenActionButtons = (props) => {
+const ScreenActionButtons = ({ buttonsData }) => {
+  const displayButtons = () => {
+    return buttonsData.map(button => {
+      return (
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={button.onPress} style={styles.iconContainer}>
+            {button.icon}
+          </TouchableOpacity>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>{button.text}</Text>
+          </View>
+        </View>
+      );
+    })
+  }
 
   return (
     <View style={styles.buttonsContainer}>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.iconContainer}>
-          <Ionicons name="add" size={30} color="black" />
-        </TouchableOpacity>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>Add</Text>
-        </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.iconContainer}>
-          <Ionicons name="stats-chart" size={30} color="black" />
-        </TouchableOpacity>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>Stats</Text>
-        </View>
-      </View>
+      {displayButtons()}
     </View>
   );
 };
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   iconContainer: {
-    borderRadius: 100,
+    borderRadius: 29,
     width: 60,
     height: 60,
     justifyContent: 'center',

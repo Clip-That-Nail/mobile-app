@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 
 import HeaderButton from '../../components/HeaderButton';
 import DogItem from '../../components/DogItem';
@@ -27,7 +28,18 @@ const DogsListScreen = (props) => {
         style={styles.background}
       />
       <ScreenTitle title="Animals" />
-      <ScreenActionButtons />{/* TODO: change parameters so its not hardcoded */}
+      <ScreenActionButtons buttonsData={[
+        {
+          text: 'Add',
+          icon: <Ionicons name="add" size={30} color="black" />,
+          onPress: () => props.navigation.navigate('AddNewDog')
+        },
+        {
+          text: 'Stats',
+          icon: <Ionicons name="stats-chart" size={30} color="black" />,
+          onPress: () => {}
+        },
+      ]} />
       <View style={styles.listTitleContainer}>
         <Text style={styles.listTitle}>
           Your Animals
@@ -46,12 +58,14 @@ const DogsListScreen = (props) => {
 
 export const screenOptions = (navData) => {
   return {
+    headerShown: true,
+    headerTransparent: true,
     // headerTitle: 'Your Doggos',
-    headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title="Add new doggo" iconName='add' onPress={() => {
-        navData.navigation.navigate('AddNewDog');
-      }} />
-    </HeaderButtons>)
+    // headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+    //   <Item title="Add new doggo" iconName='add' onPress={() => {
+    //     navData.navigation.navigate('AddNewDog');
+    //   }} />
+    // </HeaderButtons>)
   };
 };
 
