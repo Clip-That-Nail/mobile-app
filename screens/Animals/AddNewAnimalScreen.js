@@ -17,7 +17,7 @@ import Colors from '../../constants/Colors';
 const AddNewAnimalScreen = (props) => {
   const dispatch = useDispatch();
   const [animalName, setAnimalName] = useState('');
-  const [animalType, setAnimalType] = useState('');
+  const [animalType, setAnimalType] = useState('dog');
   const [animalBreed, setAnimalBreed] = useState('');
   const [animalDisabled, setAnimalDisabled] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
