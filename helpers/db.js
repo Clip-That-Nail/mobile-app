@@ -25,6 +25,19 @@ export const insertAnimal = async (name, type, breed, imageUri) => {
   return result;
 }
 
+export const updateAnimal = async (animalId, name, type, breed, imageUri) => {
+  let result;
+
+  await db.transaction(async connection => {
+    result = await connection.execute(`
+    UPDATE animals
+    SET name = ?, type = ?, breed = ?, imageUri = ?
+    WHERE id = ?`, [name, type, breed, imageUri, animalId]);
+  });
+
+  return result;
+}
+
 export const fetchAnimals = async () => {
   let result;
 
