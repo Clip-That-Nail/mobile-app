@@ -67,7 +67,7 @@ const AddNewAnimalScreen = (props) => {
           />
           <Text style={styles.label}>Disabled?</Text>
         </View>
-        <Button style={styles.button} icon="paw" mode="contained" color={Colors.redColor} onPress={saveAnimalHandler}>
+        <Button style={styles.button} icon="paw" mode="contained" color={Colors.redDarkColor} onPress={saveAnimalHandler}>
           Save Animal
         </Button>
       </View>
