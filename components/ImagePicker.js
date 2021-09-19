@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button, Image, Alert } from 'react-native';
+import { StyleSheet, View, Text, Image, Alert, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-
-import Colors from '../constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
 
 const ImgPicker = (props) => {
   const [pickedImage, setPickedImage] = useState();
@@ -36,12 +35,16 @@ const ImgPicker = (props) => {
     <View style={styles.imagePicker}>
       <View style={styles.imagePreview}>
         {!pickedImage ? (
-          <Text>No image picket yet.</Text>
+          <TouchableOpacity style={styles.imagePreviewIcon} onPress={takeImageHandler}>
+            <Ionicons name="camera-outline" size={100} color="#dadada" />
+            <Text style={styles.imagePreviewIconText}>Take animal picture.</Text>
+          </TouchableOpacity>
         ) : (
-          <Image style={styles.image} source={{ uri: pickedImage }} />
+          <TouchableOpacity style={styles.imageContainer} onPress={takeImageHandler}>
+            <Image style={styles.image} source={{ uri: pickedImage }} />
+          </TouchableOpacity>
         )}
       </View>
-      <Button title="Take Image" color={Colors.redColor} onPress={takeImageHandler} />
     </View>
   );
 };
@@ -49,7 +52,6 @@ const ImgPicker = (props) => {
 const styles = StyleSheet.create({
   imagePicker: {
     alignItems: 'center',
-    marginBottom: 15
   },
   imagePreview: {
     width: '100%',
@@ -57,12 +59,28 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#ccc',
-    borderWidth: 1
+  },
+  imagePreviewIcon: {
+    flex: 1,
+    width: '100%',
+    elevation: 1,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imagePreviewIconText: {
+    color: "#999"
+  },
+  imageContainer: {
+    flex: 1,
+    width: '100%',
   },
   image: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
+    elevation: 1,
+    borderRadius: 20,
+    zIndex: 1
   },
 });
 
