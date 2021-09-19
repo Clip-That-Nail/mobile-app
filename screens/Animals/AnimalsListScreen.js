@@ -35,7 +35,7 @@ const AnimalsListScreen = (props) => {
         {
           text: 'Stats',
           icon: <Ionicons name="stats-chart" size={30} color="black" />,
-          onPress: () => {}
+          onPress: () => { }
         },
       ]} />
       <View style={styles.listTitleContainer}>
@@ -44,9 +44,10 @@ const AnimalsListScreen = (props) => {
         </Text>
       </View>
       <FlatList
+        contentContainerStyle={styles.list}
         data={animals}
         keyExtractor={item => item.id}
-        renderItem={itemData => <AnimalItem image={itemData.item.imageUri} name={itemData.item.name} breed={itemData.item.breed} onSelect={() => {
+        renderItem={itemData => <AnimalItem animalData={itemData.item} onSelect={() => {
           props.navigation.navigate('AnimalDetail', { animalName: itemData.item.name, animalId: itemData.item.id });
         }} />}
       />
@@ -92,6 +93,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: "#555"
   },
+  list: {
+    paddingBottom: 10
+  }
 });
 
 export default AnimalsListScreen;

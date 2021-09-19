@@ -2,15 +2,17 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../constants/Colors';
 
+import ListItem from './ListItem';
+
 const AnimalItem = props => {
   return (
-    <TouchableOpacity onPress={props.onSelect} style={styles.animalItem}>
-      <Image style={styles.image} source={{ uri: props.image }} />
+    <ListItem onSelect={props.onSelect}>
+      <Image style={styles.image} source={{ uri: props.animalData.imageUri }} />
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>{props.name}</Text>
-        <Text style={styles.breed}>{props.breed}</Text>
+        <Text style={styles.name}>{props.animalData.name}</Text>
+        <Text style={styles.breed}>{props.animalData.breed}</Text>
       </View>
-    </TouchableOpacity>
+    </ListItem>
   );
 };
 
