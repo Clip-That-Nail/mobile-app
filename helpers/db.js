@@ -3,11 +3,11 @@ import db from '../database/db';
 // export const init = () => {
 //   const promise = new Promise((resolve, reject) => {
 //     db.transaction((tx) => {
-//       // tx.executeSql('DROP TABLE dogs;', [], () => { }, (_, err) => { reject(err); });
+//       // tx.executeSql('DROP TABLE animals;', [], () => { }, (_, err) => { reject(err); });
 //       // tx.executeSql('DROP TABLE sessions;', [], () => { }, (_, err) => { reject(err); });
 //       // tx.executeSql('DROP TABLE claws;', [], () => { }, (_, err) => { reject(err); });
-//       tx.executeSql('CREATE TABLE IF NOT EXISTS dogs (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, breed TEXT NOT NULL, imageUri TEXT NOT NULL);', [], () => { }, (_, err) => { reject(err); });
-//       tx.executeSql('CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY NOT NULL, dogId INTEGER NOT NULL, createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP);', [], () => { }, (_, err) => { reject(err); });
+//       tx.executeSql('CREATE TABLE IF NOT EXISTS animals (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, breed TEXT NOT NULL, imageUri TEXT NOT NULL);', [], () => { }, (_, err) => { reject(err); });
+//       tx.executeSql('CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY NOT NULL, animalId INTEGER NOT NULL, createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP);', [], () => { }, (_, err) => { reject(err); });
 //       tx.executeSql('CREATE TABLE IF NOT EXISTS claws (id INTEGER PRIMARY KEY NOT NULL, sessionId INTEGER NOT NULL, paw TEXT NOT NULL, claw TEXT NOT NULL, status TEXT NOT NULL, outcome TEXT NOT NULL, behaviour TEXT NOT NULL);', [], () => { }, (_, err) => { reject(err); });
 //       resolve();
 //     });
@@ -15,29 +15,29 @@ import db from '../database/db';
 //   return promise;
 // };
 
-export const insertDog = async (name, breed, imageUri) => {
+export const insertAnimal = async (name, type, breed, imageUri) => {
   let result;
 
   await db.transaction(async connection => {
-    result = await connection.execute('INSERT INTO dogs (name, breed, imageUri) VALUES (?,?,?)', [name, breed, imageUri]);
+    result = await connection.execute('INSERT INTO animals (name, type, breed, imageUri) VALUES (?,?,?,?)', [name, type, breed, imageUri]);
   });
 
   return result;
 }
 
-export const fetchDogs = async () => {
+export const fetchAnimals = async () => {
   let result;
 
   await db.transaction(async connection => {
-    result = await connection.execute('SELECT * FROM dogs');
+    result = await connection.execute('SELECT * FROM animals');
   });
 
   return result;
 }
 
-export const insertSession = async (dogId, paws) => {
+export const insertSession = async (animalId, paws) => {
   await db.transaction(async connection => {
-    const sessionResult = await connection.execute('INSERT INTO sessions (dogId) VALUES (?)', [dogId]);
+    const sessionResult = await connection.execute('INSERT INTO sessions (animalId) VALUES (?)', [animalId]);
 
     // frontLeft paw
     Object.keys(paws.frontLeft).map(async (key, index) => {
@@ -101,10 +101,10 @@ export const fetchSessions = async () => {
   let sessions = {};
 
   const clawsResult = await db.execute(`
-    SELECT claws.id AS clawId, sessions.id AS sessionId, dogs.id AS dogId, *
+    SELECT claws.id AS clawId, sessions.id AS sessionId, animals.id AS animalId, *
     FROM claws
     JOIN sessions ON sessions.id = claws.sessionId
-    JOIN dogs ON dogs.id = sessions.dogId
+    JOIN animals ON animals.id = sessions.animalId
     ORDER BY sessions.createDate
   `);
 
@@ -119,8 +119,8 @@ export const fetchSessions = async () => {
       ...sessions[claw.sessionId],
       id: claw.sessionId,
       createDate: claw.createDate,
-      dog: {
-        id: claw.dogId,
+      animal: {
+        id: claw.animalId,
         name: claw.name,
         breed: claw.breed,
         imageUri: claw.imageUri,

@@ -1,8 +1,9 @@
 export default async function (connection) {
   await connection.execute(
-    `CREATE TABLE IF NOT EXISTS dogs (
+    `CREATE TABLE IF NOT EXISTS animals (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
+      type TEXT NOT NULL,
       breed TEXT NOT NULL,
       imageUri TEXT NOT NULL
     )`
@@ -10,7 +11,7 @@ export default async function (connection) {
   await connection.execute(
     `CREATE TABLE IF NOT EXISTS sessions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      dogId INTEGER NOT NULL,
+      animalId INTEGER NOT NULL,
       createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )`
   );

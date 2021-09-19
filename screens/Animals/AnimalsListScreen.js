@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
-import HeaderButton from '../../components/HeaderButton';
-import DogItem from '../../components/DogItem';
+import AnimalItem from '../../components/AnimalItem';
 import ScreenTitle from '../../components/ScreenTitle';
 import ScreenActionButtons from '../../components/ScreenActionButtons';
-import * as dogsActions from '../../redux/actions/dogs';
+import * as animalsActions from '../../redux/actions/animals';
 
-const DogsListScreen = (props) => {
+const AnimalsListScreen = (props) => {
   const dispatch = useDispatch();
-  const dogs = useSelector(state => state.dogs.dogs);
+  const animals = useSelector(state => state.animals.animals);
 
   useEffect(() => {
-    dispatch(dogsActions.loadDogs());
+    dispatch(animalsActions.loadAnimals());
   }, [dispatch]);
 
   return (
@@ -32,7 +30,7 @@ const DogsListScreen = (props) => {
         {
           text: 'Add',
           icon: <Ionicons name="add" size={30} color="black" />,
-          onPress: () => props.navigation.navigate('AddNewDog')
+          onPress: () => props.navigation.navigate('AddNewAnimal')
         },
         {
           text: 'Stats',
@@ -46,10 +44,10 @@ const DogsListScreen = (props) => {
         </Text>
       </View>
       <FlatList
-        data={dogs}
+        data={animals}
         keyExtractor={item => item.id}
-        renderItem={itemData => <DogItem image={itemData.item.imageUri} name={itemData.item.name} breed={itemData.item.breed} onSelect={() => {
-          props.navigation.navigate('DogDetail', { dogName: itemData.item.name, dogId: itemData.item.id });
+        renderItem={itemData => <AnimalItem image={itemData.item.imageUri} name={itemData.item.name} breed={itemData.item.breed} onSelect={() => {
+          props.navigation.navigate('AnimalDetail', { animalName: itemData.item.name, animalId: itemData.item.id });
         }} />}
       />
     </View>
@@ -60,10 +58,10 @@ export const screenOptions = (navData) => {
   return {
     headerShown: true,
     headerTransparent: true,
-    // headerTitle: 'Your Doggos',
+    // headerTitle: 'Your Animals',
     // headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-    //   <Item title="Add new doggo" iconName='add' onPress={() => {
-    //     navData.navigation.navigate('AddNewDog');
+    //   <Item title="Add new animal" iconName='add' onPress={() => {
+    //     navData.navigation.navigate('AddNewAnimal');
     //   }} />
     // </HeaderButtons>)
   };
@@ -96,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DogsListScreen;
+export default AnimalsListScreen;

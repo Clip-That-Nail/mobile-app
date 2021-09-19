@@ -6,7 +6,7 @@ import m_0001 from "./migrations/m_0001";
 const migrations = [null, m_0001];
 const migrationsTable = "_migrations";
 
-const db = new Database("clipThatNail.db", {
+const db = new Database("clipThatNail_v2.db", {
   prepareConnFn: async connection => {
     try {
       await connection.execute("PRAGMA foreign_keys = ON;");

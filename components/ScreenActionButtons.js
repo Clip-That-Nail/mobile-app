@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
 const ScreenActionButtons = ({ buttonsData }) => {
   const displayButtons = () => {
     return buttonsData.map(button => {
       return (
-        <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainer} key={button.text}>
           <TouchableOpacity onPress={button.onPress} style={styles.iconContainer}>
             {button.icon}
           </TouchableOpacity>

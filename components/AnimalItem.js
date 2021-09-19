@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../constants/Colors';
 
-const DogItem = props => {
+const AnimalItem = props => {
   return (
-    <TouchableOpacity onPress={props.onSelect} style={styles.dogItem}>
+    <TouchableOpacity onPress={props.onSelect} style={styles.animalItem}>
       <Image style={styles.image} source={{ uri: props.image }} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{props.name}</Text>
@@ -15,7 +15,7 @@ const DogItem = props => {
 };
 
 const styles = StyleSheet.create({
-  dogItem: {
+  animalItem: {
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
     paddingVertical: 15,
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DogItem;
+export default AnimalItem;

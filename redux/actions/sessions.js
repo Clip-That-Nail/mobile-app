@@ -13,15 +13,15 @@ export const loadSessions = () => {
   }
 };
 
-export const addSession = (dogId, paws) => {
+export const addSession = (animalId, paws) => {
   return async (dispatch) => {
     try {
-      const dbResult = await insertSession(dogId, paws);
-      console.log('addDog result:', dbResult);
+      const dbResult = await insertSession(animalId, paws);
+      console.log('addAnimal result:', dbResult);
 
       dispatch({ type: sessionsTypes.ADD_SESSION, sessionData: { id: dbResult.insertId, paws } });
     } catch (err) {
-      console.log('addDog error:', err);
+      console.log('addAnimal error:', err);
       throw err;
     }
   }

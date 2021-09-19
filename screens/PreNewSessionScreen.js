@@ -11,13 +11,13 @@ import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
 
 import Colors from '../constants/Colors';
 
-const dogs = [
+const animals = [
   { name: 'Narcyz', key: 'narcyz' },
   { name: 'Laika', key: 'laika' }
 ]
 
 const PreNewSessionScreen = (props) => {
-  const [selectedDog, setSelectedDog] = useState(dogs[0].key);
+  const [selectedAnimal, setSelectedAnimal] = useState(animals[0].key);
   // const [date, setDate] = useState(new Date(1598051730000));
   // const [mode, setMode] = useState('date');
   // const [show, setShow] = useState(false);
@@ -67,22 +67,22 @@ const PreNewSessionScreen = (props) => {
         <Text>Select date of this clipping:</Text>
 
 
-        <Text>Select your dog:</Text>
-        <View style={styles.dogPickerContainer}>
+        <Text>Select your animal:</Text>
+        <View style={styles.animalPickerContainer}>
           <Picker
-            style={styles.dogPicker}
-            selectedDog={selectedDog}
+            style={styles.animalPicker}
+            selectedAnimal={selectedAnimal}
             onValueChange={(itemValue, itemIndex) =>
-              setSelectedDog(itemValue)
+              setSelectedAnimal(itemValue)
             }>
             {
-              dogs.map(item => <Picker.Item label={item.name} value={item.key} key={item.key} />)
+              animals.map(item => <Picker.Item label={item.name} value={item.key} key={item.key} />)
             }
           </Picker>
         </View>
       </View>
       <View style={styles.startButtonContainer}>
-        <Button disabled={selectedDog === ''} icon="paw" mode="contained" color={Colors.greenColor} contentStyle={styles.startButton}
+        <Button disabled={selectedAnimal === ''} icon="paw" mode="contained" color={Colors.greenColor} contentStyle={styles.startButton}
           onPress={() => props.navigation.navigate('Paws')}>
           Start
       </Button>
@@ -127,13 +127,13 @@ const styles = StyleSheet.create({
   datePicker: {
 
   },
-  dogPickerContainer: {
+  animalPickerContainer: {
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 3,
     borderColor: '#bbb',
   },
-  dogPicker: {
+  animalPicker: {
     height: 35,
     width: Dimensions.get('window').width - 20,
     color: 'black'
