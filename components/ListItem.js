@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 
+import Card from './Card';
+
 const ListItem = props => {
   let TouchableCmp = TouchableOpacity;
 
@@ -10,9 +12,9 @@ const ListItem = props => {
 
   return (
     <TouchableCmp onPress={props.onSelect} useForeground>
-      <View style={styles.listItem}>
+      <Card style={styles.listItem}>
         {props.children}
-      </View>
+      </Card>
     </TouchableCmp>
   );
 };
@@ -20,14 +22,6 @@ const ListItem = props => {
 const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 5,
-    marginHorizontal: 10,
-    padding: 10,
-    elevation: 1,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    overflow: 'hidden',
   },
 });
 
