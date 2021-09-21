@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     paddingBottom: 15
   },
   title: {
-    fontSize: 30
+    fontSize: 30,
+    fontFamily: 'roboto',
   },
 });
 
