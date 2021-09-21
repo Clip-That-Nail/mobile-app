@@ -11,7 +11,7 @@ const AnimalItem = props => {
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={{ uri: props.animalData.imageUri }} />
         <View style={styles.animalType}>
-          <MaterialCommunityIcons name={props.animalData.type} size={20} color="black" />
+          <MaterialCommunityIcons name={props.animalData.type} size={18} color="rgba(0,0,0,0.6)" />
         </View>
       </View>
       <View style={styles.infoContainer}>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 30,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.6)',
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 3
