@@ -45,7 +45,8 @@ const AnimalsListScreen = (props) => {
       </View>
       {/* TODO: create component for lists because you are using it in a few places : CustomList or CustomFlatList */}
       <FlatList
-        contentContainerStyle={styles.list}
+        style={styles.list}
+        contentContainerStyle={styles.listContent}
         data={animals}
         keyExtractor={item => item.id}
         renderItem={itemData => <AnimalItem animalData={itemData.item} onSelect={() => {
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'left',
     paddingHorizontal: 15,
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   listTitle: {
     fontSize: 16,
@@ -100,7 +101,11 @@ const styles = StyleSheet.create({
     color: "#555"
   },
   list: {
-    paddingBottom: 10
+    flex: 1,
+    width: '100%',
+  },
+  listContent: {
+    paddingBottom: 10,
   },
   emptyListContainer: {
     flex: 1,

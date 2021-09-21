@@ -38,13 +38,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  footerColumn: {
-
-  },
-
   infoContainer: {
     marginLeft: 25,
-    width: 250,
     justifyContent: 'center',
     alignItems: 'flex-start'
   },

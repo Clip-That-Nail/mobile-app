@@ -39,7 +39,8 @@ const SessionsListScreen = (props) => {
       </View>
       {/* TODO: create component for lists because you are using it in a few places : CustomList or CustomFlatList */}
       <FlatList
-        contentContainerStyle={styles.list}
+        style={styles.list}
+        contentContainerStyle={styles.listContent}
         data={sessions}
         keyExtractor={item => item.id}
         renderItem={itemData => <SessionItem session={itemData.item} onSelect={() => {
@@ -89,7 +90,11 @@ const styles = StyleSheet.create({
     color: "#555"
   },
   list: {
-    paddingBottom: 10
+    flex: 1,
+    width: '100%',
+  },
+  listContent: {
+    paddingBottom: 10,
   },
   emptyListContainer: {
     flex: 1,

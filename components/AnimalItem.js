@@ -23,17 +23,6 @@ const AnimalItem = props => {
 };
 
 const styles = StyleSheet.create({
-  animalItem: {
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  imageContainer: {
-
-  },
   animalType: {
     position: 'absolute',
     bottom: 3,
@@ -56,7 +45,6 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     marginLeft: 25,
-    width: 250,
     justifyContent: 'center',
     alignItems: 'flex-start'
   },
