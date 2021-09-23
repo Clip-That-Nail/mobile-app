@@ -7,20 +7,20 @@ import AnimalDetailScreen, { screenOptions as animalDetailScreenOptions } from '
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 import Colors from '../constants/Colors';
 
-const SessionsStack = createStackNavigator();
+const AnimalsStack = createStackNavigator();
 
 const AnimalsNavigator = () => {
-  return <SessionsStack.Navigator screenOptions={{
+  return <AnimalsStack.Navigator screenOptions={{
     ...DefaultStackNavOptions,
     headerStyle: {
       ...DefaultStackNavOptions.headerStyle,
         backgroundColor: Colors.redColor,
       }
     }}>
-    <SessionsStack.Screen name="AnimalsList" component={AnimalsListScreen} options={animalsListScreenOptions} />
-    <SessionsStack.Screen name="AddNewAnimal" component={AddNewAnimalScreen} options={addNewAnimalScreenOptions} />
-    <SessionsStack.Screen name="AnimalDetail" component={AnimalDetailScreen} options={animalDetailScreenOptions} />
-  </SessionsStack.Navigator>
+    <AnimalsStack.Screen name="AnimalsList" component={AnimalsListScreen} options={animalsListScreenOptions} />
+    <AnimalsStack.Screen name="AddNewAnimal" component={AddNewAnimalScreen} options={addNewAnimalScreenOptions} />
+    <AnimalsStack.Screen name="AnimalDetail" component={AnimalDetailScreen} options={animalDetailScreenOptions} />
+  </AnimalsStack.Navigator>
 };
 
 export default AnimalsNavigator;
