@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import SessionItem from '../../components/SessionItem';
 import ScreenTitle from '../../components/ScreenTitle';
 import ScreenActionButtons from '../../components/ScreenActionButtons';
+import EmptyList from '../../components/EmptyList';
 import { loadSessions } from '../../redux/actions/sessions';
 
 const SessionsListScreen = (props) => {
@@ -46,11 +47,7 @@ const SessionsListScreen = (props) => {
         renderItem={itemData => <SessionItem session={itemData.item} onSelect={() => {
           props.navigation.navigate('SessionDetail', { sessionId: itemData.item.id, sessionCreateDate: itemData.item.createDate });
         }} />}
-        ListEmptyComponent={() => (
-          <View style={styles.emptyListContainer}>
-            <Text style={styles.emptyListMessage}>You haven't added any sessions yet</Text>
-          </View>
-        )}
+        ListEmptyComponent={() => <EmptyList text="You haven't added any sessions yet" />}
       />
     </View>
   );
@@ -96,16 +93,6 @@ const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 10,
   },
-  emptyListContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 15,
-  },
-  emptyListMessage: {
-    color: '#777',
-    fontSize: 13
-  }
 });
 
 export default SessionsListScreen;

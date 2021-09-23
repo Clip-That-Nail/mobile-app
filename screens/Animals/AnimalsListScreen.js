@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AnimalItem from '../../components/AnimalItem';
 import ScreenTitle from '../../components/ScreenTitle';
 import ScreenActionButtons from '../../components/ScreenActionButtons';
+import EmptyList from '../../components/EmptyList';
 import * as animalsActions from '../../redux/actions/animals';
 
 const AnimalsListScreen = (props) => {
@@ -52,11 +53,7 @@ const AnimalsListScreen = (props) => {
         renderItem={itemData => <AnimalItem animalData={itemData.item} onSelect={() => {
           props.navigation.navigate('AnimalDetail', { animalName: itemData.item.name, animalId: itemData.item.id });
         }} />}
-        ListEmptyComponent={() => (
-          <View style={styles.emptyListContainer}>
-            <Text style={styles.emptyListMessage}>You haven't added any animals yet</Text>
-          </View>
-        )}
+        ListEmptyComponent={() => <EmptyList text="You haven't added any animals yet" />}
       />
     </View>
   );
@@ -107,16 +104,6 @@ const styles = StyleSheet.create({
   listContent: {
     paddingBottom: 10,
   },
-  emptyListContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 15,
-  },
-  emptyListMessage: {
-    color: '#777',
-    fontSize: 13
-  }
 });
 
 export default AnimalsListScreen;

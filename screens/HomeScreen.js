@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CommonActions } from '@react-navigation/native';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, Button, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import NewSessionItem from '../components/NewSessionItem';
 import ScreenTitle from '../components/ScreenTitle';
+import EmptyList from '../components/EmptyList';
 import * as animalsActions from '../redux/actions/animals';
+import Colors from '../constants/Colors';
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();
@@ -33,11 +35,15 @@ const HomeScreen = (props) => {
         renderItem={itemData => <NewSessionItem animalData={itemData.item} onSelect={() => {
           props.navigation.navigate('NewSession', { animalId: itemData.item.id }, CommonActions.navigate('PreNewSession'));
         }} />}
-        ListEmptyComponent={() => (
-          <View style={styles.emptyListContainer}>
-            <Text style={styles.emptyListMessage}>You haven't added any animals yet</Text>
+        ListEmptyComponent={() => (<EmptyList text="You haven't added any animals yet">
+          <View style={{ marginTop: 10 }}>
+            <Button
+              onPress={() => props.navigation.navigate('Animals', {screen: 'AddNewAnimal'})}
+              title="Add new animal"
+              color={Colors.greenDarkColor}
+            />
           </View>
-        )}
+        </EmptyList>)}
       />
     </View>
   );
