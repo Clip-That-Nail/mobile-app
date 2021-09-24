@@ -3,8 +3,8 @@ import { StyleSheet, View, Text } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import HeaderButton from '../components/HeaderButton';
-import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
+import HeaderButton from '../../components/HeaderButton';
+import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
 
 const PostNewSessionScreen = (props) => {
   return (

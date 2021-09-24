@@ -6,12 +6,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CommonActions } from '@react-navigation/native';
 
-import HeaderButton from '../components/HeaderButton';
-import SpecialCheckbox from '../components/SpecialCheckbox';
-import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
-import { updateBackRightPawStatus } from '../redux/actions/session';
+import HeaderButton from '../../components/HeaderButton';
+import SpecialCheckbox from '../../components/SpecialCheckbox';
+import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
+import { updateBackRightPawStatus } from '../../redux/actions/session';
 
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 
 const BackRightPawScreen = (props) => {
   const initialCheckBoxData = {

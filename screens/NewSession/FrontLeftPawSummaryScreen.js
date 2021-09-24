@@ -3,15 +3,15 @@ import { StyleSheet, View, ScrollView, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import HeaderButton from '../components/HeaderButton';
-import SummaryRow from '../components/SummaryRow';
-import { validateFrontPawSummary } from '../helpers/validation';
-import { updateFrontRightPawOutcomes, updateFrontRightPawBehaviours, updateCompleteFrontRightPaw } from '../redux/actions/session';
+import HeaderButton from '../../components/HeaderButton';
+import SummaryRow from '../../components/SummaryRow';
+import { validateFrontPawSummary } from '../../helpers/validation';
+import { updateFrontLeftPawOutcomes, updateFrontLeftPawBehaviours, updateCompleteFrontLeftPaw } from '../../redux/actions/session';
 
-const FrontRightPawSummaryScreen = (props) => {
+const FrontLeftPawSummaryScreen = (props) => {
   const { navigation } = props;
-  const clawsData = useSelector(state => state.session.frontRightPaw.claws);
-  const complete = useSelector(state => state.session.frontRightPaw.complete);
+  const clawsData = useSelector(state => state.session.frontLeftPaw.claws);
+  const complete = useSelector(state => state.session.frontLeftPaw.complete);
 
   const [outcomes, setOutcomes] = useState({
     firstClaw: clawsData.firstClaw.outcome,
@@ -33,8 +33,8 @@ const FrontRightPawSummaryScreen = (props) => {
   const completePaw = useCallback(async () => {
     try {
       // await validateFrontPawSummary(outcomes, behaviours);
-      dispatch(updateCompleteFrontRightPaw(!complete));
-      navigation.navigate('FrontRightPawComplete');
+      dispatch(updateCompleteFrontLeftPaw(!complete));
+      navigation.navigate('FrontLeftPawComplete');
     } catch (err) {
       Alert.alert(`You can't complete this paw`, err.message, [
         { text: 'Okay', style: 'default' },
@@ -59,7 +59,7 @@ const FrontRightPawSummaryScreen = (props) => {
   };
 
   const handleOutcomesChange = useCallback(() => {
-    dispatch(updateFrontRightPawOutcomes(outcomes));
+    dispatch(updateFrontLeftPawOutcomes(outcomes));
   }, [dispatch, outcomes]);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const FrontRightPawSummaryScreen = (props) => {
   }, [handleOutcomesChange]);
 
   const handleBehavioursChange = useCallback(() => {
-    dispatch(updateFrontRightPawBehaviours(behaviours));
+    dispatch(updateFrontLeftPawBehaviours(behaviours));
   }, [dispatch, behaviours]);
 
   useEffect(() => {
@@ -109,7 +109,7 @@ const FrontRightPawSummaryScreen = (props) => {
 
 export const screenOptions = (navData) => {
   return {
-    headerTitle: 'FRP - Summary',
+    headerTitle: 'FLP - Summary',
   };
 };
 
@@ -136,4 +136,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FrontRightPawSummaryScreen;
+export default FrontLeftPawSummaryScreen;

@@ -1,25 +1,24 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from 'react-native-paper';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CommonActions } from '@react-navigation/native';
 
-import HeaderButton from '../components/HeaderButton';
-import SpecialCheckbox from '../components/SpecialCheckbox';
-import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
-import { updateFrontLeftPawStatus } from '../redux/actions/session';
+import HeaderButton from '../../components/HeaderButton';
+import SpecialCheckbox from '../../components/SpecialCheckbox';
+import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
+import { updateBackLeftPawStatus } from '../../redux/actions/session';
 
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 
-const FrontLeftPawScreen = (props) => {
+const BackLeftPawScreen = (props) => {
   const initialCheckBoxData = {
     firstClaw: 'unchecked',
     secondClaw: 'unchecked',
     thirdClaw: 'unchecked',
     fourthClaw: 'unchecked',
-    dewClaw: 'unchecked',
   };
 
   const [toggleCheckBoxes, setToggleCheckBoxes] = useState(initialCheckBoxData);
@@ -42,12 +41,8 @@ const FrontLeftPawScreen = (props) => {
     setToggleCheckBoxes({ ...toggleCheckBoxes, fourthClaw: status });
   };
 
-  const handleDewClawOnCheckboxPress = (status) => {
-    setToggleCheckBoxes({ ...toggleCheckBoxes, dewClaw: status });
-  };
-
   const handlePawDataChange = useCallback(() => {
-    dispatch(updateFrontLeftPawStatus(toggleCheckBoxes));
+    dispatch(updateBackLeftPawStatus(toggleCheckBoxes));
   }, [dispatch, toggleCheckBoxes]);
 
   useEffect(() => {
@@ -71,13 +66,10 @@ const FrontLeftPawScreen = (props) => {
         </View>
       </View>
       <View style={styles.paw}>
-        <Ionicons name="paw" size={180} color={Colors.greenColor} />
-      </View>
-      <View style={styles.dewclawCheckboxContainer}>
-        <SpecialCheckbox initialStatus={toggleCheckBoxes.dewClaw} onPress={handleDewClawOnCheckboxPress} badgeText='D' />
+        <Ionicons name="paw" size={180} color={Colors.redColor} />
       </View>
       <View style={styles.buttonWrapper}>
-        <Button icon="check" mode="contained" color={Colors.greenColor} onPress={() => props.navigation.navigate('FrontLeftPawSummary')}>
+        <Button icon="check" mode="contained" color={Colors.redColor} onPress={() => props.navigation.navigate('BackLeftPawSummary')}>
           Summarise
         </Button>
       </View>
@@ -87,7 +79,7 @@ const FrontLeftPawScreen = (props) => {
 
 export const screenOptions = (navData) => {
   return {
-    headerTitle: 'Front Left Paw',
+    headerTitle: 'Back Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <CloseSessionHeaderButton onYesPress={() => {
             navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
@@ -95,7 +87,7 @@ export const screenOptions = (navData) => {
     </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Paw Summary" iconName='checkmark' onPress={() => {
-        navData.navigation.navigate('FrontLeftPawSummary');
+        navData.navigation.navigate('BackLeftPawSummary');
       }} />
     </HeaderButtons>)
   };
@@ -129,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FrontLeftPawScreen;
+export default BackLeftPawScreen;

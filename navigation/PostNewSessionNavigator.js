@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import PostNewSessionScreen, {screenOptions as postNewSessionScreenOptions} from '../screens/PostNewSessionScreen';
+import PostNewSessionScreen, {screenOptions as postNewSessionScreenOptions} from '../screens/NewSession/PostNewSessionScreen';
 
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 

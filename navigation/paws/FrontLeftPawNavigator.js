@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import FrontLeftPawScreen, { screenOptions as frontLeftPawScreenOptions } from '../../screens/FrontLeftPawScreen';
-import FrontLeftPawSummaryScreen, { screenOptions as frontLeftPawSummaryScreenOptions } from '../../screens/FrontLeftPawSummaryScreen';
-import FrontLeftPawCompleteScreen, { screenOptions as frontLeftPawCompleteScreenOptions } from '../../screens/FrontLeftPawCompleteScreen';
+import FrontLeftPawScreen, { screenOptions as frontLeftPawScreenOptions } from '../../screens/NewSession/FrontLeftPawScreen';
+import FrontLeftPawSummaryScreen, { screenOptions as frontLeftPawSummaryScreenOptions } from '../../screens/NewSession/FrontLeftPawSummaryScreen';
+import FrontLeftPawCompleteScreen, { screenOptions as frontLeftPawCompleteScreenOptions } from '../../screens/NewSession/FrontLeftPawCompleteScreen';
 import DefaultStackNavOptions from '../DefaultStackNavOptions';
 import Colors from '../../constants/Colors';
 

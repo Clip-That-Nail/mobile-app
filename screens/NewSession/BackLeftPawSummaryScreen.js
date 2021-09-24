@@ -3,16 +3,16 @@ import { StyleSheet, View, ScrollView, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import HeaderButton from '../components/HeaderButton';
-import SummaryRow from '../components/SummaryRow';
-import { validateFrontPawSummary } from '../helpers/validation';
-import { updateBackRightPawOutcomes, updateBackRightPawBehaviours, updateCompleteBackRightPaw } from '../redux/actions/session';
+import HeaderButton from '../../components/HeaderButton';
+import SummaryRow from '../../components/SummaryRow';
+import { validateFrontPawSummary } from '../../helpers/validation';
+import { updateBackLeftPawOutcomes, updateBackLeftPawBehaviours, updateCompleteBackLeftPaw } from '../../redux/actions/session';
 
-const BackRightPawSummaryScreen = (props) => {
+const BackLeftPawSummaryScreen = (props) => {
   const { navigation } = props;
 
-  const clawsData = useSelector(state => state.session.backRightPaw.claws);
-  const complete = useSelector(state => state.session.backRightPaw.complete);
+  const clawsData = useSelector(state => state.session.backLeftPaw.claws);
+  const complete = useSelector(state => state.session.backLeftPaw.complete);
 
   const [outcomes, setOutcomes] = useState({
     firstClaw: clawsData.firstClaw.outcome,
@@ -32,8 +32,8 @@ const BackRightPawSummaryScreen = (props) => {
   const completePaw = useCallback(async () => {
     try {
       // await validateFrontPawSummary(outcomes, behaviours);
-      dispatch(updateCompleteBackRightPaw(!complete));
-      navigation.navigate('BackRightPawComplete');
+      dispatch(updateCompleteBackLeftPaw(!complete));
+      navigation.navigate('BackLeftPawComplete');
     } catch (err) {
       Alert.alert(`You can't complete this paw`, err.message, [
         { text: 'Okay', style: 'default' },
@@ -58,7 +58,7 @@ const BackRightPawSummaryScreen = (props) => {
   };
 
   const handleOutcomesChange = useCallback(() => {
-    dispatch(updateBackRightPawOutcomes(outcomes));
+    dispatch(updateBackLeftPawOutcomes(outcomes));
   }, [dispatch, outcomes]);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const BackRightPawSummaryScreen = (props) => {
   }, [handleOutcomesChange]);
 
   const handleBehavioursChange = useCallback(() => {
-    dispatch(updateBackRightPawBehaviours(behaviours));
+    dispatch(updateBackLeftPawBehaviours(behaviours));
   }, [dispatch, behaviours]);
 
   useEffect(() => {
@@ -103,7 +103,7 @@ const BackRightPawSummaryScreen = (props) => {
 
 export const screenOptions = (navData) => {
   return {
-    headerTitle: 'BRP - Summary',
+    headerTitle: 'BLP - Summary',
   };
 };
 
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default BackRightPawSummaryScreen;
+export default BackLeftPawSummaryScreen;

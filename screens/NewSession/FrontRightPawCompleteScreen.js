@@ -6,13 +6,13 @@ import { Button } from 'react-native-paper';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CommonActions } from '@react-navigation/native';
 
-import HeaderButton from '../components/HeaderButton';
-import CompleteSpecialIcon from '../components/CompleteSpecialIcon';
-import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
-import { updateCompleteFrontRightPaw } from '../redux/actions/session';
-import { goToNextPaw, isSessionComplete } from '../helpers/session';
+import HeaderButton from '../../components/HeaderButton';
+import CompleteSpecialIcon from '../../components/CompleteSpecialIcon';
+import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
+import { updateCompleteFrontRightPaw } from '../../redux/actions/session';
+import { goToNextPaw, isSessionComplete } from '../../helpers/session';
 
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 
 const FrontRightPawCompleteScreen = (props) => {
   const clawsData = useSelector(state => state.session.frontRightPaw.claws);

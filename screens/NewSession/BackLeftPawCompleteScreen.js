@@ -6,16 +6,16 @@ import { Button } from 'react-native-paper';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { CommonActions } from '@react-navigation/native';
 
-import HeaderButton from '../components/HeaderButton';
-import CompleteSpecialIcon from '../components/CompleteSpecialIcon';
-import CloseSessionHeaderButton from '../components/CloseSessionHeaderButton';
-import { updateCompleteBackRightPaw } from '../redux/actions/session';
-import { goToNextPaw, isSessionComplete } from '../helpers/session';
+import HeaderButton from '../../components/HeaderButton';
+import CompleteSpecialIcon from '../../components/CompleteSpecialIcon';
+import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
+import { updateCompleteBackLeftPaw } from '../../redux/actions/session';
+import { goToNextPaw, isSessionComplete } from '../../helpers/session';
 
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 
-const BackRightPawCompleteScreen = (props) => {
-  const clawsData = useSelector(state => state.session.backRightPaw.claws);
+const BackLeftPawCompleteScreen = (props) => {
+  const clawsData = useSelector(state => state.session.backLeftPaw.claws);
 
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const BackRightPawCompleteScreen = (props) => {
         <Text style={styles.mainText}>Completed</Text>
       </View>
       <View>
-        <Ionicons name="checkmark-circle" size={220} color={Colors.violetColor} />
+        <Ionicons name="checkmark-circle" size={220} color={Colors.redColor} />
       </View>
       <View style={styles.iconsRow}>
         <View style={styles.iconContainer}>
@@ -42,15 +42,26 @@ const BackRightPawCompleteScreen = (props) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} icon="pencil" mode="contained" color={Colors.violetColor} onPress={() => {
-          dispatch(updateCompleteBackRightPaw(false));
-          props.navigation.navigate('BackRightPawChecker')
+        <Button style={styles.button} icon="pencil" mode="contained" color={Colors.redColor} onPress={() => {
+          dispatch(updateCompleteBackLeftPaw(false));
+          props.navigation.navigate('BackLeftPawChecker')
         }}>
           Change
         </Button>
-        <Button style={styles.button} icon={isSessionComplete() ? 'check-bold' : 'arrow-right-thick'} mode="contained" color={Colors.violetColor} contentStyle={{ flexDirection: 'row-reverse' }} onPress={() => {
-          goToNextPaw(props.navigation);
-        }}>
+        <Button
+          style={styles.button}
+          icon={isSessionComplete() ? 'check-bold' : 'arrow-right-thick'}
+          mode="contained"
+          color={Colors.redColor}
+          contentStyle={{ flexDirection: 'row-reverse' }}
+          onPress={() => {
+            if (isSessionComplete) {
+              props.navigation.navigate('Home', {}, CommonActions.navigate('Home'));
+            } else {
+              goToNextPaw(props.navigation);
+            }
+          }}
+        >
           {isSessionComplete() ? 'Finish' : 'Next Paw'}
         </Button>
       </View>
@@ -60,11 +71,11 @@ const BackRightPawCompleteScreen = (props) => {
 
 export const screenOptions = (navData) => {
   return {
-    headerTitle: 'Back Right Paw',
+    headerTitle: 'Back Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <CloseSessionHeaderButton onYesPress={() => {
-            navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
-          }} />
+        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
+      }} />
     </HeaderButtons>),
   };
 };
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
   mainText: {
     fontSize: 40,
     fontFamily: 'roboto-black',
-    color: Colors.violetColor
+    color: Colors.redColor
   },
   iconsRow: {
     flexDirection: 'row',
@@ -98,4 +109,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default BackRightPawCompleteScreen;
+export default BackLeftPawCompleteScreen;
