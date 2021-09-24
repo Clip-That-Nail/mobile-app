@@ -139,6 +139,10 @@ export const updateCompleteBackRightPaw = (complete) => {
   return { type: sessionTypes.COMPLETE_BACK_RIGHT_PAW, complete: complete };
 };
 
+export const updateNewSessionPetId = (petId) => {
+  return { type: sessionTypes.UPDATE_NEW_SESSION_PET_ID, petId };
+};
+
 export const finishSession = () => {
   return async (dispatch, getState) => {
     const frontLeftPawClaws = getState().session.frontLeftPaw.claws;

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { CommonActions } from '@react-navigation/native';
 import { StyleSheet, View, Text, Button, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -8,6 +7,7 @@ import NewSessionItem from '../components/NewSessionItem';
 import ScreenTitle from '../components/ScreenTitle';
 import EmptyList from '../components/EmptyList';
 import * as animalsActions from '../redux/actions/animals';
+import * as sessionActions from '../redux/actions/session';
 import Colors from '../constants/Colors';
 
 const HomeScreen = (props) => {
@@ -33,12 +33,15 @@ const HomeScreen = (props) => {
         data={animals}
         keyExtractor={item => item.id}
         renderItem={itemData => <NewSessionItem animalData={itemData.item} onSelect={() => {
-          props.navigation.navigate('NewSession', { animalId: itemData.item.id }, CommonActions.navigate('PreNewSession'));
+          dispatch(sessionActions.updateNewSessionPetId(itemData.item.id));
+
+          // TODO: check from which paw to start - if front left disabled start from front right etc.
+          props.navigation.navigate('NewSession', { screen: 'Paws', params: { screen: 'FrontLeftPaw', params: { screen: 'FrontLeftPawChecker' } } });
         }} />}
         ListEmptyComponent={() => (<EmptyList text="You haven't added any animals yet">
           <View style={{ marginTop: 10 }}>
             <Button
-              onPress={() => props.navigation.navigate('Animals', {screen: 'AddNewAnimal'})}
+              onPress={() => props.navigation.navigate('Animals', { screen: 'AddNewAnimal' })}
               title="Add new animal"
               color={Colors.greenDarkColor}
             />

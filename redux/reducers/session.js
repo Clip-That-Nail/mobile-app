@@ -1,6 +1,9 @@
 import sessionTypes from '../types/session';
 
 const initialState = {
+  newSession: {
+    petId: null,
+  },
   frontLeftPaw: {
     complete: false,
     claws: {
@@ -469,6 +472,14 @@ const sessionReducer = (state = initialState, action) => {
         backRightPaw: {
           ...state.backRightPaw,
           complete: action.complete
+        }
+      };
+    case sessionTypes.UPDATE_NEW_SESSION_PET_ID:
+      return {
+        ...state,
+        newSession: {
+          ...state.newSession,
+          petId: action.petId
         }
       };
     default:
