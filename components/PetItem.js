@@ -5,25 +5,25 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ListItem from './ListItem';
 import Colors from '../constants/Colors';
 
-const AnimalItem = props => {
+const PetItem = props => {
   return (
     <ListItem onSelect={props.onSelect}>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: props.animalData.imageUri }} />
-        <View style={styles.animalType}>
-          <MaterialCommunityIcons name={props.animalData.type} size={18} color="rgba(0,0,0,0.6)" />
+        <Image style={styles.image} source={{ uri: props.petData.imageUri }} />
+        <View style={styles.petType}>
+          <MaterialCommunityIcons name={props.petData.type} size={18} color="rgba(0,0,0,0.6)" />
         </View>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>{props.animalData.name}</Text>
-        <Text style={styles.breed}>{props.animalData.breed}</Text>
+        <Text style={styles.name}>{props.petData.name}</Text>
+        <Text style={styles.breed}>{props.petData.breed}</Text>
       </View>
     </ListItem>
   );
 };
 
 const styles = StyleSheet.create({
-  animalType: {
+  petType: {
     position: 'absolute',
     bottom: 3,
     right: 3,
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AnimalItem;
+export default PetItem;

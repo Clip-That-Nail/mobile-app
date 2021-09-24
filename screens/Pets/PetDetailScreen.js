@@ -4,16 +4,16 @@ import { StyleSheet, Image, View, Text, ScrollView } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
-const AnimalDetailScreen = (props) => {
-  const animalId = props.route.params.animalId;
-  const selectedAnimal = useSelector(state => state.animals.animals.find(animal => animal.id === animalId));
+const PetDetailScreen = (props) => {
+  const petId = props.route.params.petId;
+  const selectedPet = useSelector(state => state.pets.pets.find(pet => pet.id === petId));
 
   return (
     <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
-      <Image source={{ uri: selectedAnimal.imageUri }} style={styles.image} />
+      <Image source={{ uri: selectedPet.imageUri }} style={styles.image} />
       <View style={styles.locationContainer}>
         <View style={styles.addressContainer}>
-          <Text style={styles.address}>{selectedAnimal.breed}</Text>
+          <Text style={styles.address}>{selectedPet.breed}</Text>
         </View>
       </View>
     </ScrollView>
@@ -22,7 +22,7 @@ const AnimalDetailScreen = (props) => {
 
 export const screenOptions = (navData) => {
   return {
-    headerTitle: navData.route.params.animalName,
+    headerTitle: navData.route.params.petName,
   }
 };
 
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AnimalDetailScreen;
+export default PetDetailScreen;

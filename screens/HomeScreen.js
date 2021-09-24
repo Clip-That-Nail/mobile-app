@@ -6,16 +6,16 @@ import { LinearGradient } from 'expo-linear-gradient';
 import NewSessionItem from '../components/NewSessionItem';
 import ScreenTitle from '../components/ScreenTitle';
 import EmptyList from '../components/EmptyList';
-import * as animalsActions from '../redux/actions/animals';
+import * as petsActions from '../redux/actions/pets';
 import * as sessionActions from '../redux/actions/session';
 import Colors from '../constants/Colors';
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();
-  const animals = useSelector(state => state.animals.animals);
+  const pets = useSelector(state => state.pets.pets);
 
   useEffect(() => {
-    dispatch(animalsActions.loadAnimals());
+    dispatch(petsActions.loadPets());
   }, [dispatch]);
 
   return (
@@ -30,19 +30,19 @@ const HomeScreen = (props) => {
       <FlatList
         style={styles.list}
         contentContainerStyle={styles.listContent}
-        data={animals}
+        data={pets}
         keyExtractor={item => item.id}
-        renderItem={itemData => <NewSessionItem animalData={itemData.item} onSelect={() => {
+        renderItem={itemData => <NewSessionItem petData={itemData.item} onSelect={() => {
           dispatch(sessionActions.updateNewSessionPetId(itemData.item.id));
 
           // TODO: check from which paw to start - if front left disabled start from front right etc.
           props.navigation.navigate('NewSession', { screen: 'Paws', params: { screen: 'FrontLeftPaw', params: { screen: 'FrontLeftPawChecker' } } });
         }} />}
-        ListEmptyComponent={() => (<EmptyList text="You haven't added any animals yet">
+        ListEmptyComponent={() => (<EmptyList text="You haven't added any pets yet">
           <View style={{ marginTop: 10 }}>
             <Button
-              onPress={() => props.navigation.navigate('Animals', { screen: 'AddNewAnimal' })}
-              title="Add new animal"
+              onPress={() => props.navigation.navigate('Pets', { screen: 'AddNewPet' })}
+              title="Add new pet"
               color={Colors.greenDarkColor}
             />
           </View>

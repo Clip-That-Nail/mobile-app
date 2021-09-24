@@ -16,13 +16,13 @@ const NewSessionItem = props => {
     <Card>
       <View style={styles.topContainer}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={{ uri: props.animalData.imageUri }} />
-          <View style={styles.animalType}>
-            <MaterialCommunityIcons name={props.animalData.type} size={18} color="rgba(0,0,0,0.6)" />
+          <Image style={styles.image} source={{ uri: props.petData.imageUri }} />
+          <View style={styles.petType}>
+            <MaterialCommunityIcons name={props.petData.type} size={18} color="rgba(0,0,0,0.6)" />
           </View>
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.animalName}>{props.animalData.name}</Text>
+          <Text style={styles.petName}>{props.petData.name}</Text>
         </View>
         <View style={styles.lastDateContainer}>
           <Text style={styles.dateTitle}>Last clipping date</Text>
@@ -32,7 +32,7 @@ const NewSessionItem = props => {
       <View style={styles.actionContainer}>
         <TouchableCmp onPress={props.onSelect} useForeground>
           <View style={styles.button}>
-            <Text style={styles.buttonText}>Clip {props.animalData.name}'s Nails</Text>
+            <Text style={styles.buttonText}>Clip {props.petData.name}'s Nails</Text>
           </View>
         </TouchableCmp>
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#ddd',
     borderTopWidth: 1,
   },
-  animalType: {
+  petType: {
     position: 'absolute',
     bottom: 3,
     right: 3,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  animalName: {
+  petName: {
     color: 'black',
     fontSize: 18,
     marginBottom: 5

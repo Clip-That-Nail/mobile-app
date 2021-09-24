@@ -1,6 +1,6 @@
 export default async function (connection) {
   await connection.execute(
-    `CREATE TABLE IF NOT EXISTS animals (
+    `CREATE TABLE IF NOT EXISTS pets (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL,
       type TEXT NOT NULL,
@@ -11,7 +11,7 @@ export default async function (connection) {
   await connection.execute(
     `CREATE TABLE IF NOT EXISTS sessions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      animalId INTEGER NOT NULL,
+      petId INTEGER NOT NULL,
       createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )`
   );
@@ -26,6 +26,9 @@ export default async function (connection) {
       behaviour TEXT NOT NULL
     )`
   );
+  // await connection.execute(
+  //   `INSERT INTO pets (name, type, breed, imageUri) VALUES (?,?,?,?)`, ['Narcyz', 'dog', 'Mix', imageUri]
+  // );
   // await connection.execute(
   //   `create table users (
   //     id integer primary key autoincrement, 

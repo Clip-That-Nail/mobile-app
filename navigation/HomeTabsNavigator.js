@@ -5,7 +5,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 import HomeScreen from '../screens/HomeScreen';
 import SessionsNavigator from './SessionsNavigator';
-import AnimalsNavigator from './AnimalsNavigator';
+import PetsNavigator from './PetsNavigator';
 import SettingsNavigator from './SettingsNavigator';
 
 import DefaultStackNavOptions from './DefaultStackNavOptions';
@@ -24,7 +24,7 @@ const HomeTabsNavigator = () => {
           iconName = focused ? 'home' : 'home-outline';
         } else if (route.name === 'Sessions') {
           iconName = focused ? 'paw' : 'paw-outline';
-        } else if (route.name === 'Animals') {
+        } else if (route.name === 'Pets') {
           iconName = focused ? 'dog' : 'dog';
           return <MaterialCommunityIcons name={iconName} size={25} color={color} />;
         } else if (route.name === 'Settings') {
@@ -45,9 +45,9 @@ const HomeTabsNavigator = () => {
       tabBarColor: Colors.blueColor,
       tabBarLabel: <Text style={{ fontFamily: 'roboto' }}>Sessions</Text>
     }} />
-    <HomeBottomTabs.Screen name="Animals" component={AnimalsNavigator} options={{
+    <HomeBottomTabs.Screen name="Pets" component={PetsNavigator} options={{
       tabBarColor: Colors.redColor,
-      tabBarLabel: <Text style={{ fontFamily: 'roboto' }}>Animals</Text>
+      tabBarLabel: <Text style={{ fontFamily: 'roboto' }}>Pets</Text>
     }} />
     <HomeBottomTabs.Screen name="Settings" component={SettingsNavigator} options={{
       tabBarColor: Colors.violetColor,

@@ -1,4 +1,4 @@
-class Animal {
+class Pet {
   constructor(id, name, type, breed, imageUri) {
     this.id = id;
     this.name = name;
@@ -8,4 +8,4 @@ class Animal {
   }
 }
 
-export default Animal;
+export default Pet;

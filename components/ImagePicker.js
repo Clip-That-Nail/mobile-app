@@ -44,7 +44,7 @@ const ImgPicker = (props) => {
           <TouchableCmp onPress={takeImageHandler} useForeground>
             <View style={styles.imagePreviewIcon}>
               <Ionicons name="camera-outline" size={100} color="#dadada" />
-              <Text style={styles.imagePreviewIconText}>Take animal picture.</Text>
+              <Text style={styles.imagePreviewIconText}>Take pet picture.</Text>
             </View>
           </TouchableCmp>
         ) : (
