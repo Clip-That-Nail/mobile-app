@@ -56,11 +56,11 @@ const FrontLeftPawScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-    <LinearGradient
-      colors={['white', 'transparent']}
-      locations={[0.05, 0.3]}
-      style={styles.background}
-    />
+      <LinearGradient
+        colors={['white', 'transparent']}
+        locations={[0.05, 0.3]}
+        style={styles.background}
+      />
       <View style={styles.checkboxes}>
         <View style={styles.checkboxContainer}>
           <SpecialCheckbox initialStatus={toggleCheckBoxes.firstClaw} onPress={handleFirstClawOnCheckboxPress} badgeText='1' />
@@ -94,9 +94,15 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'Front Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <CloseSessionHeaderButton onYesPress={() => {
-            navData.navigation.navigate('Home', { screen: 'Home' })
-          }} />
+      <CloseSessionHeaderButton
+        onYesNotFinishedPress={() => {
+          // TODO: use finish session action here but set it with unfinished status (probably I need to add status column to sessions table)
+          navData.navigation.navigate('Home', { screen: 'Home' })
+        }}
+        onYesPress={() => {
+          navData.navigation.navigate('Home', { screen: 'Home' })
+        }}
+      />
     </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Paw Summary" iconName='checkmark' onPress={() => {

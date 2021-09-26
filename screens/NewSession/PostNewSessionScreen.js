@@ -23,9 +23,15 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'New session conditions',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <CloseSessionHeaderButton onYesPress={() => {
-        navData.navigation.navigate('Home', { screen: 'Home' })
-      }} />
+      <CloseSessionHeaderButton
+        onYesNotFinishedPress={() => {
+          // TODO: what to do here?
+          navData.navigation.navigate('Home', { screen: 'Home' })
+        }}
+        onYesPress={() => {
+          navData.navigation.navigate('Home', { screen: 'Home' })
+        }}
+      />
     </HeaderButtons>),
   };
 };

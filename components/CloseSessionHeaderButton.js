@@ -8,7 +8,10 @@ const CloseSessionHeaderButton = (props) => {
       Alert.alert('Are you sure?', 'Do you really want to end this clipping session?', [
         { text: 'No', style: 'default' },
         {
-          text: 'Yes', style: 'destructive', onPress: props.onYesPress
+          text: "Yes (save as unfinished)", style: 'destructive', onPress: props.onYesNotFinishedPress
+        },
+        {
+          text: "Yes (don't save)", style: 'destructive', onPress: props.onYesPress
         }
       ]);
     }} />

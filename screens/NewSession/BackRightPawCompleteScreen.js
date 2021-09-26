@@ -111,9 +111,15 @@ export const screenOptions = (navData) => {
   return {
     headerTitle: 'Back Right Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <CloseSessionHeaderButton onYesPress={() => {
-        navData.navigation.navigate('Home', { screen: 'Home' })
-      }} />
+      <CloseSessionHeaderButton
+        onYesNotFinishedPress={() => {
+          // TODO: use finish session action here but set it with unfinished status (probably I need to add status column to sessions table)
+          navData.navigation.navigate('Home', { screen: 'Home' })
+        }}
+        onYesPress={() => {
+          navData.navigation.navigate('Home', { screen: 'Home' })
+        }}
+      />
     </HeaderButtons>),
   };
 };
