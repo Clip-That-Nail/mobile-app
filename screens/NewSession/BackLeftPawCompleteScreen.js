@@ -1,23 +1,55 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useCallback, useLayoutEffect } from 'react';
+import { StyleSheet, View, Text, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { CommonActions } from '@react-navigation/native';
 
 import HeaderButton from '../../components/HeaderButton';
 import CompleteSpecialIcon from '../../components/CompleteSpecialIcon';
 import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
-import { updateCompleteBackLeftPaw } from '../../redux/actions/newSession';
+import { updateCompleteBackLeftPaw, finishSession } from '../../redux/actions/newSession';
 import { goToNextPaw, isSessionComplete } from '../../helpers/session';
 
 import Colors from '../../constants/Colors';
 
 const BackLeftPawCompleteScreen = (props) => {
+  const { navigation } = props;
   const clawsData = useSelector(state => state.newSession.backLeftPaw.claws);
+  const frontLeftPawComplete = useSelector(state => state.newSession.frontLeftPaw.complete);
+  const frontRightPawComplete = useSelector(state => state.newSession.frontRightPaw.complete);
+  const backLeftPawComplete = useSelector(state => state.newSession.backLeftPaw.complete);
+  const backRightPawComplete = useSelector(state => state.newSession.backRightPaw.complete);
 
   const dispatch = useDispatch();
+
+  const completeSession = useCallback(async () => {
+    try {
+      await dispatch(finishSession());
+      navigation.navigate('Home', { screen: 'Home' });
+    } catch (err) {
+      Alert.alert(`Something went wrong`, err.message, [
+        { text: 'Okay', style: 'default' },
+      ]);
+    }
+  }, [dispatch]);
+
+  useLayoutEffect(() => {
+    if (frontLeftPawComplete && frontRightPawComplete && backLeftPawComplete && backRightPawComplete) {
+      navigation.setOptions({
+        headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item title="Finish session" iconName='checkmark' onPress={() => {
+            Alert.alert('Finish session?', 'Are you sure you want to finish this clipping session?', [
+              { text: 'No', style: 'default' },
+              {
+                text: 'Yes', style: 'destructive', onPress: completeSession
+              }
+            ]);
+          }} />
+        </HeaderButtons>)
+      });
+    }
+  }, [navigation, frontLeftPawComplete, frontRightPawComplete, backLeftPawComplete, backRightPawComplete, completeSession]);
 
   return (
     <View style={styles.screen}>
@@ -44,7 +76,7 @@ const BackLeftPawCompleteScreen = (props) => {
       <View style={styles.buttonContainer}>
         <Button style={styles.button} icon="pencil" mode="contained" color={Colors.redColor} onPress={() => {
           dispatch(updateCompleteBackLeftPaw(false));
-          props.navigation.navigate('BackLeftPawChecker')
+          navigation.navigate('BackLeftPawChecker')
         }}>
           Change
         </Button>
@@ -55,10 +87,10 @@ const BackLeftPawCompleteScreen = (props) => {
           color={Colors.redColor}
           contentStyle={{ flexDirection: 'row-reverse' }}
           onPress={() => {
-            if (isSessionComplete) {
-              props.navigation.navigate('Home', {}, CommonActions.navigate('Home'));
+            if (isSessionComplete()) {
+              completeSession();
             } else {
-              goToNextPaw(props.navigation);
+              goToNextPaw(navigation);
             }
           }}
         >
@@ -74,7 +106,7 @@ export const screenOptions = (navData) => {
     headerTitle: 'Back Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <CloseSessionHeaderButton onYesPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
+        navData.navigation.navigate('Home', { screen: 'Home' })
       }} />
     </HeaderButtons>),
   };

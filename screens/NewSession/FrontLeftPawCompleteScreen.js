@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { CommonActions } from '@react-navigation/native';
 
 import HeaderButton from '../../components/HeaderButton';
 import CompleteSpecialIcon from '../../components/CompleteSpecialIcon';
@@ -27,7 +26,7 @@ const FrontLeftPawCompleteScreen = (props) => {
   const completeSession = useCallback(async () => {
     try {
       await dispatch(finishSession());
-      navigation.navigate('Home', {}, CommonActions.navigate('Home'));
+      navigation.navigate('Home', { screen: 'Home' });
     } catch (err) {
       Alert.alert(`Something went wrong`, err.message, [
         { text: 'Okay', style: 'default' },
@@ -91,8 +90,8 @@ const FrontLeftPawCompleteScreen = (props) => {
           color={Colors.greenColor}
           contentStyle={{ flexDirection: 'row-reverse' }}
           onPress={() => {
-            if (isSessionComplete) {
-              navigation.navigate('Home', {}, CommonActions.navigate('Home'));
+            if (isSessionComplete()) {
+              completeSession();
             } else {
               goToNextPaw(navigation);
             }
@@ -110,7 +109,7 @@ export const screenOptions = (navData) => {
     headerTitle: 'Front Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <CloseSessionHeaderButton onYesPress={() => {
-        navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
+        navData.navigation.navigate('Home', { screen: 'Home' })
       }} />
     </HeaderButtons>),
   };
