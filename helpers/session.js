@@ -6,10 +6,10 @@ import store from '../redux/store';
  * @param {object} navigation The react-navigation props object (props.navigation)
  */
 export const goToNextPaw = (navigation) => {
-  const frontLeftPawComplete = store.getState().session.frontLeftPaw.complete;
-  const frontRightPawComplete = store.getState().session.frontRightPaw.complete;
-  const backLeftPawComplete = store.getState().session.backLeftPaw.complete;
-  const backRightPawComplete = store.getState().session.backRightPaw.complete;
+  const frontLeftPawComplete = store.getState().newSession.frontLeftPaw.complete;
+  const frontRightPawComplete = store.getState().newSession.frontRightPaw.complete;
+  const backLeftPawComplete = store.getState().newSession.backLeftPaw.complete;
+  const backRightPawComplete = store.getState().newSession.backRightPaw.complete;
 
   if (!frontLeftPawComplete) {
     navigation.navigate('FrontLeftPawChecker');
@@ -28,10 +28,10 @@ export const goToNextPaw = (navigation) => {
  * Is session complete?
  */
 export const isSessionComplete = () => {
-  const frontLeftPawComplete = store.getState().session.frontLeftPaw.complete;
-  const frontRightPawComplete = store.getState().session.frontRightPaw.complete;
-  const backLeftPawComplete = store.getState().session.backLeftPaw.complete;
-  const backRightPawComplete = store.getState().session.backRightPaw.complete;
+  const frontLeftPawComplete = store.getState().newSession.frontLeftPaw.complete;
+  const frontRightPawComplete = store.getState().newSession.frontRightPaw.complete;
+  const backLeftPawComplete = store.getState().newSession.backLeftPaw.complete;
+  const backRightPawComplete = store.getState().newSession.backRightPaw.complete;
 
   return frontLeftPawComplete && frontRightPawComplete && backLeftPawComplete && backRightPawComplete;
 };

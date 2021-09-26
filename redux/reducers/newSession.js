@@ -1,4 +1,4 @@
-import sessionTypes from '../types/session';
+import sessionTypes from '../types/newSession';
 
 const initialState = {
   newSession: {

@@ -7,7 +7,7 @@ import NewSessionItem from '../components/NewSessionItem';
 import ScreenTitle from '../components/ScreenTitle';
 import EmptyList from '../components/EmptyList';
 import * as petsActions from '../redux/actions/pets';
-import * as sessionActions from '../redux/actions/session';
+import * as newSessionActions from '../redux/actions/newSession';
 import Colors from '../constants/Colors';
 
 const HomeScreen = (props) => {
@@ -33,7 +33,7 @@ const HomeScreen = (props) => {
         data={pets}
         keyExtractor={item => item.id}
         renderItem={itemData => <NewSessionItem petData={itemData.item} onSelect={() => {
-          dispatch(sessionActions.updateNewSessionPetId(itemData.item.id));
+          dispatch(newSessionActions.updateNewSessionPetId(itemData.item.id));
 
           // TODO: check from which paw to start - if front left disabled start from front right etc.
           props.navigation.navigate('NewSession', { screen: 'Paws', params: { screen: 'FrontLeftPaw', params: { screen: 'FrontLeftPawChecker' } } });

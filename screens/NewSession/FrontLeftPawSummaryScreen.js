@@ -6,12 +6,12 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/HeaderButton';
 import SummaryRow from '../../components/SummaryRow';
 import { validateFrontPawSummary } from '../../helpers/validation';
-import { updateFrontLeftPawOutcomes, updateFrontLeftPawBehaviours, updateCompleteFrontLeftPaw } from '../../redux/actions/session';
+import { updateFrontLeftPawOutcomes, updateFrontLeftPawBehaviours, updateCompleteFrontLeftPaw } from '../../redux/actions/newSession';
 
 const FrontLeftPawSummaryScreen = (props) => {
   const { navigation } = props;
-  const clawsData = useSelector(state => state.session.frontLeftPaw.claws);
-  const complete = useSelector(state => state.session.frontLeftPaw.complete);
+  const clawsData = useSelector(state => state.newSession.frontLeftPaw.claws);
+  const complete = useSelector(state => state.newSession.frontLeftPaw.complete);
 
   const [outcomes, setOutcomes] = useState({
     firstClaw: clawsData.firstClaw.outcome,

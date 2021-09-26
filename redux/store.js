@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import sessionReducer from './reducers/session';
+import sessionReducer from './reducers/newSession';
 import sessionsReducer from './reducers/sessions';
 import petsReducer from './reducers/pets';
 import ReduxThunk from 'redux-thunk';

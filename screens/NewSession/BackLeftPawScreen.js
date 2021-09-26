@@ -9,7 +9,7 @@ import { CommonActions } from '@react-navigation/native';
 import HeaderButton from '../../components/HeaderButton';
 import SpecialCheckbox from '../../components/SpecialCheckbox';
 import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
-import { updateBackLeftPawStatus } from '../../redux/actions/session';
+import { updateBackLeftPawStatus } from '../../redux/actions/newSession';
 
 import Colors from '../../constants/Colors';
 

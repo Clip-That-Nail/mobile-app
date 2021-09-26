@@ -9,18 +9,18 @@ import { CommonActions } from '@react-navigation/native';
 import HeaderButton from '../../components/HeaderButton';
 import CompleteSpecialIcon from '../../components/CompleteSpecialIcon';
 import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
-import { updateCompleteFrontLeftPaw, finishSession } from '../../redux/actions/session';
+import { updateCompleteFrontLeftPaw, finishSession } from '../../redux/actions/newSession';
 import { goToNextPaw, isSessionComplete } from '../../helpers/session';
 
 import Colors from '../../constants/Colors';
 
 const FrontLeftPawCompleteScreen = (props) => {
   const { navigation } = props;
-  const clawsData = useSelector(state => state.session.frontLeftPaw.claws);
-  const frontLeftPawComplete = useSelector(state => state.session.frontLeftPaw.complete);
-  const frontRightPawComplete = useSelector(state => state.session.frontRightPaw.complete);
-  const backLeftPawComplete = useSelector(state => state.session.backLeftPaw.complete);
-  const backRightPawComplete = useSelector(state => state.session.backRightPaw.complete);
+  const clawsData = useSelector(state => state.newSession.frontLeftPaw.claws);
+  const frontLeftPawComplete = useSelector(state => state.newSession.frontLeftPaw.complete);
+  const frontRightPawComplete = useSelector(state => state.newSession.frontRightPaw.complete);
+  const backLeftPawComplete = useSelector(state => state.newSession.backLeftPaw.complete);
+  const backRightPawComplete = useSelector(state => state.newSession.backRightPaw.complete);
 
   const dispatch = useDispatch();
 

@@ -9,13 +9,13 @@ import { CommonActions } from '@react-navigation/native';
 import HeaderButton from '../../components/HeaderButton';
 import CompleteSpecialIcon from '../../components/CompleteSpecialIcon';
 import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
-import { updateCompleteFrontRightPaw } from '../../redux/actions/session';
+import { updateCompleteFrontRightPaw } from '../../redux/actions/newSession';
 import { goToNextPaw, isSessionComplete } from '../../helpers/session';
 
 import Colors from '../../constants/Colors';
 
 const FrontRightPawCompleteScreen = (props) => {
-  const clawsData = useSelector(state => state.session.frontRightPaw.claws);
+  const clawsData = useSelector(state => state.newSession.frontRightPaw.claws);
 
   const dispatch = useDispatch();
 

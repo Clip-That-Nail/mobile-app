@@ -1,4 +1,4 @@
-import sessionTypes from '../types/session';
+import sessionTypes from '../types/newSession';
 import { insertSession } from '../../helpers/db';
 
 /**
@@ -145,10 +145,10 @@ export const updateNewSessionPetId = (petId) => {
 
 export const finishSession = () => {
   return async (dispatch, getState) => {
-    const frontLeftPawClaws = getState().session.frontLeftPaw.claws;
-    const frontRightPawClaws = getState().session.frontRightPaw.claws;
-    const backLeftPawClaws = getState().session.backLeftPaw.claws;
-    const backRightPawClaws = getState().session.backRightPaw.claws;
+    const frontLeftPawClaws = getState().newSession.frontLeftPaw.claws;
+    const frontRightPawClaws = getState().newSession.frontRightPaw.claws;
+    const backLeftPawClaws = getState().newSession.backLeftPaw.claws;
+    const backRightPawClaws = getState().newSession.backRightPaw.claws;
     
     try {
       const sessionData = {
