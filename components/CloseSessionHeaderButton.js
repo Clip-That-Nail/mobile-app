@@ -1,7 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
 import { Item } from 'react-navigation-header-buttons';
-import { CommonActions } from '@react-navigation/native';
 
 const CloseSessionHeaderButton = (props) => {
   return (
