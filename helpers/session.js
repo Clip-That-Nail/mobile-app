@@ -12,15 +12,15 @@ export const goToNextPaw = (navigation) => {
   const backRightPawComplete = store.getState().newSession.backRightPaw.complete;
 
   if (!frontLeftPawComplete) {
-    navigation.navigate('FrontLeftPawChecker');
+    navigation.navigate('FrontLeftPaw', { params: { screen: 'FrontLeftPawChecker' } });
   } else if (!frontRightPawComplete) {
-    navigation.navigate('FrontRightPawChecker');
+    navigation.navigate('FrontRightPaw', { params: { screen: 'FrontRightPawChecker' } });
   } else if (!backLeftPawComplete) {
-    navigation.navigate('BackLeftPawChecker');
+    navigation.navigate('BackLeftPaw', { params: { screen: 'BackLeftPawChecker' } });
   } else if (!backRightPawComplete) {
-    navigation.navigate('BackRightPawChecker');
+    navigation.navigate('BackRightPaw', { params: { screen: 'BackRightPawChecker' } });
   } else {
-    navigation.navigate('BackRightPawChecker');
+    navigation.navigate('BackRightPaw', { params: { screen: 'BackRightPawChecker' } });
   }
 };
 
