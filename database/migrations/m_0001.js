@@ -9,6 +9,23 @@ export default async function (connection) {
     )`
   );
   await connection.execute(
+    `CREATE TABLE IF NOT EXISTS disabilities (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      petId INTEGER NOT NULL,
+      paw TEXT NOT NULL,
+      claw TEXT NOT NULL
+    )`
+  );
+  await connection.execute(
+    `CREATE TABLE IF NOT EXISTS skips (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      petId INTEGER NOT NULL,
+      paw TEXT NOT NULL,
+      claw TEXT NOT NULL,
+      length INTEGER NOT NULL
+    )`
+  );
+  await connection.execute(
     `CREATE TABLE IF NOT EXISTS sessions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       petId INTEGER NOT NULL,
