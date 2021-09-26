@@ -4,6 +4,7 @@ import { StyleSheet, View, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import HeaderButton from '../../components/HeaderButton';
 import SpecialCheckbox from '../../components/SpecialCheckbox';
@@ -55,6 +56,11 @@ const FrontLeftPawScreen = (props) => {
 
   return (
     <View style={styles.screen}>
+    <LinearGradient
+      colors={['white', 'transparent']}
+      locations={[0.05, 0.3]}
+      style={styles.background}
+    />
       <View style={styles.checkboxes}>
         <View style={styles.checkboxContainer}>
           <SpecialCheckbox initialStatus={toggleCheckBoxes.firstClaw} onPress={handleFirstClawOnCheckboxPress} badgeText='1' />
@@ -104,7 +110,15 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#eff1f5',
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
   },
   checkboxes: {
     flexDirection: 'row',

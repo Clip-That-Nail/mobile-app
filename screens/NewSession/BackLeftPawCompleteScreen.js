@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { Button } from 'react-native-paper';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import HeaderButton from '../../components/HeaderButton';
 import CompleteSpecialIcon from '../../components/CompleteSpecialIcon';
@@ -53,6 +54,11 @@ const BackLeftPawCompleteScreen = (props) => {
 
   return (
     <View style={styles.screen}>
+      <LinearGradient
+        colors={['white', 'transparent']}
+        locations={[0.05, 0.3]}
+        style={styles.background}
+      />
       <View>
         <Text style={styles.mainText}>Completed</Text>
       </View>
@@ -116,7 +122,15 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#eff1f5',
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
   },
   mainText: {
     fontSize: 40,

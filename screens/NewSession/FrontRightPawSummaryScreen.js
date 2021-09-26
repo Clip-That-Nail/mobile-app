@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react'
 import { StyleSheet, View, ScrollView, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import HeaderButton from '../../components/HeaderButton';
 import SummaryRow from '../../components/SummaryRow';
@@ -76,6 +77,11 @@ const FrontRightPawSummaryScreen = (props) => {
 
   return (
     <ScrollView style={styles.screen}>
+      <LinearGradient
+        colors={['white', 'transparent']}
+        locations={[0.05, 0.3]}
+        style={styles.background}
+      />
       <View style={styles.summaryList}>
         <SummaryRow
           claw={{ id: 'firstClaw', text: 'CLAW 1', ...clawsData.firstClaw }}
@@ -115,6 +121,14 @@ export const screenOptions = (navData) => {
 
 const styles = StyleSheet.create({
   screen: {
+    backgroundColor: '#eff1f5',
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
   },
   summaryList: {
     padding: 5,
