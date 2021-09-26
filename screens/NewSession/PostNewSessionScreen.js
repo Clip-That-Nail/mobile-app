@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { CommonActions } from '@react-navigation/native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../../components/HeaderButton';
@@ -17,7 +16,7 @@ export const screenOptions = (navData) => {
     headerTitle: 'New session conditions',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <CloseSessionHeaderButton onYesPress={() => {
-            navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
+            navData.navigation.navigate('Home', { screen: 'Home' })
           }} />
     </HeaderButtons>),
   };

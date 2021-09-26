@@ -4,7 +4,6 @@ import { StyleSheet, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { CommonActions } from '@react-navigation/native';
 
 import HeaderButton from '../../components/HeaderButton';
 import SpecialCheckbox from '../../components/SpecialCheckbox';
@@ -82,7 +81,7 @@ export const screenOptions = (navData) => {
     headerTitle: 'Back Left Paw',
     headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <CloseSessionHeaderButton onYesPress={() => {
-            navData.navigation.navigate('Home', {}, CommonActions.navigate('Home'))
+            navData.navigation.navigate('Home', { screen: 'Home' })
           }} />
     </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
