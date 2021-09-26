@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import sessionReducer from './reducers/newSession';
+import newSessionReducer from './reducers/newSession';
 import sessionsReducer from './reducers/sessions';
 import petsReducer from './reducers/pets';
 import ReduxThunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-  session: sessionReducer,
+  newSession: newSessionReducer,
   sessions: sessionsReducer,
   pets: petsReducer,
 });
