@@ -48,9 +48,9 @@ export const fetchPets = async () => {
   return result;
 }
 
-export const insertSession = async (petId, paws) => {
+export const insertSession = async (petId, status, paws) => {
   await db.transaction(async connection => {
-    const sessionResult = await connection.execute('INSERT INTO sessions (petId) VALUES (?)', [petId]);
+    const sessionResult = await connection.execute('INSERT INTO sessions (petId,status) VALUES (?,?)', [petId, status]);
 
     // frontLeft paw
     Object.keys(paws.frontLeft).map(async (key, index) => {
@@ -131,6 +131,7 @@ export const fetchSessions = async () => {
     sessions[claw.sessionId] = {
       ...sessions[claw.sessionId],
       id: claw.sessionId,
+      status: claw.status,
       createDate: claw.createDate,
       pet: {
         id: claw.petId,

@@ -26,7 +26,7 @@ const BackRightPawCompleteScreen = (props) => {
 
   const completeSession = useCallback(async () => {
     try {
-      await dispatch(finishSession());
+      await dispatch(finishSession('finished'));
       navigation.navigate('Home', { screen: 'Home' });
     } catch (err) {
       Alert.alert(`Something went wrong`, err.message, [

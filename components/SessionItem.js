@@ -14,7 +14,7 @@ const SessionItem = props => {
           <Text style={styles.pet}>Pet: {props.session.pet.name}</Text>
         </View>
         <View style={styles.footerColumn}>
-          <Text style={styles.status}>Status: finished</Text>
+          <Text style={styles.status}>Status: {props.session.status}</Text>
         </View>
       </View>
     </ListItem>

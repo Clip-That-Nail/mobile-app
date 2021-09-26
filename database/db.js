@@ -1,9 +1,10 @@
 import Database from "./Database";
 import m_0001 from "./migrations/m_0001";
+import dev_0001 from "./migrations/dev_0001";
 
 //When adding new migrations in already deployed app, append them to the end of array, do not re-arrange
 //Do not modify migration after app version containing it is published
-const migrations = [null, m_0001];
+const migrations = [null, m_0001, dev_0001];
 const migrationsTable = "_migrations";
 
 const db = new Database("clipThatNail_v1.db", {

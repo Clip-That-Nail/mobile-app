@@ -3,8 +3,9 @@ import FrontPaw from './frontPaw';
 import BackPaw from './backPaw';
 
 class Session {
-  constructor(id, createDate, pet, frontLeft, frontRight, backLeft, backRight) {
+  constructor(id, status, createDate, pet, frontLeft, frontRight, backLeft, backRight) {
     this.id = id.toString();
+    this.status = status;
     this.createDate = createDate;
     this.pet = new Pet(pet.id.toString(), pet.name, pet.breed, pet.imageUri);
     this.frontLeft = new FrontPaw(frontLeft.firstClaw, frontLeft.secondClaw, frontLeft.thirdClaw, frontLeft.fourthClaw, frontLeft.dewClaw);

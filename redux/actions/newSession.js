@@ -143,8 +143,9 @@ export const updateNewSessionPetId = (petId) => {
   return { type: sessionTypes.UPDATE_NEW_SESSION_PET_ID, petId };
 };
 
-export const finishSession = () => {
+export const finishSession = (status) => {
   return async (dispatch, getState) => {
+    const petId = getState().newSession.pet.id;
     const frontLeftPawClaws = getState().newSession.frontLeftPaw.claws;
     const frontRightPawClaws = getState().newSession.frontRightPaw.claws;
     const backLeftPawClaws = getState().newSession.backLeftPaw.claws;
@@ -159,9 +160,9 @@ export const finishSession = () => {
       };
 
       console.log('[insertSession sessionData]', sessionData);
-      const dbResult = await insertSession(1, sessionData);
+      const dbResult = await insertSession(petId, status, sessionData);
       console.log('[insertSession result]', dbResult);
-      dispatch({ type: sessionTypes.FINISH_SESSION, session: sessionData });
+      dispatch({ type: sessionTypes.FINISH_SESSION });
     } catch (err) {
       console.log(err);
       throw err;

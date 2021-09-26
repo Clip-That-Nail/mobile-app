@@ -13,16 +13,16 @@ export const loadSessions = () => {
   }
 };
 
-export const addSession = (petId, paws) => {
-  return async (dispatch) => {
-    try {
-      const dbResult = await insertSession(petId, paws);
-      console.log('addPet result:', dbResult);
+// export const addSession = (petId, status, paws) => {
+//   return async (dispatch) => {
+//     try {
+//       const dbResult = await insertSession(petId, paws);
+//       console.log('addPet result:', dbResult);
 
-      dispatch({ type: sessionsTypes.ADD_SESSION, sessionData: { id: dbResult.insertId, paws } });
-    } catch (err) {
-      console.log('addPet error:', err);
-      throw err;
-    }
-  }
-};
+//       dispatch({ type: sessionsTypes.ADD_SESSION, sessionData: { id: dbResult.insertId, status, paws } });
+//     } catch (err) {
+//       console.log('addPet error:', err);
+//       throw err;
+//     }
+//   }
+// };
