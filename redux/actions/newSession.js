@@ -1,4 +1,4 @@
-import sessionTypes from '../types/newSession';
+import newSessionTypes from '../types/newSession';
 import { insertSession } from '../../helpers/db';
 
 /**
@@ -8,7 +8,7 @@ import { insertSession } from '../../helpers/db';
  * @returns {object} update status action
  */
 export const updateFrontLeftPawStatus = (pawData) => {
-  return { type: sessionTypes.UPDATE_FRONT_LEFT_PAW_STATUS, pawData: pawData };
+  return { type: newSessionTypes.UPDATE_FRONT_LEFT_PAW_STATUS, pawData: pawData };
 };
 
 /**
@@ -18,7 +18,7 @@ export const updateFrontLeftPawStatus = (pawData) => {
  * @returns {object} update status action
  */
 export const updateFrontRightPawStatus = (pawData) => {
-  return { type: sessionTypes.UPDATE_FRONT_RIGHT_PAW_STATUS, pawData: pawData };
+  return { type: newSessionTypes.UPDATE_FRONT_RIGHT_PAW_STATUS, pawData: pawData };
 };
 
 /**
@@ -28,7 +28,7 @@ export const updateFrontRightPawStatus = (pawData) => {
  * @returns {object} update status action
  */
 export const updateBackLeftPawStatus = (pawData) => {
-  return { type: sessionTypes.UPDATE_BACK_LEFT_PAW_STATUS, pawData: pawData };
+  return { type: newSessionTypes.UPDATE_BACK_LEFT_PAW_STATUS, pawData: pawData };
 };
 
 /**
@@ -38,7 +38,7 @@ export const updateBackLeftPawStatus = (pawData) => {
  * @returns {object} update status action
  */
 export const updateBackRightPawStatus = (pawData) => {
-  return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW_STATUS, pawData: pawData };
+  return { type: newSessionTypes.UPDATE_BACK_RIGHT_PAW_STATUS, pawData: pawData };
 };
 
 /**
@@ -48,7 +48,7 @@ export const updateBackRightPawStatus = (pawData) => {
  * @returns {object} update status action
  */
 export const updateFrontLeftPawOutcomes = (outcomes) => {
-  return { type: sessionTypes.UPDATE_FRONT_LEFT_PAW_OUTCOME, outcomes: outcomes };
+  return { type: newSessionTypes.UPDATE_FRONT_LEFT_PAW_OUTCOME, outcomes: outcomes };
 };
 
 /**
@@ -58,7 +58,7 @@ export const updateFrontLeftPawOutcomes = (outcomes) => {
  * @returns {object} update status action
  */
 export const updateFrontRightPawOutcomes = (outcomes) => {
-  return { type: sessionTypes.UPDATE_FRONT_RIGHT_PAW_OUTCOME, outcomes: outcomes };
+  return { type: newSessionTypes.UPDATE_FRONT_RIGHT_PAW_OUTCOME, outcomes: outcomes };
 };
 
 /**
@@ -68,7 +68,7 @@ export const updateFrontRightPawOutcomes = (outcomes) => {
  * @returns {object} update status action
  */
 export const updateBackLeftPawOutcomes = (outcomes) => {
-  return { type: sessionTypes.UPDATE_BACK_LEFT_PAW_OUTCOME, outcomes: outcomes };
+  return { type: newSessionTypes.UPDATE_BACK_LEFT_PAW_OUTCOME, outcomes: outcomes };
 };
 
 /**
@@ -78,7 +78,7 @@ export const updateBackLeftPawOutcomes = (outcomes) => {
  * @returns {object} update status action
  */
 export const updateBackRightPawOutcomes = (outcomes) => {
-  return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW_OUTCOME, outcomes: outcomes };
+  return { type: newSessionTypes.UPDATE_BACK_RIGHT_PAW_OUTCOME, outcomes: outcomes };
 };
 
 /**
@@ -88,7 +88,7 @@ export const updateBackRightPawOutcomes = (outcomes) => {
  * @returns {object} update status action
  */
 export const updateFrontLeftPawBehaviours = (behaviours) => {
-  return { type: sessionTypes.UPDATE_FRONT_LEFT_PAW_BEHAVIOR, behaviours: behaviours };
+  return { type: newSessionTypes.UPDATE_FRONT_LEFT_PAW_BEHAVIOR, behaviours: behaviours };
 };
 
 /**
@@ -98,7 +98,7 @@ export const updateFrontLeftPawBehaviours = (behaviours) => {
  * @returns {object} update status action
  */
 export const updateFrontRightPawBehaviours = (behaviours) => {
-  return { type: sessionTypes.UPDATE_FRONT_RIGHT_PAW_BEHAVIOR, behaviours: behaviours };
+  return { type: newSessionTypes.UPDATE_FRONT_RIGHT_PAW_BEHAVIOR, behaviours: behaviours };
 };
 
 /**
@@ -108,7 +108,7 @@ export const updateFrontRightPawBehaviours = (behaviours) => {
  * @returns {object} update status action
  */
 export const updateBackLeftPawBehaviours = (behaviours) => {
-  return { type: sessionTypes.UPDATE_BACK_LEFT_PAW_BEHAVIOR, behaviours: behaviours };
+  return { type: newSessionTypes.UPDATE_BACK_LEFT_PAW_BEHAVIOR, behaviours: behaviours };
 };
 
 /**
@@ -118,39 +118,40 @@ export const updateBackLeftPawBehaviours = (behaviours) => {
  * @returns {object} update status action
  */
 export const updateBackRightPawBehaviours = (behaviours) => {
-  return { type: sessionTypes.UPDATE_BACK_RIGHT_PAW_BEHAVIOR, behaviours: behaviours };
+  return { type: newSessionTypes.UPDATE_BACK_RIGHT_PAW_BEHAVIOR, behaviours: behaviours };
 };
 
 
 
 export const updateCompleteFrontLeftPaw = (complete) => {
-  return { type: sessionTypes.COMPLETE_FRONT_LEFT_PAW, complete: complete };
+  return { type: newSessionTypes.COMPLETE_FRONT_LEFT_PAW, complete: complete };
 };
 
 export const updateCompleteFrontRightPaw = (complete) => {
-  return { type: sessionTypes.COMPLETE_FRONT_RIGHT_PAW, complete: complete };
+  return { type: newSessionTypes.COMPLETE_FRONT_RIGHT_PAW, complete: complete };
 };
 
 export const updateCompleteBackLeftPaw = (complete) => {
-  return { type: sessionTypes.COMPLETE_BACK_LEFT_PAW, complete: complete };
+  return { type: newSessionTypes.COMPLETE_BACK_LEFT_PAW, complete: complete };
 };
 
 export const updateCompleteBackRightPaw = (complete) => {
-  return { type: sessionTypes.COMPLETE_BACK_RIGHT_PAW, complete: complete };
+  return { type: newSessionTypes.COMPLETE_BACK_RIGHT_PAW, complete: complete };
 };
 
 export const updateNewSessionPetId = (petId) => {
-  return { type: sessionTypes.UPDATE_NEW_SESSION_PET_ID, petId };
+  return { type: newSessionTypes.UPDATE_NEW_SESSION_PET_ID, petId };
 };
 
 export const finishSession = (status) => {
   return async (dispatch, getState) => {
     const petId = getState().newSession.pet.id;
+    const pet = getState().pets.pets.find(pet => pet.id === petId);
     const frontLeftPawClaws = getState().newSession.frontLeftPaw.claws;
     const frontRightPawClaws = getState().newSession.frontRightPaw.claws;
     const backLeftPawClaws = getState().newSession.backLeftPaw.claws;
     const backRightPawClaws = getState().newSession.backRightPaw.claws;
-    
+
     try {
       const sessionData = {
         frontLeft: frontLeftPawClaws,
@@ -160,9 +161,9 @@ export const finishSession = (status) => {
       };
 
       console.log('[insertSession sessionData]', sessionData);
-      const dbResult = await insertSession(petId, status, sessionData);
-      console.log('[insertSession result]', dbResult);
-      dispatch({ type: sessionTypes.FINISH_SESSION });
+      const sessionId = await insertSession(petId, status, sessionData);
+      console.log('[insertSession sessionId]', sessionId);
+      dispatch({ type: newSessionTypes.FINISH_SESSION, sessionData: { id: sessionId, status, pet, paws: sessionData } });
     } catch (err) {
       console.log(err);
       throw err;
