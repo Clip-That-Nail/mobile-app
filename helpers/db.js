@@ -49,6 +49,8 @@ export const fetchPets = async () => {
 }
 
 export const insertSession = async (petId, status, paws) => {
+  let sessionId;
+
   await db.transaction(async connection => {
     const sessionResult = await connection.execute('INSERT INTO sessions (petId,status) VALUES (?,?)', [petId, status]);
 
@@ -107,7 +109,11 @@ export const insertSession = async (petId, status, paws) => {
         pawInsertFail(error);
       }
     });
+
+    sessionId = sessionResult.insertId;
   });
+  
+  return sessionId;
 }
 
 export const fetchSessions = async () => {
