@@ -13,7 +13,7 @@ const ListItem = props => {
 
   return (
     <TouchableCmp onPress={props.onSelect} useForeground>
-      <Card style={styles.listItem}>
+      <Card style={{ ...styles.listItem, ...props.style }}>
         {props.children}
       </Card>
     </TouchableCmp>
