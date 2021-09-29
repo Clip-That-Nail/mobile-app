@@ -120,7 +120,7 @@ export const fetchSessions = async () => {
   let sessions = {};
 
   const clawsResult = await db.execute(`
-    SELECT claws.id AS clawId, sessions.id AS sessionId, pets.id AS petId, *
+    SELECT claws.id AS clawId, claws.status AS clawStatus, sessions.id AS sessionId, pets.id AS petId, *
     FROM claws
     JOIN sessions ON sessions.id = claws.sessionId
     JOIN pets ON pets.id = sessions.petId
@@ -149,7 +149,7 @@ export const fetchSessions = async () => {
         ...(sessions[claw.sessionId] && sessions[claw.sessionId][claw.paw]),
         [claw.claw]: {
           id: claw.clawId,
-          status: claw.status,
+          status: claw.clawStatus,
           outcome: claw.outcome,
           behaviour: claw.behaviour
         }
