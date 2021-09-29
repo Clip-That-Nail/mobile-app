@@ -5,69 +5,50 @@ import { Ionicons, Entypo } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 
 const SummarySpecialIcon = (props) => {
-  const { status } = props;
+  const { status, iconSize, boxSize } = props;
 
   const displayContent = () => {
     switch (status) {
       case 'checked':
         return (
-          <View style={{ ...styles.checkbox, ...styles.checked }}>
+          <View style={{ ...styles.checkbox, ...styles.checked, ...{ width: boxSize, height: boxSize } }}>
             <View style={styles.checkboxBody}>
-              <Entypo name="scissors" size={20} color='white' />
+              <Entypo name="scissors" size={iconSize} color='white' />
             </View>
           </View>
         );
       case 'bleeded':
         return (
-          <View style={{ ...styles.checkbox, ...styles.bleeded }}>
+          <View style={{ ...styles.checkbox, ...styles.bleeded, ...{ width: boxSize, height: boxSize } }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="water" size={20} color='white' />
+              <Ionicons name="water" size={iconSize} color='white' />
             </View>
           </View>
         );
       case 'warning':
         return (
-          <View style={{ ...styles.checkbox, ...styles.warning }}>
+          <View style={{ ...styles.checkbox, ...styles.warning, ...{ width: boxSize, height: boxSize } }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="alert" size={20} color='black' />
+              <Ionicons name="alert" size={iconSize} color='black' />
             </View>
           </View>
         );
       case 'disabled':
         return (
-          <View style={{ ...styles.checkbox, ...styles.disabled }}>
+          <View style={{ ...styles.checkbox, ...styles.disabled, ...{ width: boxSize, height: boxSize } }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="close" size={20} color='white' />
+              <Ionicons name="close" size={iconSize} color='white' />
             </View>
           </View>
         );
       default:
         return (
-          <View style={{ ...styles.checkbox, ...styles.unchecked }}>
+          <View style={{ ...styles.checkbox, ...styles.unchecked, ...{ width: boxSize, height: boxSize } }}>
             <View style={styles.checkboxBody}></View>
           </View>
         );
     }
   };
-
-  const handleOnPress = () => {
-    if (status === 'disabled') {
-      setStatus('disabled');
-      props.onPress('disabled');
-    } else if (status === 'unchecked') {
-      setStatus('checked');
-      props.onPress('checked');
-    } else if (status === 'checked') {
-      setStatus('bleeded');
-      props.onPress('bleeded');
-    } else if (status === 'bleeded') {
-      setStatus('warning');
-      props.onPress('warning');
-    } else if (status === 'warning') {
-      setStatus('unchecked');
-      props.onPress('unchecked');
-    }
-  }
 
   return (
     <View>
@@ -76,11 +57,14 @@ const SummarySpecialIcon = (props) => {
   );
 };
 
+SummarySpecialIcon.defaultProps = {
+  iconSize: 20,
+  boxSize: 30,
+};
+
 const styles = StyleSheet.create({
   checkbox: {
     padding: 0,
-    width: 30,
-    height: 30,
     borderRadius: 5,
     borderWidth: 3,
     zIndex: 1
