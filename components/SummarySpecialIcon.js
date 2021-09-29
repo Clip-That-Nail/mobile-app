@@ -51,7 +51,7 @@ const SummarySpecialIcon = (props) => {
   };
 
   return (
-    <View>
+    <View style={props.style}>
       {displayContent()}
     </View>
   );
