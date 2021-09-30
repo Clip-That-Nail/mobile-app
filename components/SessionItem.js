@@ -1,84 +1,124 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Entypo } from '@expo/vector-icons';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 // import moment from 'moment';
 
-import SummarySpecialIcon from './SummarySpecialIcon';
 import ListItem from './ListItem';
+import CircleActionButton from './CircleActionButton';
+
+const leftSwipeActions = (onPress) => {
+  return (
+    <CircleActionButton side="left" buttonSize={50} buttonType="edit" onPress={onPress}>
+      <Entypo name="edit" size={26} color="white" />
+    </CircleActionButton>
+  );
+};
+
+const rightSwipeActions = (onPress) => {
+  return (
+    <CircleActionButton side="right" buttonSize={50} buttonType="remove" onPress={onPress}>
+      <Ionicons name="trash-outline" size={26} color="white" />
+    </CircleActionButton>
+  );
+};
+const swipeFromLeftOpen = () => {
+  alert('Swipe from left');
+};
+const swipeFromRightOpen = () => {
+  alert('Swipe from right');
+};
 
 const SessionItem = props => {
+
+  const handleOnPressLeftAction = () => {
+    alert('edit');
+  };
+
+  const handleOnPressRightAction = () => {
+    alert('remove');
+  };
+
   return (
-    <ListItem style={styles.sessionItem} onSelect={props.onSelect}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{props.session.createDate}</Text>
-      </View>
-      <View style={styles.footer}>
-        <View style={styles.footerColumn}>
-          <Text style={styles.pet}>Pet: {props.session.pet.name}</Text>
+    <Swipeable
+      renderLeftActions={() => leftSwipeActions(handleOnPressLeftAction)}
+      renderRightActions={() => rightSwipeActions(handleOnPressRightAction)}
+    // onSwipeableRightOpen={swipeFromRightOpen}
+    // onSwipeableLeftOpen={swipeFromLeftOpen}
+    >
+      <ListItem style={styles.sessionItem} onSelect={props.onSelect}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{props.session.createDate}</Text>
         </View>
-        <View style={styles.footerColumn}>
-          <Text style={styles.status}>Status: {props.session.status}</Text>
-        </View>
-      </View>
-      <View style={styles.footer}>
-      {/* TODO: move paws and claws to the swipe from left and add swipe from right buttons (delete + edit) */}
-      {/* https://blog.logrocket.com/react-native-gesture-handler-swipe-long-press-and-more/ */}
-      {/* https://blog.jscrambler.com/creating-swipeable-gestures-with-react-native-gesture-handler */}
-      {/* https://medium.com/@mendes.develop/swipe-gestures-in-react-native-with-react-native-gesture-handler-9131ea2ebd9 */}
-        <View style={styles.footerRow}>
-          <View style={styles.paw}>
-            <View style={styles.pawIcon}>
-              <Ionicons name="paw" size={15} color='black' />
-            </View>
-            <Text style={styles.pawTitle}>FL</Text>
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.firstClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.secondClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.thirdClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.fourthClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.dewClaw.status} iconSize={15} boxSize={20} />
+        <View style={styles.footer}>
+          <View style={styles.footerColumn}>
+            <Text style={styles.pet}>Pet: {props.session.pet.name}</Text>
           </View>
-          <View style={styles.paw}>
-            <View style={styles.pawIcon}>
-              <Ionicons name="paw" size={15} color='black' />
-            </View>
-            <Text style={styles.pawTitle}>FR</Text>
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.firstClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.secondClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.thirdClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.fourthClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.dewClaw.status} iconSize={15} boxSize={20} />
+          <View style={styles.footerColumn}>
+            <Text style={styles.status}>Status: {props.session.status}</Text>
           </View>
         </View>
-        <View style={styles.footerRow}>
-          <View style={styles.paw}>
-            <View style={styles.pawIcon}>
-              <Ionicons name="paw" size={15} color='black' />
+        {/* TODO: move paws and claws to the swipe from left and add swipe from right buttons (delete + edit) */}
+        {/* https://blog.logrocket.com/react-native-gesture-handler-swipe-long-press-and-more/ */}
+        {/* https://blog.jscrambler.com/creating-swipeable-gestures-with-react-native-gesture-handler */}
+        {/* https://medium.com/@mendes.develop/swipe-gestures-in-react-native-with-react-native-gesture-handler-9131ea2ebd9 */}
+        {/* <View style={styles.footer}>
+          <View style={styles.footerRow}>
+            <View style={styles.paw}>
+              <View style={styles.pawIcon}>
+                <Ionicons name="paw" size={15} color='black' />
+              </View>
+              <Text style={styles.pawTitle}>FL</Text>
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.firstClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.secondClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.thirdClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.fourthClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.dewClaw.status} iconSize={15} boxSize={20} />
             </View>
-            <Text style={styles.pawTitle}>BL</Text>
-            <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.firstClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.secondClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.thirdClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.fourthClaw.status} iconSize={15} boxSize={20} />
-          </View>
-          <View style={styles.paw}>
-            <View style={styles.pawIcon}>
-              <Ionicons name="paw" size={15} color='black' />
+            <View style={styles.paw}>
+              <View style={styles.pawIcon}>
+                <Ionicons name="paw" size={15} color='black' />
+              </View>
+              <Text style={styles.pawTitle}>FR</Text>
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.firstClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.secondClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.thirdClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.fourthClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.dewClaw.status} iconSize={15} boxSize={20} />
             </View>
-            <Text style={styles.pawTitle}>BR</Text>
-            <SummarySpecialIcon style={styles.claw} status={props.session.backRight.firstClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.backRight.secondClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.backRight.thirdClaw.status} iconSize={15} boxSize={20} />
-            <SummarySpecialIcon style={styles.claw} status={props.session.backRight.fourthClaw.status} iconSize={15} boxSize={20} />
           </View>
-        </View>
-      </View>
-    </ListItem>
+          <View style={styles.footerRow}>
+            <View style={styles.paw}>
+              <View style={styles.pawIcon}>
+                <Ionicons name="paw" size={15} color='black' />
+              </View>
+              <Text style={styles.pawTitle}>BL</Text>
+              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.firstClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.secondClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.thirdClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.fourthClaw.status} iconSize={15} boxSize={20} />
+            </View>
+            <View style={styles.paw}>
+              <View style={styles.pawIcon}>
+                <Ionicons name="paw" size={15} color='black' />
+              </View>
+              <Text style={styles.pawTitle}>BR</Text>
+              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.firstClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.secondClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.thirdClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.fourthClaw.status} iconSize={15} boxSize={20} />
+            </View>
+          </View>
+        </View> */}
+      </ListItem>
+    </Swipeable>
   );
 };
 
 const styles = StyleSheet.create({
   sessionItem: {
     flexDirection: 'column',
+    flex: 1,
   },
   titleContainer: {
     flex: 1,
