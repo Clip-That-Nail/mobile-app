@@ -1,24 +1,58 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons, Entypo } from '@expo/vector-icons';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import ListItem from './ListItem';
+import CircleActionButton from './CircleActionButton';
 import Colors from '../constants/Colors';
 
-const PetItem = props => {
+const leftSwipeActions = (onPress) => {
   return (
-    <ListItem onSelect={props.onSelect}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: props.petData.imageUri }} />
-        <View style={styles.petType}>
-          <MaterialCommunityIcons name={props.petData.type} size={18} color="rgba(0,0,0,0.6)" />
+    <CircleActionButton side="left" buttonSize={50} buttonType="edit" onPress={onPress}>
+      <Entypo name="edit" size={26} color="white" />
+    </CircleActionButton>
+  );
+};
+
+const rightSwipeActions = (onPress) => {
+  return (
+    <CircleActionButton side="right" buttonSize={50} buttonType="remove" onPress={onPress}>
+      <Ionicons name="trash-outline" size={26} color="white" />
+    </CircleActionButton>
+  );
+};
+
+const PetItem = props => {
+
+  const handleOnPressLeftAction = () => {
+    alert('edit');
+  };
+
+  const handleOnPressRightAction = () => {
+    alert('remove');
+  };
+  
+  return (
+    <Swipeable
+      renderLeftActions={() => leftSwipeActions(handleOnPressLeftAction)}
+      renderRightActions={() => rightSwipeActions(handleOnPressRightAction)}
+    // onSwipeableRightOpen={swipeFromRightOpen}
+    // onSwipeableLeftOpen={swipeFromLeftOpen}
+    >
+      <ListItem onSelect={props.onSelect}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={{ uri: props.petData.imageUri }} />
+          <View style={styles.petType}>
+            <MaterialCommunityIcons name={props.petData.type} size={18} color="rgba(0,0,0,0.6)" />
+          </View>
         </View>
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.name}>{props.petData.name}</Text>
-        <Text style={styles.breed}>{props.petData.breed}</Text>
-      </View>
-    </ListItem>
+        <View style={styles.infoContainer}>
+          <Text style={styles.name}>{props.petData.name}</Text>
+          <Text style={styles.breed}>{props.petData.breed}</Text>
+        </View>
+      </ListItem>
+    </Swipeable>
   );
 };
 
