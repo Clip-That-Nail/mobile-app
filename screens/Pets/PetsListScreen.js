@@ -50,7 +50,7 @@ const PetsListScreen = (props) => {
         contentContainerStyle={styles.listContent}
         data={pets}
         keyExtractor={item => item.id}
-        renderItem={itemData => <PetItem petData={itemData.item} onSelect={() => {
+        renderItem={itemData => <PetItem navigation={props.navigation} petData={itemData.item} onSelect={() => {
           props.navigation.navigate('PetDetail', { petName: itemData.item.name, petId: itemData.item.id });
         }} />}
         ListEmptyComponent={() => <EmptyList text="You haven't added any pets yet" />}
