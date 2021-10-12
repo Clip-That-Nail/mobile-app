@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import PetsListScreen, { screenOptions as petsListScreenOptions } from '../screens/Pets/PetsListScreen';
 import AddNewPetScreen, { screenOptions as addNewPetScreenOptions } from '../screens/Pets/AddNewPetScreen';
+import EditPetScreen, { screenOptions as editPetScreenOptions } from '../screens/Pets/EditPetScreen';
 import PetDetailScreen, { screenOptions as petDetailScreenOptions } from '../screens/Pets/PetDetailScreen';
 import DefaultStackNavOptions from './DefaultStackNavOptions';
 import Colors from '../constants/Colors';
@@ -19,6 +20,7 @@ const PetsNavigator = () => {
     }}>
     <PetsStack.Screen name="PetsList" component={PetsListScreen} options={petsListScreenOptions} />
     <PetsStack.Screen name="AddNewPet" component={AddNewPetScreen} options={addNewPetScreenOptions} />
+    <PetsStack.Screen name="EditPet" component={EditPetScreen} options={editPetScreenOptions} />
     <PetsStack.Screen name="PetDetail" component={PetDetailScreen} options={petDetailScreenOptions} />
   </PetsStack.Navigator>
 };
