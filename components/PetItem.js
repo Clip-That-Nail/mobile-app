@@ -26,7 +26,7 @@ const rightSwipeActions = (onPress) => {
 const PetItem = props => {
 
   const handleOnPressLeftAction = () => {
-    alert('edit');
+    props.navigation.navigate('EditPet', { petData: props.petData });
   };
 
   const handleOnPressRightAction = () => {
