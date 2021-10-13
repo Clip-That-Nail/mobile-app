@@ -1,11 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { Alert } from 'react-native';
 import { MaterialCommunityIcons, Ionicons, Entypo } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import ListItem from './ListItem';
 import CircleActionButton from './CircleActionButton';
 import Colors from '../constants/Colors';
+import { removePet } from '../redux/actions/pets';
 
 const leftSwipeActions = (onPress) => {
   return (
@@ -24,15 +27,24 @@ const rightSwipeActions = (onPress) => {
 };
 
 const PetItem = props => {
+  const dispatch = useDispatch();
 
   const handleOnPressLeftAction = () => {
     props.navigation.navigate('EditPet', { petData: props.petData });
   };
 
   const handleOnPressRightAction = () => {
-    alert('remove');
+    Alert.alert('Are you sure?', 'Do you really want to remove this pet?', [
+      { text: 'No', style: 'default' },
+      {
+        text: "Yes", style: 'destructive', onPress: () => {
+          dispatch(removePet(props.petData.id));
+          // TODO: find out how to close swiped item after deleting pet - some close() function?
+        }
+      }
+    ]);
   };
-  
+
   return (
     <Swipeable
       renderLeftActions={() => leftSwipeActions(handleOnPressLeftAction)}

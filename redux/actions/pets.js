@@ -67,9 +67,9 @@ export const updatePet = (petId, name, type, breed, image) => {
 export const removePet = (petId) => {
   return async (dispatch, getState) => {
     try {
-      const imageToRemove = getState().pets.find(pet => pet.id === petId).imageUri;
+      const imageToRemove = getState().pets.pets.find(pet => pet.id === petId).imageUri;
 
-      await removePetFromDB(petId, name, type, breed, updatedImage);
+      await removePetFromDB(petId);
 
       await FileSystem.deleteAsync(imageToRemove);
 
