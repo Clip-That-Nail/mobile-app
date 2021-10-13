@@ -7,7 +7,7 @@ export const loadPets = () => {
   return async (dispatch) => {
     try {
       const dbResult = await fetchPets();
-      dispatch({ type: petsTypes.SET_DOGS, pets: dbResult.rows });
+      dispatch({ type: petsTypes.SET_PETS, pets: dbResult.rows });
     } catch (err) {
       console.log(err);
       throw err;
@@ -27,9 +27,9 @@ export const addPet = (name, type, breed, image) => {
       });
       const dbResult = await insertPet(name, type, breed, newPath);
       console.log('addPet result:', dbResult);
-      console.log('action type : ', petsTypes.ADD_DOG);
+      console.log('action type : ', petsTypes.ADD_PET);
 
-      dispatch({ type: petsTypes.ADD_DOG, petData: { id: dbResult.insertId, name, type, breed, image: newPath } });
+      dispatch({ type: petsTypes.ADD_PET, petData: { id: dbResult.insertId, name, type, breed, image: newPath } });
     } catch (err) {
       console.log('addPet error:', err);
       throw err;
@@ -56,7 +56,7 @@ export const updatePet = (petId, name, type, breed, image) => {
       }
       const dbResult = await updatePetInDB(petId, name, type, breed, updatedImage);
 
-      dispatch({ type: petsTypes.UPDATE_DOG, petData: { id: petId, name, type, breed, image: updatedImage } });
+      dispatch({ type: petsTypes.UPDATE_PET, petData: { id: petId, name, type, breed, image: updatedImage } });
     } catch (err) {
       console.log('updatePet error:', err);
       throw err;
