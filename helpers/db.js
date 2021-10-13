@@ -38,6 +38,16 @@ export const updatePet = async (petId, name, type, breed, imageUri) => {
   return result;
 }
 
+export const removePet = async (petId) => {
+  let result;
+
+  await db.transaction(async connection => {
+    result = await connection.execute(`DELETE FROM pets WHERE id = ?`, [petId]);
+  });
+
+  return result;
+}
+
 export const fetchPets = async () => {
   let result;
 
