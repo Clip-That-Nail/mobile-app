@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system';
 
 import petsTypes from '../types/pets';
-import { fetchPets, insertPet, updatePet as updatePetInDB } from '../../helpers/db';
+import { fetchPets, insertPet, updatePet as updatePetInDB, removePet as removePetFromDB } from '../../helpers/db';
 
 export const loadPets = () => {
   return async (dispatch) => {
@@ -42,7 +42,7 @@ export const updatePet = (petId, name, type, breed, image) => {
 
     try {
       let updatedImage = '';
-      
+
       if (image.new !== image.old) {
         const fileName = image.new.split('/').pop();
         updatedImage = FileSystem.documentDirectory + fileName;
@@ -59,6 +59,23 @@ export const updatePet = (petId, name, type, breed, image) => {
       dispatch({ type: petsTypes.UPDATE_PET, petData: { id: petId, name, type, breed, image: updatedImage } });
     } catch (err) {
       console.log('updatePet error:', err);
+      throw err;
+    }
+  }
+};
+
+export const removePet = (petId) => {
+  return async (dispatch, getState) => {
+    try {
+      const imageToRemove = getState().pets.find(pet => pet.id === petId).imageUri;
+
+      await removePetFromDB(petId, name, type, breed, updatedImage);
+
+      await FileSystem.deleteAsync(imageToRemove);
+
+      dispatch({ type: petsTypes.REMOVE_PET, petId });
+    } catch (err) {
+      console.log('removePet error:', err);
       throw err;
     }
   }

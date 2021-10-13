@@ -40,6 +40,11 @@ const petsReducer = (state = initialState, action) => {
           return pet;
         })
       }
+    case petsTypes.REMOVE_PET:
+      return {
+        ...state,
+        pets: state.pets.filter(pet => pet.id !== action.petId.toString())
+      }
     default:
       return state;
   }
