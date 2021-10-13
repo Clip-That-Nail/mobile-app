@@ -22,8 +22,6 @@ const EditPetScreen = (props) => {
   const [petDisabled, setPetDisabled] = useState(false);
   const [selectedImage, setSelectedImage] = useState(petData.imageUri);
 
-console.log('petData', petData);
-
   const dispatch = useDispatch();
 
   const petNameChangeHandler = (event) => {
@@ -43,7 +41,7 @@ console.log('petData', petData);
   };
 
   const updatePetHandler = () => {
-    dispatch(petsActions.updatePet(petData.id, petName, petType, petBreed, selectedImage));
+    dispatch(petsActions.updatePet(petData.id, petName, petType, petBreed, { new: selectedImage, old: petData.imageUri }));
     props.navigation.goBack();
   };
 
@@ -62,7 +60,7 @@ console.log('petData', petData);
           { label: "Cat", value: "cat" },
         ]} />
         <CustomInput label="Breed" placeholder="Type pet breed" value={petBreed} handleChange={petBreedChangeHandler} />
-        <ImagePicker onImageTaken={imageTakenHandler} />
+        <ImagePicker initialImage={petData.imageUri} onImageTaken={imageTakenHandler} />
         <View style={styles.checkboxContainer}>{/* TODO: move it to the seperate component : CustomCheckbox */}
           <CheckBox
             value={petDisabled}

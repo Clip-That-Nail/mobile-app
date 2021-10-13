@@ -11,7 +11,7 @@ const ImgPicker = (props) => {
     TouchableCmp = TouchableNativeFeedback;
   }
 
-  const [pickedImage, setPickedImage] = useState();
+  const [pickedImage, setPickedImage] = useState(props.initialImage);
 
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.CAMERA, Permissions.MEDIA_LIBRARY);
