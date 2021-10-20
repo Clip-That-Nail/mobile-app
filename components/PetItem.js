@@ -49,8 +49,8 @@ const PetItem = props => {
     <Swipeable
       renderLeftActions={() => leftSwipeActions(handleOnPressLeftAction)}
       renderRightActions={() => rightSwipeActions(handleOnPressRightAction)}
-    // onSwipeableRightOpen={swipeFromRightOpen}
-    // onSwipeableLeftOpen={swipeFromLeftOpen}
+      // onSwipeableRightOpen={swipeFromRightOpen}
+      // onSwipeableLeftOpen={swipeFromLeftOpen}
     >
       <ListItem onSelect={props.onSelect}>
         <View style={styles.imageContainer}>
