@@ -13,7 +13,7 @@ const DisabilityCheckbox = (props) => {
         return (
           <View style={{ ...styles.checkbox, ...styles.disabled }}>
             <View style={styles.checkboxBody}>
-              <Ionicons name="close" size={40} color={Colors.redColor} />
+              <Ionicons name="close" size={30} color={Colors.redColor} />
             </View>
           </View>
         );
@@ -51,8 +51,8 @@ const DisabilityCheckbox = (props) => {
 const styles = StyleSheet.create({
   checkbox: {
     padding: 0,
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderRadius: 5,
     borderWidth: 5,
     zIndex: 1
