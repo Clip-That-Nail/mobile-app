@@ -9,9 +9,11 @@ import HeaderButton from '../../components/HeaderButton';
 import ImagePicker from '../../components/ImagePicker';
 import CustomInput from '../../components/CustomInput';
 import CustomPicker from '../../components/CustomPicker';
+import DisabilityPaw from '../../components/DisabilityPaw';
 
 import * as petsActions from '../../redux/actions/pets';
 
+import { pawsData } from '../../helpers/paws';
 import Colors from '../../constants/Colors';
 
 const AddNewPetScreen = (props) => {
@@ -19,8 +21,36 @@ const AddNewPetScreen = (props) => {
   const [petName, setPetName] = useState('');
   const [petType, setPetType] = useState('dog');
   const [petBreed, setPetBreed] = useState('');
-  const [petDisabled, setPetDisabled] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
+  const [petDisabled, setPetDisabled] = useState(false);
+  const [disabledClaws, setDisabledClaws] = useState({
+    frontLeft: {
+      first: 'unchecked',
+      second: 'unchecked',
+      third: 'unchecked',
+      fourth: 'unchecked',
+      dew: 'unchecked',
+    },
+    frontRight: {
+      first: 'unchecked',
+      second: 'unchecked',
+      third: 'unchecked',
+      fourth: 'unchecked',
+      dew: 'unchecked',
+    },
+    backLeft: {
+      first: 'unchecked',
+      second: 'unchecked',
+      third: 'unchecked',
+      fourth: 'unchecked',
+    },
+    backRight: {
+      first: 'unchecked',
+      second: 'unchecked',
+      third: 'unchecked',
+      fourth: 'unchecked',
+    }
+  });
 
   const petNameChangeHandler = (event) => {
     setPetName(event.nativeEvent.text);
@@ -42,6 +72,15 @@ const AddNewPetScreen = (props) => {
     dispatch(petsActions.addPet(petName, petType, petBreed, selectedImage));
     props.navigation.goBack();
   };
+
+  const handleClawCheckboxPress = (pawId, clawId, status) => {
+    // console.log('status', status);
+    // console.log('pawId', pawId);
+    // console.log('clawId', clawId);
+    setDisabledClaws({ ...disabledClaws, [pawId]: { ...disabledClaws[pawId], [clawId]: status } });
+  };
+
+  console.log('disabledClaws', disabledClaws);
 
   return (
     <ScrollView style={styles.container}>
@@ -67,6 +106,17 @@ const AddNewPetScreen = (props) => {
           />
           <Text style={styles.label}>Disabled?</Text>
         </View>
+        {
+          petDisabled && (
+            <View style={styles.disablePawsContainer}>
+              <Text style={styles.label}>Choose which claw is disabled and can't be cut</Text>
+              <DisabilityPaw pawData={pawsData.frontLeft} claws={disabledClaws.frontLeft} onClawCheckboxPress={handleClawCheckboxPress} />
+              <DisabilityPaw pawData={pawsData.frontRight} claws={disabledClaws.frontRight} onClawCheckboxPress={handleClawCheckboxPress} />
+              <DisabilityPaw pawData={pawsData.backLeft} claws={disabledClaws.backLeft} onClawCheckboxPress={handleClawCheckboxPress} />
+              <DisabilityPaw pawData={pawsData.backRight} claws={disabledClaws.backRight} onClawCheckboxPress={handleClawCheckboxPress} />
+            </View>
+          )
+        }
         <Button style={styles.button} icon="paw" mode="contained" color={Colors.redDarkColor} onPress={savePetHandler}>
           Save Pet
         </Button>
@@ -108,7 +158,6 @@ const styles = StyleSheet.create({
   },
   checkboxContainer: {
     flexDirection: "row",
-    marginBottom: 20,
   },
   checkbox: {
     alignSelf: "center",
@@ -116,6 +165,9 @@ const styles = StyleSheet.create({
   label: {
     margin: 8,
   },
+  disablePawsContainer: {
+    marginBottom: 10,
+  }
 });
 
 export default AddNewPetScreen;
