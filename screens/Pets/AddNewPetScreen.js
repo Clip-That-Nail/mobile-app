@@ -69,7 +69,7 @@ const AddNewPetScreen = (props) => {
   };
 
   const savePetHandler = () => {
-    dispatch(petsActions.addPet(petName, petType, petBreed, selectedImage));
+    dispatch(petsActions.addPet(petName, petType, petBreed, selectedImage, petDisabled ? 1 : 0));
     props.navigation.goBack();
   };
 

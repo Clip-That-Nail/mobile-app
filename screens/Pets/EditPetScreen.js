@@ -41,7 +41,7 @@ const EditPetScreen = (props) => {
   };
 
   const updatePetHandler = () => {
-    dispatch(petsActions.updatePet(petData.id, petName, petType, petBreed, { new: selectedImage, old: petData.imageUri }));
+    dispatch(petsActions.updatePet(petData.id, petName, petType, petBreed, { new: selectedImage, old: petData.imageUri }, petDisabled ? 1 : 0));
     props.navigation.goBack();
   };
 
