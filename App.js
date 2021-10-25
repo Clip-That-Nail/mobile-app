@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { LogBox } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 
 import store from './redux/store';
 import AppNavigator from './navigation/AppNavigator';
-import { insertSession, updatePet } from './helpers/db';
 
 enableScreens();
 LogBox.ignoreLogs(['Your project is accessing the following APIs from a deprecated global rather than a module import: Constants (expo-constants).']);
@@ -38,43 +37,6 @@ const fetchFonts = () => {
 
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
-
-  // TODO: create that to test if it's working properly - maybe create your own seeder for tests?
-  // useEffect(() => {
-
-    // updatePet(1, 'Narcyz', 'dog', 'Mix', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/61415610-5488-4b7f-bac8-d719581411d0.jpg');
-    // updatePet(2, 'Laika', 'dog', 'Whippet', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/0df5b055-91f3-433f-8147-ad723bd113f6.jpg');
-    // updatePet(4, 'Scooby', 'dog', 'German Dog', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/025c0a4c-fbf5-4355-bbf6-11016321f837.jpg');
-
-  //   insertSession(2, {
-  //     frontLeft: {
-  //       firstClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       secondClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       thirdClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       fourthClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       dewClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //     },
-  //     frontRight: {
-  //       firstClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       secondClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       thirdClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       fourthClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       dewClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //     },
-  //     backLeft: {
-  //       firstClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       secondClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       thirdClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       fourthClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //     },
-  //     backRight: {
-  //       firstClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       secondClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       thirdClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //       fourthClaw: { status: 'unchecked', outcome: 'not-selected', behaviour: 'not-selected' },
-  //     },
-  //   })
-  // }, []);
 
   if (!fontLoaded) {
     return (
