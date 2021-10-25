@@ -1,12 +1,12 @@
 export default async function (connection) {
   // ##############  PETS  ##############
   // TODO: image files do not work, because cache and storage was cleared 
-  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri) VALUES (?,?,?,?)`, ['Narcyz', 'dog', 'Mix', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/d97cd91d-a3d0-4c27-9bc1-bdaca19f0756.jpg', 0]);
-  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri) VALUES (?,?,?,?)`, ['Laika', 'dog', 'Whippet', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/d97cd91d-a3d0-4c27-9bc1-bdaca19f0756.jpg', 0]);
-  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri) VALUES (?,?,?,?)`, ['Amon', 'cat', 'Persian', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/5fb563b8-27fb-47d9-87fd-82b474ae5351.jpg', 0]);
-  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri) VALUES (?,?,?,?)`, ['Scooby', 'dog', 'German Dogg', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/d97cd91d-a3d0-4c27-9bc1-bdaca19f0756.jpg', 0]);
-  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri) VALUES (?,?,?,?)`, ['Fender', 'cat', 'Maine Coon', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/5fb563b8-27fb-47d9-87fd-82b474ae5351.jpg', 0]);
-  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri) VALUES (?,?,?,?)`, ['Disabled DOGO', 'dog', 'Mix', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/5fb563b8-27fb-47d9-87fd-82b474ae5351.jpg', 1]);
+  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri, disabled) VALUES (?,?,?,?,?)`, ['Narcyz', 'dog', 'Mix', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/d97cd91d-a3d0-4c27-9bc1-bdaca19f0756.jpg', 0]);
+  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri, disabled) VALUES (?,?,?,?,?)`, ['Laika', 'dog', 'Whippet', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/d97cd91d-a3d0-4c27-9bc1-bdaca19f0756.jpg', 0]);
+  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri, disabled) VALUES (?,?,?,?,?)`, ['Amon', 'cat', 'Persian', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/5fb563b8-27fb-47d9-87fd-82b474ae5351.jpg', 0]);
+  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri, disabled) VALUES (?,?,?,?,?)`, ['Scooby', 'dog', 'German Dogg', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/d97cd91d-a3d0-4c27-9bc1-bdaca19f0756.jpg', 0]);
+  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri, disabled) VALUES (?,?,?,?,?)`, ['Fender', 'cat', 'Maine Coon', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/5fb563b8-27fb-47d9-87fd-82b474ae5351.jpg', 0]);
+  await connection.execute(`INSERT INTO pets (name, type, breed, imageUri, disabled) VALUES (?,?,?,?,?)`, ['Disabled DOGO', 'dog', 'Mix', 'file:///data/user/0/host.exp.exponent/files/ExperienceData/%2540pawelbak%252Fclip-that-nail-app/5fb563b8-27fb-47d9-87fd-82b474ae5351.jpg', 1]);
 
   // ##############  SESSIONS  ##############
   await connection.execute(

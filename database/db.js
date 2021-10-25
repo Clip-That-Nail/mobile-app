@@ -12,7 +12,7 @@ const db = new Database("clipThatNail_v1.db", {
     try {
       await connection.execute("PRAGMA foreign_keys = ON;");
     } catch (e) {
-      console.log(e);
+      console.log('prepareConnFn error: ', e);
     }
   },
   migrateFn: async connection => {
