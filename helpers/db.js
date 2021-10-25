@@ -15,24 +15,24 @@ import db from '../database/db';
 //   return promise;
 // };
 
-export const insertPet = async (name, type, breed, imageUri) => {
+export const insertPet = async (name, type, breed, imageUri, disabled) => {
   let result;
 
   await db.transaction(async connection => {
-    result = await connection.execute('INSERT INTO pets (name, type, breed, imageUri) VALUES (?,?,?,?)', [name, type, breed, imageUri]);
+    result = await connection.execute('INSERT INTO pets (name, type, breed, imageUri, disabled) VALUES (?,?,?,?,?)', [name, type, breed, imageUri, disabled]);
   });
 
   return result;
 }
 
-export const updatePet = async (petId, name, type, breed, imageUri) => {
+export const updatePet = async (petId, name, type, breed, imageUri, disabled) => {
   let result;
 
   await db.transaction(async connection => {
     result = await connection.execute(`
     UPDATE pets
-    SET name = ?, type = ?, breed = ?, imageUri = ?
-    WHERE id = ?`, [name, type, breed, imageUri, petId]);
+    SET name = ?, type = ?, breed = ?, imageUri = ?, disabled = ?
+    WHERE id = ?`, [name, type, breed, imageUri, disabled, petId]);
   });
 
   return result;
@@ -44,6 +44,8 @@ export const removePet = async (petId) => {
   await db.transaction(async connection => {
     result = await connection.execute(`DELETE FROM pets WHERE id = ?`, [petId]);
   });
+
+  // TODO: should I remove all pet related data like disabilities, skips, sessions etc.?
 
   return result;
 }

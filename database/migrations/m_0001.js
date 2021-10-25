@@ -5,7 +5,8 @@ export default async function (connection) {
       name TEXT NOT NULL,
       type TEXT NOT NULL,
       breed TEXT NOT NULL,
-      imageUri TEXT NOT NULL
+      imageUri TEXT NOT NULL,
+      disabled INTEGER NOT NULL
     )`
   );
   await connection.execute(
