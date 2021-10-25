@@ -10,7 +10,7 @@ const petsReducer = (state = initialState, action) => {
     case petsTypes.SET_PETS:
       return {
         ...state,
-        pets: action.pets.map(pet => new Pet(pet.id.toString(), pet.name, pet.type, pet.breed, pet.imageUri))
+        pets: action.pets.map(pet => new Pet(pet.id.toString(), pet.name, pet.type, pet.breed, pet.imageUri, pet.disabled))
       }
     case petsTypes.ADD_PET:
       const newPet = new Pet(
@@ -19,6 +19,7 @@ const petsReducer = (state = initialState, action) => {
         action.petData.type,
         action.petData.breed,
         action.petData.image,
+        action.petData.disabled,
       );
       return {
         ...state,
@@ -35,6 +36,7 @@ const petsReducer = (state = initialState, action) => {
               action.petData.type,
               action.petData.breed,
               action.petData.image,
+              action.petData.disabled,
             )
           }
           return pet;

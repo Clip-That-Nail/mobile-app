@@ -15,7 +15,7 @@ export const loadPets = () => {
   }
 };
 
-export const addPet = (name, type, breed, image) => {
+export const addPet = (name, type, breed, image, disabled) => {
   return async (dispatch) => {
     const fileName = image.split('/').pop();
     const newPath = FileSystem.documentDirectory + fileName;
@@ -25,11 +25,11 @@ export const addPet = (name, type, breed, image) => {
         from: image,
         to: newPath
       });
-      const dbResult = await insertPet(name, type, breed, newPath);
+      const dbResult = await insertPet(name, type, breed, newPath, disabled);
       console.log('addPet result:', dbResult);
       console.log('action type : ', petsTypes.ADD_PET);
 
-      dispatch({ type: petsTypes.ADD_PET, petData: { id: dbResult.insertId, name, type, breed, image: newPath } });
+      dispatch({ type: petsTypes.ADD_PET, petData: { id: dbResult.insertId, name, type, breed, image: newPath, disabled } });
     } catch (err) {
       console.log('addPet error:', err);
       throw err;
@@ -37,7 +37,7 @@ export const addPet = (name, type, breed, image) => {
   }
 };
 
-export const updatePet = (petId, name, type, breed, image) => {
+export const updatePet = (petId, name, type, breed, image, disabled) => {
   return async (dispatch) => {
 
     try {
@@ -54,9 +54,9 @@ export const updatePet = (petId, name, type, breed, image) => {
       } else {
         updatedImage = image.old;
       }
-      const dbResult = await updatePetInDB(petId, name, type, breed, updatedImage);
+      const dbResult = await updatePetInDB(petId, name, type, breed, updatedImage, disabled);
 
-      dispatch({ type: petsTypes.UPDATE_PET, petData: { id: petId, name, type, breed, image: updatedImage } });
+      dispatch({ type: petsTypes.UPDATE_PET, petData: { id: petId, name, type, breed, image: updatedImage, disabled } });
     } catch (err) {
       console.log('updatePet error:', err);
       throw err;
