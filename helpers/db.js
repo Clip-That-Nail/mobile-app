@@ -51,13 +51,25 @@ export const removePet = async (petId) => {
 }
 
 export const fetchPets = async () => {
-  let result;
+  let pets = {};
 
   await db.transaction(async connection => {
-    result = await connection.execute('SELECT * FROM pets');
+    const petsResult = await connection.execute(`SELECT * FROM pets`);
+
+    for (const key in petsResult.rows) {
+      const pet = petsResult.rows[key];
+
+      const disabilitiesResult = await connection.execute(`SELECT * FROM disabilities WHERE petId = ${pet.id}`);
+
+      pets[pet.id] = {
+        ...pet,
+        disabilities: disabilitiesResult.rows
+      };
+
+    }
   });
 
-  return result;
+  return Object.values(pets);
 }
 
 export const insertSession = async (petId, status, paws) => {
@@ -124,7 +136,7 @@ export const insertSession = async (petId, status, paws) => {
 
     sessionId = sessionResult.insertId;
   });
-  
+
   return sessionId;
 }
 

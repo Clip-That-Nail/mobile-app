@@ -99,13 +99,13 @@ export default async function (connection) {
   );
 
   // ##############  DISABILITIES  ##############
-  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['7', 'backLeft', 'first']);
-  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['7', 'backLeft', 'second']);
-  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['7', 'backLeft', 'third']);
-  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['7', 'backLeft', 'fourth']);
+  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['6', 'backLeft', 'first']);
+  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['6', 'backLeft', 'second']);
+  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['6', 'backLeft', 'third']);
+  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['6', 'backLeft', 'fourth']);
   
-  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['7', 'backRight', 'first']);
-  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['7', 'backRight', 'second']);
-  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['7', 'backRight', 'third']);
-  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['7', 'backRight', 'fourth']);
+  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['6', 'backRight', 'first']);
+  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['6', 'backRight', 'second']);
+  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['6', 'backRight', 'third']);
+  await connection.execute(`INSERT INTO disabilities (petId, paw, claw) VALUES (?,?,?)`, ['6', 'backRight', 'fourth']);
 }
