@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
 import SessionItem from '../../components/SessionItem';
-import ScreenTitle from '../../components/ScreenTitle';
+import ScreenTitle from '../../components/titles/ScreenTitle';
 import ScreenActionButtons from '../../components/ScreenActionButtons';
 import EmptyList from '../../components/EmptyList';
 import { loadSessions } from '../../redux/actions/sessions';

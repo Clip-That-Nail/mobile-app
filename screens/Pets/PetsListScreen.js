@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
 import PetItem from '../../components/PetItem';
-import ScreenTitle from '../../components/ScreenTitle';
+import ScreenTitle from '../../components/titles/ScreenTitle';
 import ScreenActionButtons from '../../components/ScreenActionButtons';
 import EmptyList from '../../components/EmptyList';
 import * as petsActions from '../../redux/actions/pets';

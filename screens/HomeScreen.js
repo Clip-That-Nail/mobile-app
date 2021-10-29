@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Button, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import NewSessionItem from '../components/NewSessionItem';
-import ScreenTitle from '../components/ScreenTitle';
+import ScreenTitle from '../components/titles/ScreenTitle';
 import EmptyList from '../components/EmptyList';
 import * as petsActions from '../redux/actions/pets';
 import * as newSessionActions from '../redux/actions/newSession';
