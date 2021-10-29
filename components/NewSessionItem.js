@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableNativeFeedback, TouchableOpacity, Platform,
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import Card from './Card';
+import PetBadge from '../components/PetBadge';
 import Colors from '../constants/Colors';
 
 const NewSessionItem = props => {
@@ -17,9 +18,7 @@ const NewSessionItem = props => {
       <View style={styles.topContainer}>
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={{ uri: props.petData.imageUri }} />
-          <View style={styles.petType}>
-            <MaterialCommunityIcons name={props.petData.type} size={18} color="rgba(0,0,0,0.6)" />
-          </View>
+          <PetBadge icon={props.petData.type} size={20} position={{ bottom: 3, right: 3 }} color={{ badge: "rgba(255,255,255,0.6)", icon: "rgba(0,0,0,0.6)" }} />
         </View>
         <View style={styles.infoContainer}>
           <Text style={styles.petName}>{props.petData.name}</Text>
@@ -53,18 +52,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     borderTopColor: '#ddd',
     borderTopWidth: 1,
-  },
-  petType: {
-    position: 'absolute',
-    bottom: 3,
-    right: 3,
-    width: 20,
-    height: 20,
-    borderRadius: 30,
-    backgroundColor: 'rgba(255,255,255,0.6)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 3
   },
   image: {
     width: 50,

@@ -2,12 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Alert } from 'react-native';
-import { MaterialCommunityIcons, Ionicons, Entypo } from '@expo/vector-icons';
+import { Ionicons, Entypo } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import ListItem from './ListItem';
 import CircleActionButton from './CircleActionButton';
 import Colors from '../constants/Colors';
+import PetBadge from '../components/PetBadge';
 import { removePet } from '../redux/actions/pets';
 
 const leftSwipeActions = (onPress) => {
@@ -49,15 +50,13 @@ const PetItem = props => {
     <Swipeable
       renderLeftActions={() => leftSwipeActions(handleOnPressLeftAction)}
       renderRightActions={() => rightSwipeActions(handleOnPressRightAction)}
-      // onSwipeableRightOpen={swipeFromRightOpen}
-      // onSwipeableLeftOpen={swipeFromLeftOpen}
+    // onSwipeableRightOpen={swipeFromRightOpen}
+    // onSwipeableLeftOpen={swipeFromLeftOpen}
     >
       <ListItem onSelect={props.onSelect}>
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={{ uri: props.petData.imageUri }} />
-          <View style={styles.petType}>
-            <MaterialCommunityIcons name={props.petData.type} size={18} color="rgba(0,0,0,0.6)" />
-          </View>
+          <PetBadge icon={props.petData.type} size={20} position={{ bottom: 3, right: 3 }} color={{ badge: "rgba(255,255,255,0.6)", icon: "rgba(0,0,0,0.6)" }} />
         </View>
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{props.petData.name}</Text>
@@ -69,18 +68,6 @@ const PetItem = props => {
 };
 
 const styles = StyleSheet.create({
-  petType: {
-    position: 'absolute',
-    bottom: 3,
-    right: 3,
-    width: 20,
-    height: 20,
-    borderRadius: 30,
-    backgroundColor: 'rgba(255,255,255,0.6)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 3
-  },
   image: {
     width: 70,
     height: 70,
