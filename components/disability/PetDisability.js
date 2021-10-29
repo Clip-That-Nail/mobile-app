@@ -13,25 +13,12 @@ const PetDisability = ({ disabilities }) => {
 
   useEffect(() => {
     if (disabilities.length > 0) {
-      disabilities.map(disability => {
-        switch (disability.paw) {
-          case 'frontLeft':
-            setFrontLeftDisability([...frontLeftDisability, disability]);
-            break;
-          case 'frontRight':
-            setFrontRightDisability([...frontRightDisability, disability]);
-            break;
-          case 'backLeft':
-            setBackLeftDisability([...backLeftDisability, disability]);
-            break;
-          case 'backRight':
-            setBackRightDisability([...backRightDisability, disability]);
-            break;
-        }
-      });
+      setFrontLeftDisability(disabilities.filter(disability => disability.paw === 'frontLeft'));
+      setFrontRightDisability(disabilities.filter(disability => disability.paw === 'frontRight'));
+      setBackLeftDisability(disabilities.filter(disability => disability.paw === 'backLeft'));
+      setBackRightDisability(disabilities.filter(disability => disability.paw === 'backRight'));
     }
-
-  }, [disabilities]);
+  }, [disabilities, setFrontLeftDisability, setFrontRightDisability, setBackLeftDisability, setBackRightDisability]);
 
   return (
     <Card style={styles.disabilities}>
