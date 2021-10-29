@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import Card from '../Card';
 import PawImage from '../PawImage';
+import BoxTitle from '../titles/BoxTitle';
 
 const PetDisability = ({ disabilities }) => {
   const [frontLeftDisability, setFrontLeftDisability] = useState([]);
@@ -34,11 +35,7 @@ const PetDisability = ({ disabilities }) => {
 
   return (
     <Card style={styles.disabilities}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>
-          Disabled Claws
-        </Text>
-      </View>
+      <BoxTitle title="Disabled Claws" />
       <View style={styles.pawsRow}>
         <View style={styles.disabledPaw}>
           <PawImage pawName="frontLeft" pawData={frontLeftDisability} />
