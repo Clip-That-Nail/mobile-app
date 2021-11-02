@@ -45,15 +45,15 @@ const PawImage = ({ pawName, pawData }) => {
 
   const displayClawsImages = () => (
     <>
-      <FirstClaw type={pawData.first} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-      <SecondClaw type={pawData.second} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-      <ThirdClaw type={pawData.third} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-      <FourthClaw type={pawData.fourth} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      <FirstClaw type={pawData?.first ?? 'empty'} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      <SecondClaw type={pawData?.second ?? 'empty'} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      <ThirdClaw type={pawData?.third ?? 'empty'} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      <FourthClaw type={pawData?.fourth ?? 'empty'} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
       {
-        pawName === 'frontLeft' && <RightDewClaw type={pawData.dew} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+        pawName === 'frontLeft' && <RightDewClaw type={pawData?.dew ?? 'empty'} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
       }
       {
-        pawName === 'frontRight' && <LeftDewClaw type={pawData.dew} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+        pawName === 'frontRight' && <LeftDewClaw type={pawData?.dew ?? 'empty'} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
       }
     </>
   );

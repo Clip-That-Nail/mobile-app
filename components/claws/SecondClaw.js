@@ -15,10 +15,11 @@ const SecondClaw = ({ type, styles }) => {
       return <Image style={styles.image} source={checked} />;
     case 'disabled':
       return <Image style={styles.image} source={disabled} />;
-    case 'empty':
-      return <Image style={styles.image} source={empty} />;
     case 'warning':
       return <Image style={styles.image} source={warning} />;
+    case 'empty':
+    default:
+      return <Image style={styles.image} source={empty} />;
   }
 };
 
