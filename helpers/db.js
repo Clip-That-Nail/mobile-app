@@ -1,4 +1,5 @@
 import db from '../database/db';
+import { pawsData } from '../helpers/paws';
 
 // export const init = () => {
 //   const promise = new Promise((resolve, reject) => {
@@ -56,14 +57,29 @@ export const fetchPets = async () => {
   await db.transaction(async connection => {
     const petsResult = await connection.execute(`SELECT * FROM pets`);
 
-    for (const key in petsResult.rows) {
-      const pet = petsResult.rows[key];
+    for (const petKey in petsResult.rows) {
+      const pet = petsResult.rows[petKey];
 
       const disabilitiesResult = await connection.execute(`SELECT * FROM disabilities WHERE petId = ${pet.id}`);
 
+      const disabilities = {};
+      for (const pawKey in pawsData) {
+        const paw = pawsData[pawKey];
+        const filteredPawDisabilities = disabilitiesResult.rows.filter(disability => disability.paw === pawKey);
+
+        for (const clawKey in paw.claws) {
+          const claw = paw.claws[clawKey];
+
+          disabilities[pawKey] = {
+            ...disabilities[pawKey],
+            [claw.id]: filteredPawDisabilities.some(pawDisability => pawDisability.claw === claw.id) ? 'disabled' : 'empty'
+          }
+        }
+      }
+
       pets[pet.id] = {
         ...pet,
-        disabilities: disabilitiesResult.rows
+        disabilities: disabilities
       };
 
     }
