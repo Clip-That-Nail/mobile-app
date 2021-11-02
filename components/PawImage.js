@@ -43,32 +43,23 @@ const PawImage = ({ pawName, pawData }) => {
     }
   };
 
-  const displayClawsImages = () => {
-    const firstClawExists = pawData.find(claw => claw.claw === 'first');
-    const secondClawExists = pawData.find(claw => claw.claw === 'second');
-    const thirdClawExists = pawData.find(claw => claw.claw === 'third');
-    const fourthClawExists = pawData.find(claw => claw.claw === 'fourth');
-    const dewClawExists = pawData.find(claw => claw.claw === 'dew');
-
-    return (
-      <>
-        <FirstClaw type={(firstClawExists ? 'disabled' : 'empty')} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-        <SecondClaw type={(secondClawExists ? 'disabled' : 'empty')} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-        <ThirdClaw type={(thirdClawExists ? 'disabled' : 'empty')} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-        <FourthClaw type={(fourthClawExists ? 'disabled' : 'empty')} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-        {
-          pawName === 'frontLeft' && <RightDewClaw type={(dewClawExists ? 'disabled' : 'empty')} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-        }
-        {
-          pawName === 'frontRight' && <LeftDewClaw type={(dewClawExists ? 'disabled' : 'empty')} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
-        }
-      </>
-    );
-  };
+  const displayClawsImages = () => (
+    <>
+      <FirstClaw type={pawData.first} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      <SecondClaw type={pawData.second} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      <ThirdClaw type={pawData.third} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      <FourthClaw type={pawData.fourth} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      {
+        pawName === 'frontLeft' && <RightDewClaw type={pawData.dew} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      }
+      {
+        pawName === 'frontRight' && <LeftDewClaw type={pawData.dew} styles={{ ...styles, image: { ...styles.image, width: imageSize, height: imageSize } }} />
+      }
+    </>
+  );
 
   return (
     <View>
-      {/* <Text>{JSON.stringify(pawData)}</Text> */}
       <View style={{ ...styles.imageContainer, width: imageSize, height: imageSize }}>
         {displayClawsImages()}
         {displayPawImage()}
