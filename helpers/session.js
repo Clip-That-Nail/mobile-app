@@ -1,4 +1,5 @@
 import store from '../redux/store';
+import { pawsData } from './paws';
 
 /**
  * Navigate to the next not completed paw
@@ -35,3 +36,38 @@ export const isSessionComplete = () => {
 
   return frontLeftPawComplete && frontRightPawComplete && backLeftPawComplete && backRightPawComplete;
 };
+
+/**
+ * Prepare session data so that statuses, behaviours and outcomes are in the separate objects
+ * 
+ * @param {object} navigation The react-navigation props object (props.navigation)
+ * @return {array[object]} Returns array containing 3 objects accordingly for [statuses, behaviours, outcomes]
+ */
+export const prepareSessionData = (sessionData) => {
+  const preparedStatuses = {};
+  const preparedBehaviours = {};
+  const preparedOutcomes = {};
+
+  for (const pawKey in pawsData) {
+    const paw = pawsData[pawKey];
+
+    for (const clawKey in paw.claws) {
+      const claw = paw.claws[clawKey];
+
+      preparedStatuses[pawKey] = {
+        ...preparedStatuses[pawKey],
+        [claw.id]: sessionData[pawKey][clawKey].status
+      }
+      preparedBehaviours[pawKey] = {
+        ...preparedBehaviours[pawKey],
+        [claw.id]: sessionData[pawKey][clawKey].behaviour
+      }
+      preparedOutcomes[pawKey] = {
+        ...preparedOutcomes[pawKey],
+        [claw.id]: sessionData[pawKey][clawKey].outcome
+      }
+    }
+  }
+
+  return [preparedStatuses, preparedBehaviours, preparedOutcomes];
+}
