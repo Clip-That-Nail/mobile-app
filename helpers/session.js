@@ -1,5 +1,5 @@
 import store from '../redux/store';
-import { pawsData } from './paws';
+import { pawsData } from './pawsData';
 
 /**
  * Navigate to the next not completed paw

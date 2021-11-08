@@ -13,7 +13,7 @@ import DisabilityPaw from '../../components/DisabilityPaw';
 
 import * as petsActions from '../../redux/actions/pets';
 
-import { pawsData } from '../../helpers/paws';
+import { pawsData } from '../../helpers/pawsData';
 import Colors from '../../constants/Colors';
 
 const AddNewPetScreen = (props) => {

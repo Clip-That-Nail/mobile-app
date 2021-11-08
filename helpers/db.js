@@ -1,5 +1,5 @@
 import db from '../database/db';
-import { pawsData } from '../helpers/paws';
+import { pawsData } from '../helpers/pawsData';
 
 // export const init = () => {
 //   const promise = new Promise((resolve, reject) => {
