@@ -40,10 +40,11 @@ export const isSessionComplete = () => {
 /**
  * Prepare session data so that statuses, behaviours and outcomes are in the separate objects
  * 
- * @param {object} navigation The react-navigation props object (props.navigation)
+ * @param {object} sessionData Session data object
+ * @param {object} disabilities Pet disabilities object
  * @return {array[object]} Returns array containing 3 objects accordingly for [statuses, behaviours, outcomes]
  */
-export const prepareSessionData = (sessionData) => {
+export const prepareSessionData = (sessionData, disabilities) => {
   const preparedStatuses = {};
   const preparedBehaviours = {};
   const preparedOutcomes = {};
@@ -56,15 +57,21 @@ export const prepareSessionData = (sessionData) => {
 
       preparedStatuses[pawKey] = {
         ...preparedStatuses[pawKey],
-        [claw.id]: sessionData[pawKey][clawKey].status
+        [claw.id]: disabilities[pawKey][clawKey.split("C").shift()] === "empty"
+          ? sessionData[pawKey][clawKey].status
+          : disabilities[pawKey][clawKey.split("C").shift()]
       }
       preparedBehaviours[pawKey] = {
         ...preparedBehaviours[pawKey],
-        [claw.id]: sessionData[pawKey][clawKey].behaviour
+        [claw.id]: disabilities[pawKey][clawKey.split("C").shift()] === "empty"
+          ? sessionData[pawKey][clawKey].behaviour
+          : disabilities[pawKey][clawKey.split("C").shift()]
       }
       preparedOutcomes[pawKey] = {
         ...preparedOutcomes[pawKey],
-        [claw.id]: sessionData[pawKey][clawKey].outcome
+        [claw.id]: disabilities[pawKey][clawKey.split("C").shift()] === "empty"
+          ? sessionData[pawKey][clawKey].outcome
+          : disabilities[pawKey][clawKey.split("C").shift()]
       }
     }
   }
