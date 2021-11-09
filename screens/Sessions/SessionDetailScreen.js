@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
 import Card from '../../components/Card';
+import PawImage from '../../components/PawImage';
+import BehaviourImage from '../../components/BehaviourImage';
+import OutcomeImage from '../../components/OutcomeImage';
 import Colors from '../../constants/Colors';
+import { pawsData } from '../../helpers/pawsData';
+import { prepareSessionData } from '../../helpers/session';
+
+const EMPTY_PAWS_DATA = {
+  frontLeft: {},
+  frontRight: {},
+  backLeft: {},
+  backRight: {},
+};
 
 const SessionDetailScreen = (props) => {
   const sessionId = props.route.params.sessionId;
   const selectedSession = useSelector(state => state.sessions.sessions.find(session => session.id === sessionId));
+  const sessionPet = useSelector(state => state.pets.pets.find(pet => pet.id === selectedSession?.pet?.id));
+
+  const [statuses, setStatuses] = useState(EMPTY_PAWS_DATA);
+  const [behaviours, setBehaviours] = useState(EMPTY_PAWS_DATA);
+  const [outcomes, setOutcomes] = useState(EMPTY_PAWS_DATA);
+
+  useEffect(() => {
+    const [preparedStatuses, preparedBehaviours, preparedOutcomes] = prepareSessionData(selectedSession, sessionPet.disabilities);
+    setStatuses(preparedStatuses);
+    setBehaviours(preparedBehaviours);
+    setOutcomes(preparedOutcomes);
+  }, [selectedSession, sessionPet]);
 
   return (
     <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
@@ -15,33 +39,26 @@ const SessionDetailScreen = (props) => {
         {/* TODO: add Dog details box */}
         <Text style={styles.dogName}>{selectedSession.pet.name}</Text>
       </Card>
-      <Card style={styles.paw}>
-        {/* TODO: przedstaw clawsy i outcomesy/behavioursy jako kwadraty/prostokaty/boxy z grafika latwa do zapamietania/zrozumienia i jak na to klikniesz to wyswietla sie popup z nazwa/wytlumaczeniem co to */}
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontLeft.firstClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontLeft.secondClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontLeft.thirdClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontLeft.fourthClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontLeft.dewClaw)}</Text>
-      </Card>
-      <Card style={styles.paw}>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontRight.firstClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontRight.secondClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontRight.thirdClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontRight.fourthClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.frontRight.dewClaw)}</Text>
-      </Card>
-      <Card style={styles.paw}>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.backLeft.firstClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.backLeft.secondClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.backLeft.thirdClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.backLeft.fourthClaw)}</Text>
-      </Card>
-      <Card style={styles.paw}>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.backRight.firstClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.backRight.secondClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.backRight.thirdClaw)}</Text>
-        <Text style={styles.claw}>{JSON.stringify(selectedSession.backRight.fourthClaw)}</Text>
-      </Card>
+      <View style={styles.pawsRow}>
+        <Card style={styles.paw}>
+          <Text style={styles.pawTitle}>Front Left</Text>
+          <PawImage pawName="frontLeft" pawData={statuses?.frontLeft} />
+        </Card>
+        <Card style={styles.paw}>
+          <Text style={styles.pawTitle}>Front Right</Text>
+          <PawImage pawName="frontRight" pawData={statuses?.frontRight} />
+        </Card>
+      </View>
+      <View style={styles.pawsRow}>
+        <Card style={styles.paw}>
+          <Text style={styles.pawTitle}>Back Left</Text>
+          <PawImage pawName="backLeft" pawData={statuses?.backLeft} />
+        </Card>
+        <Card style={styles.paw}>
+          <Text style={styles.pawTitle}>Back Right</Text>
+          <PawImage pawName="backRight" pawData={statuses?.backRight} />
+        </Card>
+      </View>
     </ScrollView>
   );
 };
@@ -53,9 +70,27 @@ export const screenOptions = (navData) => {
 };
 
 const styles = StyleSheet.create({
-  dog: {},
+  dog: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    padding: 10,
+  },
   dogName: {},
+  pawTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    marginBottom: 15,
+  },
+  pawsRow: {
+    flexDirection: 'row',
+  },
   paw: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
   },
   claw: {
     padding: 15,
