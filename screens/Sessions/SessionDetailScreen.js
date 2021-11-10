@@ -6,6 +6,7 @@ import Card from '../../components/Card';
 import PawImage from '../../components/PawImage';
 import BehaviourImage from '../../components/BehaviourImage';
 import OutcomeImage from '../../components/OutcomeImage';
+import OutcomesAndBehaviours from '../../components/OutcomesAndBehaviours';
 import Colors from '../../constants/Colors';
 import { pawsData } from '../../helpers/pawsData';
 import { prepareSessionData } from '../../helpers/session';
@@ -37,12 +38,13 @@ const SessionDetailScreen = (props) => {
     <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
       <Card style={styles.dog}>
         {/* TODO: add Dog details box */}
-        <Text style={styles.dogName}>{selectedSession.pet.name}</Text>
+        <Text style={styles.dogName}>{selectedSession?.pet?.name}</Text>
       </Card>
       <View style={styles.pawsRow}>
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Front Left</Text>
           <PawImage pawName="frontLeft" pawData={statuses?.frontLeft} />
+          <OutcomesAndBehaviours pawData={pawsData["frontLeft"]} statuses={statuses?.frontLeft} outcomes={outcomes?.frontLeft} behaviours={behaviours?.frontLeft} />
         </Card>
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Front Right</Text>
