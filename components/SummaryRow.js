@@ -35,21 +35,29 @@ const SummaryRow = (props) => {
           </View>
         </View>
       </View>
-      <View style={styles.summaryRow}>
-        <SummaryPicker
-          value={claw.outcome}
-          type='outcome'
-          status={claw.status}
-          onValueChange={handleOnOutcomeChange}
-        />
-      </View>
-      <View style={styles.summaryRow}>
-        <SummaryPicker
-          value={claw.behaviour}
-          type='futureBehaviour'
-          onValueChange={handleOnBehaviourChange}
-        />
-      </View>
+      {
+        claw.outcome !== 'disabled' && (
+          <View style={styles.summaryRow}>
+            <SummaryPicker
+              value={claw.outcome}
+              type='outcome'
+              status={claw.status}
+              onValueChange={handleOnOutcomeChange}
+            />
+          </View>
+        )
+      }
+      {
+        claw.behaviour !== 'disabled' && (
+          <View style={styles.summaryRow}>
+            <SummaryPicker
+              value={claw.behaviour}
+              type='futureBehaviour'
+              onValueChange={handleOnBehaviourChange}
+            />
+          </View>
+        )
+      }
     </View>
   );
 };
