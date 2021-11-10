@@ -12,20 +12,22 @@ import { updateBackLeftPawOutcomes, updateBackLeftPawBehaviours, updateCompleteB
 const BackLeftPawSummaryScreen = (props) => {
   const { navigation } = props;
 
+  const petId = useSelector(state => state.newSession.pet.id);
+  const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId).disabilities.backLeft);
   const clawsData = useSelector(state => state.newSession.backLeftPaw.claws);
   const complete = useSelector(state => state.newSession.backLeftPaw.complete);
 
   const [outcomes, setOutcomes] = useState({
-    firstClaw: clawsData.firstClaw.outcome,
-    secondClaw: clawsData.secondClaw.outcome,
-    thirdClaw: clawsData.thirdClaw.outcome,
-    fourthClaw: clawsData.fourthClaw.outcome,
+    firstClaw: disabilities.first === "empty" ? clawsData.firstClaw.outcome : disabilities.first,
+    secondClaw: disabilities.second === "empty" ? clawsData.secondClaw.outcome : disabilities.second,
+    thirdClaw: disabilities.third === "empty" ? clawsData.thirdClaw.outcome : disabilities.third,
+    fourthClaw: disabilities.fourth === "empty" ? clawsData.fourthClaw.outcome : disabilities.fourth,
   });
   const [behaviours, setBehaviours] = useState({
-    firstClaw: clawsData.firstClaw.behaviour,
-    secondClaw: clawsData.secondClaw.behaviour,
-    thirdClaw: clawsData.thirdClaw.behaviour,
-    fourthClaw: clawsData.fourthClaw.behaviour,
+    firstClaw: disabilities.first === "empty" ? clawsData.firstClaw.behaviour : disabilities.first,
+    secondClaw: disabilities.second === "empty" ? clawsData.secondClaw.behaviour : disabilities.second,
+    thirdClaw: disabilities.third === "empty" ? clawsData.thirdClaw.behaviour : disabilities.third,
+    fourthClaw: disabilities.fourth === "empty" ? clawsData.fourthClaw.behaviour : disabilities.fourth,
   });
 
   const dispatch = useDispatch();

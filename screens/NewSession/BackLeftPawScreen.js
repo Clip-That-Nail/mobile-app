@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -14,14 +14,15 @@ import { updateBackLeftPawStatus } from '../../redux/actions/newSession';
 import Colors from '../../constants/Colors';
 
 const BackLeftPawScreen = (props) => {
-  const initialCheckBoxData = {
-    firstClaw: 'unchecked',
-    secondClaw: 'unchecked',
-    thirdClaw: 'unchecked',
-    fourthClaw: 'unchecked',
-  };
+  const petId = useSelector(state => state.newSession.pet.id);
+  const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId).disabilities.backLeft);
 
-  const [toggleCheckBoxes, setToggleCheckBoxes] = useState(initialCheckBoxData);
+  const [toggleCheckBoxes, setToggleCheckBoxes] = useState({
+    firstClaw: disabilities.first === 'empty' ? 'unchecked' : disabilities.first,
+    secondClaw: disabilities.second === 'empty' ? 'unchecked' : disabilities.second,
+    thirdClaw: disabilities.third === 'empty' ? 'unchecked' : disabilities.third,
+    fourthClaw: disabilities.fourth === 'empty' ? 'unchecked' : disabilities.fourth,
+  });
 
   const dispatch = useDispatch();
 
