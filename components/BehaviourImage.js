@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import allowToCut from '../assets/images/behaviours/allow-to-cut.png';
 import skip1Session from '../assets/images/behaviours/skip-1-session.png';
 import skip2Session from '../assets/images/behaviours/skip-2-session.png';
 import skip3Session from '../assets/images/behaviours/skip-3-session.png';
+
+import Colors from '../constants/Colors';
 
 const BehaviourImage = ({ size, behaviour }) => {
   const imageSource = () => {
@@ -31,7 +34,13 @@ const BehaviourImage = ({ size, behaviour }) => {
 
   return (
     <View style={styles.imageContainer}>
-      <Image style={{ ...styles.image, width: size, height: size }} source={imageSource()} />
+      {
+        behaviour === 'disabled' ? (
+          <Ionicons name="close" size={size - 2} color={Colors.redColor} />
+        ) : (
+          <Image style={{ ...styles.image, width: size, height: size }} source={imageSource()} />
+        )
+      }
     </View>
   );
 };

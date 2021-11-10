@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import checkedNotSelected from '../assets/images/outcomes/checked-not-selected.png';
 import checkedLittleClip from '../assets/images/outcomes/checked-little-clip.png';
@@ -12,8 +13,9 @@ import bleededStrongBleed from '../assets/images/outcomes/bleeded-strong-bleed.p
 import warningNotEnoughNail from '../assets/images/outcomes/warning-not-enough-nail.png';
 import warningVisibleQuick from '../assets/images/outcomes/warning-visible-quick.png';
 
-const OutcomeImage = ({ size, status, outcome }) => {
+import Colors from '../constants/Colors';
 
+const OutcomeImage = ({ size, status, outcome }) => {
   const imageSource = () => {
     let source;
     switch (status) {
@@ -36,8 +38,6 @@ const OutcomeImage = ({ size, status, outcome }) => {
       case 'bleeded':
         switch (outcome) {
           case 'not-selected':
-            console.log('status', status);
-            console.log('outcome', outcome);
             source = bleededNotSelected;
             break;
           case 'little-bleed':
@@ -67,7 +67,13 @@ const OutcomeImage = ({ size, status, outcome }) => {
 
   return (
     <View style={styles.imageContainer}>
-      <Image style={{ ...styles.image, width: size, height: size }} source={imageSource()} />
+      {
+        status === 'disabled' ? (
+          <Ionicons name="close" size={size - 2} color={Colors.redColor} />
+        ) : (
+          <Image style={{ ...styles.image, width: size, height: size }} source={imageSource()} />
+        )
+      }
     </View>
   );
 };
