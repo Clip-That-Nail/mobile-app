@@ -49,16 +49,19 @@ const SessionDetailScreen = (props) => {
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Front Right</Text>
           <PawImage pawName="frontRight" pawData={statuses?.frontRight} />
+          <OutcomesAndBehaviours pawData={pawsData["frontRight"]} statuses={statuses?.frontRight} outcomes={outcomes?.frontRight} behaviours={behaviours?.frontRight} />
         </Card>
       </View>
       <View style={styles.pawsRow}>
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Back Left</Text>
           <PawImage pawName="backLeft" pawData={statuses?.backLeft} />
+          <OutcomesAndBehaviours pawData={pawsData["backLeft"]} statuses={statuses?.backLeft} outcomes={outcomes?.backLeft} behaviours={behaviours?.backLeft} />
         </Card>
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Back Right</Text>
           <PawImage pawName="backRight" pawData={statuses?.backRight} />
+          <OutcomesAndBehaviours pawData={pawsData["backRight"]} statuses={statuses?.backRight} outcomes={outcomes?.backRight} behaviours={behaviours?.backRight} />
         </Card>
       </View>
     </ScrollView>
