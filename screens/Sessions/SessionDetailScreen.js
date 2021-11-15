@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Dimensions } from 'react-native';
 
 import Card from '../../components/Card';
 import PawImage from '../../components/PawImage';
-import BehaviourImage from '../../components/BehaviourImage';
-import OutcomeImage from '../../components/OutcomeImage';
 import OutcomesAndBehaviours from '../../components/OutcomesAndBehaviours';
-import Colors from '../../constants/Colors';
 import { pawsData } from '../../helpers/pawsData';
 import { prepareSessionData } from '../../helpers/session';
 
@@ -18,6 +15,8 @@ const EMPTY_PAWS_DATA = {
   backRight: {},
 };
 
+const screen = Dimensions.get('screen');
+
 const SessionDetailScreen = (props) => {
   const sessionId = props.route.params.sessionId;
   const selectedSession = useSelector(state => state.sessions.sessions.find(session => session.id === sessionId));
@@ -26,6 +25,19 @@ const SessionDetailScreen = (props) => {
   const [statuses, setStatuses] = useState(EMPTY_PAWS_DATA);
   const [behaviours, setBehaviours] = useState(EMPTY_PAWS_DATA);
   const [outcomes, setOutcomes] = useState(EMPTY_PAWS_DATA);
+  const [screenSize, setScreenSize] = useState(screen);
+  const [imageSize, setImageSize] = useState(screenSize.width / 2 - 100);
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener('change', ({ window, screen }) => { // TODO: maybe move this to the main App.js ???
+      setScreenSize(screen);
+    });
+    return () => subscription?.remove();
+  });
+
+  useEffect(() => {
+    setImageSize(screenSize.width / 2 - 100);
+  }, [screenSize]);
 
   useEffect(() => {
     const [preparedStatuses, preparedBehaviours, preparedOutcomes] = prepareSessionData(selectedSession, sessionPet.disabilities);
@@ -43,24 +55,24 @@ const SessionDetailScreen = (props) => {
       <View style={styles.pawsRow}>
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Front Left</Text>
-          <PawImage pawName="frontLeft" pawData={statuses?.frontLeft} />
+          <PawImage size={imageSize} pawName="frontLeft" pawData={statuses?.frontLeft} />
           <OutcomesAndBehaviours pawData={pawsData["frontLeft"]} statuses={statuses?.frontLeft} outcomes={outcomes?.frontLeft} behaviours={behaviours?.frontLeft} />
         </Card>
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Front Right</Text>
-          <PawImage pawName="frontRight" pawData={statuses?.frontRight} />
+          <PawImage size={imageSize} pawName="frontRight" pawData={statuses?.frontRight} />
           <OutcomesAndBehaviours pawData={pawsData["frontRight"]} statuses={statuses?.frontRight} outcomes={outcomes?.frontRight} behaviours={behaviours?.frontRight} />
         </Card>
       </View>
       <View style={styles.pawsRow}>
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Back Left</Text>
-          <PawImage pawName="backLeft" pawData={statuses?.backLeft} />
+          <PawImage size={imageSize} pawName="backLeft" pawData={statuses?.backLeft} />
           <OutcomesAndBehaviours pawData={pawsData["backLeft"]} statuses={statuses?.backLeft} outcomes={outcomes?.backLeft} behaviours={behaviours?.backLeft} />
         </Card>
         <Card style={styles.paw}>
           <Text style={styles.pawTitle}>Back Right</Text>
-          <PawImage pawName="backRight" pawData={statuses?.backRight} />
+          <PawImage size={imageSize} pawName="backRight" pawData={statuses?.backRight} />
           <OutcomesAndBehaviours pawData={pawsData["backRight"]} statuses={statuses?.backRight} outcomes={outcomes?.backRight} behaviours={behaviours?.backRight} />
         </Card>
       </View>
