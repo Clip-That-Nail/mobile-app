@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { Ionicons } from '@expo/vector-icons';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import HeaderButton from '../../components/HeaderButton';
 import SpecialCheckbox from '../../components/SpecialCheckbox';
 import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
+import PawImage from '../../components/PawImage';
 import { updateBackLeftPawStatus } from '../../redux/actions/newSession';
 
 import Colors from '../../constants/Colors';
@@ -18,28 +18,28 @@ const BackLeftPawScreen = (props) => {
   const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId).disabilities.backLeft);
 
   const [toggleCheckBoxes, setToggleCheckBoxes] = useState({
-    firstClaw: disabilities.first === 'empty' ? 'unchecked' : disabilities.first,
-    secondClaw: disabilities.second === 'empty' ? 'unchecked' : disabilities.second,
-    thirdClaw: disabilities.third === 'empty' ? 'unchecked' : disabilities.third,
-    fourthClaw: disabilities.fourth === 'empty' ? 'unchecked' : disabilities.fourth,
+    first: disabilities.first === 'empty' ? 'unchecked' : disabilities.first,
+    second: disabilities.second === 'empty' ? 'unchecked' : disabilities.second,
+    third: disabilities.third === 'empty' ? 'unchecked' : disabilities.third,
+    fourth: disabilities.fourth === 'empty' ? 'unchecked' : disabilities.fourth,
   });
 
   const dispatch = useDispatch();
 
   const handleFirstClawOnCheckboxPress = (status) => {
-    setToggleCheckBoxes({ ...toggleCheckBoxes, firstClaw: status });
+    setToggleCheckBoxes({ ...toggleCheckBoxes, first: status });
   };
 
   const handleSecondClawOnCheckboxPress = (status) => {
-    setToggleCheckBoxes({ ...toggleCheckBoxes, secondClaw: status });
+    setToggleCheckBoxes({ ...toggleCheckBoxes, second: status });
   };
 
   const handleThirdClawOnCheckboxPress = (status) => {
-    setToggleCheckBoxes({ ...toggleCheckBoxes, thirdClaw: status });
+    setToggleCheckBoxes({ ...toggleCheckBoxes, third: status });
   };
 
   const handleFourthClawOnCheckboxPress = (status) => {
-    setToggleCheckBoxes({ ...toggleCheckBoxes, fourthClaw: status });
+    setToggleCheckBoxes({ ...toggleCheckBoxes, fourth: status });
   };
 
   const handlePawDataChange = useCallback(() => {
@@ -59,20 +59,20 @@ const BackLeftPawScreen = (props) => {
       />
       <View style={styles.checkboxes}>
         <View style={styles.checkboxContainer}>
-          <SpecialCheckbox initialStatus={toggleCheckBoxes.firstClaw} onPress={handleFirstClawOnCheckboxPress} badgeText='1' />
+          <SpecialCheckbox initialStatus={toggleCheckBoxes.first} onPress={handleFirstClawOnCheckboxPress} badgeText='1' />
         </View>
         <View style={styles.checkboxContainer}>
-          <SpecialCheckbox initialStatus={toggleCheckBoxes.secondClaw} onPress={handleSecondClawOnCheckboxPress} badgeText='2' />
+          <SpecialCheckbox initialStatus={toggleCheckBoxes.second} onPress={handleSecondClawOnCheckboxPress} badgeText='2' />
         </View>
         <View style={styles.checkboxContainer}>
-          <SpecialCheckbox initialStatus={toggleCheckBoxes.thirdClaw} onPress={handleThirdClawOnCheckboxPress} badgeText='3' />
+          <SpecialCheckbox initialStatus={toggleCheckBoxes.third} onPress={handleThirdClawOnCheckboxPress} badgeText='3' />
         </View>
         <View style={styles.checkboxContainer}>
-          <SpecialCheckbox initialStatus={toggleCheckBoxes.fourthClaw} onPress={handleFourthClawOnCheckboxPress} badgeText='4' />
+          <SpecialCheckbox initialStatus={toggleCheckBoxes.fourth} onPress={handleFourthClawOnCheckboxPress} badgeText='4' />
         </View>
       </View>
       <View style={styles.paw}>
-        <Ionicons name="paw" size={180} color={Colors.redColor} />
+        <PawImage size={180} pawName="backLeft" pawData={toggleCheckBoxes} />
       </View>
       <View style={styles.buttonWrapper}>
         <Button icon="check" mode="contained" color={Colors.redColor} onPress={() => props.navigation.navigate('BackLeftPawSummary')}>
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   paw: {
+    paddingVertical: 40,
   },
   dewclawCheckboxContainer: {
     alignItems: 'center'
