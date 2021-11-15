@@ -36,7 +36,7 @@ const BehaviourImage = ({ size, behaviour }) => {
     <View style={styles.imageContainer}>
       {
         behaviour === 'disabled' ? (
-          <Ionicons name="close" size={size - 2} color={Colors.redColor} />
+          <Ionicons name="close" size={size - 2} color={Colors.redColor} style={styles.icon} />
         ) : (
           <Image style={{ ...styles.image, width: size, height: size }} source={imageSource()} />
         )
@@ -56,7 +56,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 2
   },
-  image: {}
+  image: {},
+  icon: {
+    paddingHorizontal: 1
+  }
 });
 
 export default BehaviourImage;
