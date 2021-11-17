@@ -1,4 +1,7 @@
+import { Alert } from 'react-native';
+
 import store from '../redux/store';
+import { finishSession } from '../redux/actions/newSession';
 import { pawsData } from './pawsData';
 
 /**
@@ -78,3 +81,18 @@ export const prepareSessionData = (sessionData, disabilities) => {
 
   return [preparedStatuses, preparedBehaviours, preparedOutcomes];
 }
+
+/**
+ * Complete session
+ */
+export const completeSession = async (status, dispatch, navigation) => {
+  try {
+    console.log('status', status);
+    await dispatch(finishSession(status));
+    navigation.navigate('Home', { screen: 'Home' });
+  } catch (err) {
+    Alert.alert(`Something went wrong when finishing session`, err.message, [
+      { text: 'Okay', style: 'default' },
+    ]);
+  }
+};
