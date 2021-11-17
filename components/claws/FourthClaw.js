@@ -1,11 +1,11 @@
 import React from 'react';
 import { Image } from 'react-native';
 
-import bleeded from '../../assets/images/claws/fourthClaw/bleeded.png';
-import checked from '../../assets/images/claws/fourthClaw/checked.png';
-import disabled from '../../assets/images/claws/fourthClaw/disabled.png';
-import empty from '../../assets/images/claws/fourthClaw/empty.png';
-import warning from '../../assets/images/claws/fourthClaw/warning.png';
+import bleeded from '../../assets/images/claws/fourth/bleeded.png';
+import checked from '../../assets/images/claws/fourth/checked.png';
+import disabled from '../../assets/images/claws/fourth/disabled.png';
+import empty from '../../assets/images/claws/fourth/empty.png';
+import warning from '../../assets/images/claws/fourth/warning.png';
 
 const FourthClaw = ({ type, styles }) => {
   switch (type) {

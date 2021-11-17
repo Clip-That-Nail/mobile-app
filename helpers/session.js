@@ -7,10 +7,10 @@ import { pawsData } from './pawsData';
  * @param {object} navigation The react-navigation props object (props.navigation)
  */
 export const goToNextPaw = (navigation) => {
-  const frontLeftPawComplete = store.getState().newSession.frontLeftPaw.complete;
-  const frontRightPawComplete = store.getState().newSession.frontRightPaw.complete;
-  const backLeftPawComplete = store.getState().newSession.backLeftPaw.complete;
-  const backRightPawComplete = store.getState().newSession.backRightPaw.complete;
+  const frontLeftPawComplete = store.getState().newSession.frontLeft.complete;
+  const frontRightPawComplete = store.getState().newSession.frontRight.complete;
+  const backLeftPawComplete = store.getState().newSession.backLeft.complete;
+  const backRightPawComplete = store.getState().newSession.backRight.complete;
 
   if (!frontLeftPawComplete) {
     navigation.navigate('FrontLeftPaw', { params: { screen: 'FrontLeftPawChecker' } });
@@ -29,10 +29,10 @@ export const goToNextPaw = (navigation) => {
  * Is session complete?
  */
 export const isSessionComplete = () => {
-  const frontLeftPawComplete = store.getState().newSession.frontLeftPaw.complete;
-  const frontRightPawComplete = store.getState().newSession.frontRightPaw.complete;
-  const backLeftPawComplete = store.getState().newSession.backLeftPaw.complete;
-  const backRightPawComplete = store.getState().newSession.backRightPaw.complete;
+  const frontLeftPawComplete = store.getState().newSession.frontLeft.complete;
+  const frontRightPawComplete = store.getState().newSession.frontRight.complete;
+  const backLeftPawComplete = store.getState().newSession.backLeft.complete;
+  const backRightPawComplete = store.getState().newSession.backRight.complete;
 
   return frontLeftPawComplete && frontRightPawComplete && backLeftPawComplete && backRightPawComplete;
 };

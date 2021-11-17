@@ -1,11 +1,11 @@
 import React from 'react';
 import { Image } from 'react-native';
 
-import bleeded from '../../assets/images/claws/leftDewClaw/bleeded.png';
-import checked from '../../assets/images/claws/leftDewClaw/checked.png';
-import disabled from '../../assets/images/claws/leftDewClaw/disabled.png';
-import empty from '../../assets/images/claws/leftDewClaw/empty.png';
-import warning from '../../assets/images/claws/leftDewClaw/warning.png';
+import bleeded from '../../assets/images/claws/leftDew/bleeded.png';
+import checked from '../../assets/images/claws/leftDew/checked.png';
+import disabled from '../../assets/images/claws/leftDew/disabled.png';
+import empty from '../../assets/images/claws/leftDew/empty.png';
+import warning from '../../assets/images/claws/leftDew/warning.png';
 
 const LeftDewClaw = ({ type, styles }) => {
   switch (type) {

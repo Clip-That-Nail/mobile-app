@@ -8,10 +8,10 @@ class Session {
     this.status = status;
     this.createDate = createDate;
     this.pet = new Pet(pet.id.toString(), pet.name, pet.breed, pet.imageUri);
-    this.frontLeft = new FrontPaw(frontLeft.firstClaw, frontLeft.secondClaw, frontLeft.thirdClaw, frontLeft.fourthClaw, frontLeft.dewClaw);
-    this.frontRight = new FrontPaw(frontRight.firstClaw, frontRight.secondClaw, frontRight.thirdClaw, frontRight.fourthClaw, frontRight.dewClaw);
-    this.backLeft = new BackPaw(backLeft.firstClaw, backLeft.secondClaw, backLeft.thirdClaw, backLeft.fourthClaw);
-    this.backRight = new BackPaw(backRight.firstClaw, backRight.secondClaw, backRight.thirdClaw, backRight.fourthClaw);
+    this.frontLeft = new FrontPaw(frontLeft.first, frontLeft.second, frontLeft.third, frontLeft.fourth, frontLeft.dew);
+    this.frontRight = new FrontPaw(frontRight.first, frontRight.second, frontRight.third, frontRight.fourth, frontRight.dew);
+    this.backLeft = new BackPaw(backLeft.first, backLeft.second, backLeft.third, backLeft.fourth);
+    this.backRight = new BackPaw(backRight.first, backRight.second, backRight.third, backRight.fourth);
   }
 }
 

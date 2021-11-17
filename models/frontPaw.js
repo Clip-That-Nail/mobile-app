@@ -1,12 +1,12 @@
 import Claw from './claw';
 
 class FrontPaw {
-  constructor(firstClaw, secondClaw, thirdClaw, fourthClaw, dewClaw) {
-    this.firstClaw = new Claw(firstClaw.status, firstClaw.outcome, firstClaw.behaviour);
-    this.secondClaw = new Claw(secondClaw.status, secondClaw.outcome, secondClaw.behaviour);
-    this.thirdClaw = new Claw(thirdClaw.status, thirdClaw.outcome, thirdClaw.behaviour);
-    this.fourthClaw = new Claw(fourthClaw.status, fourthClaw.outcome, fourthClaw.behaviour);
-    this.dewClaw = new Claw(dewClaw.status, dewClaw.outcome, dewClaw.behaviour);
+  constructor(first, second, third, fourth, dew) {
+    this.first = new Claw(first.status, first.outcome, first.behaviour);
+    this.second = new Claw(second.status, second.outcome, second.behaviour);
+    this.third = new Claw(third.status, third.outcome, third.behaviour);
+    this.fourth = new Claw(fourth.status, fourth.outcome, fourth.behaviour);
+    this.dew = new Claw(dew.status, dew.outcome, dew.behaviour);
   }
 }
 

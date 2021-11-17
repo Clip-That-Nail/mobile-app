@@ -4,110 +4,110 @@ const INITIAL_STATE = {
   pet: {
     id: null,
   },
-  frontLeftPaw: {
+  frontLeft: {
     complete: false,
     claws: {
-      firstClaw: {
+      first: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      secondClaw: {
+      second: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      thirdClaw: {
+      third: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      fourthClaw: {
+      fourth: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      dewClaw: {
+      dew: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
     }
   },
-  frontRightPaw: {
+  frontRight: {
     complete: false,
     claws: {
-      firstClaw: {
+      first: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      secondClaw: {
+      second: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      thirdClaw: {
+      third: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      fourthClaw: {
+      fourth: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      dewClaw: {
+      dew: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
     }
   },
-  backLeftPaw: {
+  backLeft: {
     complete: false,
     claws: {
-      firstClaw: {
+      first: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      secondClaw: {
+      second: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      thirdClaw: {
+      third: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      fourthClaw: {
+      fourth: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       }
     }
   },
-  backRightPaw: {
+  backRight: {
     complete: false,
     claws: {
-      firstClaw: {
+      first: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      secondClaw: {
+      second: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      thirdClaw: {
+      third: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
       },
-      fourthClaw: {
+      fourth: {
         status: 'unchecked',
         outcome: 'not-selected',
         behaviour: 'not-selected'
@@ -121,28 +121,28 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_FRONT_LEFT_PAW_STATUS:
       return {
         ...state,
-        frontLeftPaw: {
-          ...state.frontLeftPaw,
+        frontLeft: {
+          ...state.frontLeft,
           claws: {
-            firstClaw: {
-              ...state.frontLeftPaw.claws.firstClaw,
-              status: action.pawData.firstClaw,
+            first: {
+              ...state.frontLeft.claws.first,
+              status: action.pawData.first,
             },
-            secondClaw: {
-              ...state.frontLeftPaw.claws.secondClaw,
-              status: action.pawData.secondClaw,
+            second: {
+              ...state.frontLeft.claws.second,
+              status: action.pawData.second,
             },
-            thirdClaw: {
-              ...state.frontLeftPaw.claws.thirdClaw,
-              status: action.pawData.thirdClaw,
+            third: {
+              ...state.frontLeft.claws.third,
+              status: action.pawData.third,
             },
-            fourthClaw: {
-              ...state.frontLeftPaw.claws.fourthClaw,
-              status: action.pawData.fourthClaw,
+            fourth: {
+              ...state.frontLeft.claws.fourth,
+              status: action.pawData.fourth,
             },
-            dewClaw: {
-              ...state.frontLeftPaw.claws.dewClaw,
-              status: action.pawData.dewClaw,
+            dew: {
+              ...state.frontLeft.claws.dew,
+              status: action.pawData.dew,
             },
           }
         }
@@ -150,28 +150,28 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_FRONT_RIGHT_PAW_STATUS:
       return {
         ...state,
-        frontRightPaw: {
-          ...state.frontRightPaw,
+        frontRight: {
+          ...state.frontRight,
           claws: {
-            firstClaw: {
-              ...state.frontRightPaw.claws.firstClaw,
-              status: action.pawData.firstClaw,
+            first: {
+              ...state.frontRight.claws.first,
+              status: action.pawData.first,
             },
-            secondClaw: {
-              ...state.frontRightPaw.claws.secondClaw,
-              status: action.pawData.secondClaw,
+            second: {
+              ...state.frontRight.claws.second,
+              status: action.pawData.second,
             },
-            thirdClaw: {
-              ...state.frontRightPaw.claws.thirdClaw,
-              status: action.pawData.thirdClaw,
+            third: {
+              ...state.frontRight.claws.third,
+              status: action.pawData.third,
             },
-            fourthClaw: {
-              ...state.frontRightPaw.claws.fourthClaw,
-              status: action.pawData.fourthClaw,
+            fourth: {
+              ...state.frontRight.claws.fourth,
+              status: action.pawData.fourth,
             },
-            dewClaw: {
-              ...state.frontRightPaw.claws.dewClaw,
-              status: action.pawData.dewClaw,
+            dew: {
+              ...state.frontRight.claws.dew,
+              status: action.pawData.dew,
             },
           }
         }
@@ -179,24 +179,24 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_BACK_LEFT_PAW_STATUS:
       return {
         ...state,
-        backLeftPaw: {
-          ...state.backLeftPaw,
+        backLeft: {
+          ...state.backLeft,
           claws: {
-            firstClaw: {
-              ...state.backLeftPaw.claws.firstClaw,
-              status: action.pawData.firstClaw,
+            first: {
+              ...state.backLeft.claws.first,
+              status: action.pawData.first,
             },
-            secondClaw: {
-              ...state.backLeftPaw.claws.secondClaw,
-              status: action.pawData.secondClaw,
+            second: {
+              ...state.backLeft.claws.second,
+              status: action.pawData.second,
             },
-            thirdClaw: {
-              ...state.backLeftPaw.claws.thirdClaw,
-              status: action.pawData.thirdClaw,
+            third: {
+              ...state.backLeft.claws.third,
+              status: action.pawData.third,
             },
-            fourthClaw: {
-              ...state.backLeftPaw.claws.fourthClaw,
-              status: action.pawData.fourthClaw,
+            fourth: {
+              ...state.backLeft.claws.fourth,
+              status: action.pawData.fourth,
             }
           }
         }
@@ -204,24 +204,24 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_BACK_RIGHT_PAW_STATUS:
       return {
         ...state,
-        backRightPaw: {
-          ...state.backRightPaw,
+        backRight: {
+          ...state.backRight,
           claws: {
-            firstClaw: {
-              ...state.backRightPaw.claws.firstClaw,
-              status: action.pawData.firstClaw,
+            first: {
+              ...state.backRight.claws.first,
+              status: action.pawData.first,
             },
-            secondClaw: {
-              ...state.backRightPaw.claws.secondClaw,
-              status: action.pawData.secondClaw,
+            second: {
+              ...state.backRight.claws.second,
+              status: action.pawData.second,
             },
-            thirdClaw: {
-              ...state.backRightPaw.claws.thirdClaw,
-              status: action.pawData.thirdClaw,
+            third: {
+              ...state.backRight.claws.third,
+              status: action.pawData.third,
             },
-            fourthClaw: {
-              ...state.backRightPaw.claws.fourthClaw,
-              status: action.pawData.fourthClaw,
+            fourth: {
+              ...state.backRight.claws.fourth,
+              status: action.pawData.fourth,
             }
           }
         }
@@ -229,28 +229,28 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_FRONT_LEFT_PAW_OUTCOME:
       return {
         ...state,
-        frontLeftPaw: {
-          ...state.frontLeftPaw,
+        frontLeft: {
+          ...state.frontLeft,
           claws: {
-            firstClaw: {
-              ...state.frontLeftPaw.claws.firstClaw,
-              outcome: action.outcomes.firstClaw,
+            first: {
+              ...state.frontLeft.claws.first,
+              outcome: action.outcomes.first,
             },
-            secondClaw: {
-              ...state.frontLeftPaw.claws.secondClaw,
-              outcome: action.outcomes.secondClaw,
+            second: {
+              ...state.frontLeft.claws.second,
+              outcome: action.outcomes.second,
             },
-            thirdClaw: {
-              ...state.frontLeftPaw.claws.thirdClaw,
-              outcome: action.outcomes.thirdClaw,
+            third: {
+              ...state.frontLeft.claws.third,
+              outcome: action.outcomes.third,
             },
-            fourthClaw: {
-              ...state.frontLeftPaw.claws.fourthClaw,
-              outcome: action.outcomes.fourthClaw,
+            fourth: {
+              ...state.frontLeft.claws.fourth,
+              outcome: action.outcomes.fourth,
             },
-            dewClaw: {
-              ...state.frontLeftPaw.claws.dewClaw,
-              outcome: action.outcomes.dewClaw,
+            dew: {
+              ...state.frontLeft.claws.dew,
+              outcome: action.outcomes.dew,
             },
           }
         }
@@ -258,28 +258,28 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_FRONT_RIGHT_PAW_OUTCOME:
       return {
         ...state,
-        frontRightPaw: {
-          ...state.frontRightPaw,
+        frontRight: {
+          ...state.frontRight,
           claws: {
-            firstClaw: {
-              ...state.frontRightPaw.claws.firstClaw,
-              outcome: action.outcomes.firstClaw,
+            first: {
+              ...state.frontRight.claws.first,
+              outcome: action.outcomes.first,
             },
-            secondClaw: {
-              ...state.frontRightPaw.claws.secondClaw,
-              outcome: action.outcomes.secondClaw,
+            second: {
+              ...state.frontRight.claws.second,
+              outcome: action.outcomes.second,
             },
-            thirdClaw: {
-              ...state.frontRightPaw.claws.thirdClaw,
-              outcome: action.outcomes.thirdClaw,
+            third: {
+              ...state.frontRight.claws.third,
+              outcome: action.outcomes.third,
             },
-            fourthClaw: {
-              ...state.frontRightPaw.claws.fourthClaw,
-              outcome: action.outcomes.fourthClaw,
+            fourth: {
+              ...state.frontRight.claws.fourth,
+              outcome: action.outcomes.fourth,
             },
-            dewClaw: {
-              ...state.frontRightPaw.claws.dewClaw,
-              outcome: action.outcomes.dewClaw,
+            dew: {
+              ...state.frontRight.claws.dew,
+              outcome: action.outcomes.dew,
             },
           }
         }
@@ -287,24 +287,24 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_BACK_LEFT_PAW_OUTCOME:
       return {
         ...state,
-        backLeftPaw: {
-          ...state.backLeftPaw,
+        backLeft: {
+          ...state.backLeft,
           claws: {
-            firstClaw: {
-              ...state.backLeftPaw.claws.firstClaw,
-              outcome: action.outcomes.firstClaw,
+            first: {
+              ...state.backLeft.claws.first,
+              outcome: action.outcomes.first,
             },
-            secondClaw: {
-              ...state.backLeftPaw.claws.secondClaw,
-              outcome: action.outcomes.secondClaw,
+            second: {
+              ...state.backLeft.claws.second,
+              outcome: action.outcomes.second,
             },
-            thirdClaw: {
-              ...state.backLeftPaw.claws.thirdClaw,
-              outcome: action.outcomes.thirdClaw,
+            third: {
+              ...state.backLeft.claws.third,
+              outcome: action.outcomes.third,
             },
-            fourthClaw: {
-              ...state.backLeftPaw.claws.fourthClaw,
-              outcome: action.outcomes.fourthClaw,
+            fourth: {
+              ...state.backLeft.claws.fourth,
+              outcome: action.outcomes.fourth,
             }
           }
         }
@@ -312,24 +312,24 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_BACK_RIGHT_PAW_OUTCOME:
       return {
         ...state,
-        backRightPaw: {
-          ...state.backRightPaw,
+        backRight: {
+          ...state.backRight,
           claws: {
-            firstClaw: {
-              ...state.backRightPaw.claws.firstClaw,
-              outcome: action.outcomes.firstClaw,
+            first: {
+              ...state.backRight.claws.first,
+              outcome: action.outcomes.first,
             },
-            secondClaw: {
-              ...state.backRightPaw.claws.secondClaw,
-              outcome: action.outcomes.secondClaw,
+            second: {
+              ...state.backRight.claws.second,
+              outcome: action.outcomes.second,
             },
-            thirdClaw: {
-              ...state.backRightPaw.claws.thirdClaw,
-              outcome: action.outcomes.thirdClaw,
+            third: {
+              ...state.backRight.claws.third,
+              outcome: action.outcomes.third,
             },
-            fourthClaw: {
-              ...state.backRightPaw.claws.fourthClaw,
-              outcome: action.outcomes.fourthClaw,
+            fourth: {
+              ...state.backRight.claws.fourth,
+              outcome: action.outcomes.fourth,
             }
           }
         }
@@ -337,28 +337,28 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_FRONT_LEFT_PAW_BEHAVIOR:
       return {
         ...state,
-        frontLeftPaw: {
-          ...state.frontLeftPaw,
+        frontLeft: {
+          ...state.frontLeft,
           claws: {
-            firstClaw: {
-              ...state.frontLeftPaw.claws.firstClaw,
-              behaviour: action.behaviours.firstClaw,
+            first: {
+              ...state.frontLeft.claws.first,
+              behaviour: action.behaviours.first,
             },
-            secondClaw: {
-              ...state.frontLeftPaw.claws.secondClaw,
-              behaviour: action.behaviours.secondClaw,
+            second: {
+              ...state.frontLeft.claws.second,
+              behaviour: action.behaviours.second,
             },
-            thirdClaw: {
-              ...state.frontLeftPaw.claws.thirdClaw,
-              behaviour: action.behaviours.thirdClaw,
+            third: {
+              ...state.frontLeft.claws.third,
+              behaviour: action.behaviours.third,
             },
-            fourthClaw: {
-              ...state.frontLeftPaw.claws.fourthClaw,
-              behaviour: action.behaviours.fourthClaw,
+            fourth: {
+              ...state.frontLeft.claws.fourth,
+              behaviour: action.behaviours.fourth,
             },
-            dewClaw: {
-              ...state.frontLeftPaw.claws.dewClaw,
-              behaviour: action.behaviours.dewClaw,
+            dew: {
+              ...state.frontLeft.claws.dew,
+              behaviour: action.behaviours.dew,
             },
           }
         }
@@ -366,28 +366,28 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_FRONT_RIGHT_PAW_BEHAVIOR:
       return {
         ...state,
-        frontRightPaw: {
-          ...state.frontRightPaw,
+        frontRight: {
+          ...state.frontRight,
           claws: {
-            firstClaw: {
-              ...state.frontRightPaw.claws.firstClaw,
-              behaviour: action.behaviours.firstClaw,
+            first: {
+              ...state.frontRight.claws.first,
+              behaviour: action.behaviours.first,
             },
-            secondClaw: {
-              ...state.frontRightPaw.claws.secondClaw,
-              behaviour: action.behaviours.secondClaw,
+            second: {
+              ...state.frontRight.claws.second,
+              behaviour: action.behaviours.second,
             },
-            thirdClaw: {
-              ...state.frontRightPaw.claws.thirdClaw,
-              behaviour: action.behaviours.thirdClaw,
+            third: {
+              ...state.frontRight.claws.third,
+              behaviour: action.behaviours.third,
             },
-            fourthClaw: {
-              ...state.frontRightPaw.claws.fourthClaw,
-              behaviour: action.behaviours.fourthClaw,
+            fourth: {
+              ...state.frontRight.claws.fourth,
+              behaviour: action.behaviours.fourth,
             },
-            dewClaw: {
-              ...state.frontRightPaw.claws.dewClaw,
-              behaviour: action.behaviours.dewClaw,
+            dew: {
+              ...state.frontRight.claws.dew,
+              behaviour: action.behaviours.dew,
             },
           }
         }
@@ -395,24 +395,24 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_BACK_LEFT_PAW_BEHAVIOR:
       return {
         ...state,
-        backLeftPaw: {
-          ...state.backLeftPaw,
+        backLeft: {
+          ...state.backLeft,
           claws: {
-            firstClaw: {
-              ...state.backLeftPaw.claws.firstClaw,
-              behaviour: action.behaviours.firstClaw,
+            first: {
+              ...state.backLeft.claws.first,
+              behaviour: action.behaviours.first,
             },
-            secondClaw: {
-              ...state.backLeftPaw.claws.secondClaw,
-              behaviour: action.behaviours.secondClaw,
+            second: {
+              ...state.backLeft.claws.second,
+              behaviour: action.behaviours.second,
             },
-            thirdClaw: {
-              ...state.backLeftPaw.claws.thirdClaw,
-              behaviour: action.behaviours.thirdClaw,
+            third: {
+              ...state.backLeft.claws.third,
+              behaviour: action.behaviours.third,
             },
-            fourthClaw: {
-              ...state.backLeftPaw.claws.fourthClaw,
-              behaviour: action.behaviours.fourthClaw,
+            fourth: {
+              ...state.backLeft.claws.fourth,
+              behaviour: action.behaviours.fourth,
             }
           }
         }
@@ -420,24 +420,24 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.UPDATE_BACK_RIGHT_PAW_BEHAVIOR:
       return {
         ...state,
-        backRightPaw: {
-          ...state.backRightPaw,
+        backRight: {
+          ...state.backRight,
           claws: {
-            firstClaw: {
-              ...state.backRightPaw.claws.firstClaw,
-              behaviour: action.behaviours.firstClaw,
+            first: {
+              ...state.backRight.claws.first,
+              behaviour: action.behaviours.first,
             },
-            secondClaw: {
-              ...state.backRightPaw.claws.secondClaw,
-              behaviour: action.behaviours.secondClaw,
+            second: {
+              ...state.backRight.claws.second,
+              behaviour: action.behaviours.second,
             },
-            thirdClaw: {
-              ...state.backRightPaw.claws.thirdClaw,
-              behaviour: action.behaviours.thirdClaw,
+            third: {
+              ...state.backRight.claws.third,
+              behaviour: action.behaviours.third,
             },
-            fourthClaw: {
-              ...state.backRightPaw.claws.fourthClaw,
-              behaviour: action.behaviours.fourthClaw,
+            fourth: {
+              ...state.backRight.claws.fourth,
+              behaviour: action.behaviours.fourth,
             }
           }
         }
@@ -445,32 +445,32 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
     case sessionTypes.COMPLETE_FRONT_LEFT_PAW:
       return {
         ...state,
-        frontLeftPaw: {
-          ...state.frontLeftPaw,
+        frontLeft: {
+          ...state.frontLeft,
           complete: action.complete
         }
       };
     case sessionTypes.COMPLETE_FRONT_RIGHT_PAW:
       return {
         ...state,
-        frontRightPaw: {
-          ...state.frontRightPaw,
+        frontRight: {
+          ...state.frontRight,
           complete: action.complete
         }
       };
     case sessionTypes.COMPLETE_BACK_LEFT_PAW:
       return {
         ...state,
-        backLeftPaw: {
-          ...state.backLeftPaw,
+        backLeft: {
+          ...state.backLeft,
           complete: action.complete
         }
       };
     case sessionTypes.COMPLETE_BACK_RIGHT_PAW:
       return {
         ...state,
-        backRightPaw: {
-          ...state.backRightPaw,
+        backRight: {
+          ...state.backRight,
           complete: action.complete
         }
       };

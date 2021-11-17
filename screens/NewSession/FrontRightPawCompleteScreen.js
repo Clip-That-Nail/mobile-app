@@ -16,11 +16,11 @@ import Colors from '../../constants/Colors';
 
 const FrontRightPawCompleteScreen = (props) => {
   const { navigation } = props;
-  const clawsData = useSelector(state => state.newSession.frontRightPaw.claws);
-  const frontLeftPawComplete = useSelector(state => state.newSession.frontLeftPaw.complete);
-  const frontRightPawComplete = useSelector(state => state.newSession.frontRightPaw.complete);
-  const backLeftPawComplete = useSelector(state => state.newSession.backLeftPaw.complete);
-  const backRightPawComplete = useSelector(state => state.newSession.backRightPaw.complete);
+  const clawsData = useSelector(state => state.newSession.frontRight.claws);
+  const frontLeftPawComplete = useSelector(state => state.newSession.frontLeft.complete);
+  const frontRightPawComplete = useSelector(state => state.newSession.frontRight.complete);
+  const backLeftPawComplete = useSelector(state => state.newSession.backLeft.complete);
+  const backRightPawComplete = useSelector(state => state.newSession.backRight.complete);
 
   const dispatch = useDispatch();
 
@@ -67,19 +67,19 @@ const FrontRightPawCompleteScreen = (props) => {
       </View>
       <View style={styles.iconsRow}>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.firstClaw.status} badgeText='1' />
+          <CompleteSpecialIcon status={clawsData.first.status} badgeText='1' />
         </View>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.secondClaw.status} badgeText='2' />
+          <CompleteSpecialIcon status={clawsData.second.status} badgeText='2' />
         </View>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.thirdClaw.status} badgeText='3' />
+          <CompleteSpecialIcon status={clawsData.third.status} badgeText='3' />
         </View>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.fourthClaw.status} badgeText='4' />
+          <CompleteSpecialIcon status={clawsData.fourth.status} badgeText='4' />
         </View>
         <View style={styles.iconContainer}>
-          <CompleteSpecialIcon status={clawsData.dewClaw.status} badgeText='D' />
+          <CompleteSpecialIcon status={clawsData.dew.status} badgeText='D' />
         </View>
       </View>
       <View style={styles.buttonContainer}>

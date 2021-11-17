@@ -4,27 +4,27 @@ export const pawsData = {
     name: 'Front Left Paw',
     shortName: 'FL',
     claws: {
-      firstClaw: {
+      first: {
         id: 'first',
         name: 'First Claw',
         shortName: '1',
       },
-      secondClaw: {
+      second: {
         id: 'second',
         name: 'Second Claw',
         shortName: '2',
       },
-      thirdClaw: {
+      third: {
         id: 'third',
         name: 'Third Claw',
         shortName: '3',
       },
-      fourthClaw: {
+      fourth: {
         id: 'fourth',
         name: 'Fourth Claw',
         shortName: '4',
       },
-      dewClaw: {
+      dew: {
         id: 'dew',
         name: 'Dew Claw',
         shortName: 'D',
@@ -36,27 +36,27 @@ export const pawsData = {
     name: 'Front Right Paw',
     shortName: 'FR',
     claws: {
-      firstClaw: {
+      first: {
         id: 'first',
         name: 'First Claw',
         shortName: '1',
       },
-      secondClaw: {
+      second: {
         id: 'second',
         name: 'Second Claw',
         shortName: '2',
       },
-      thirdClaw: {
+      third: {
         id: 'third',
         name: 'Third Claw',
         shortName: '3',
       },
-      fourthClaw: {
+      fourth: {
         id: 'fourth',
         name: 'Fourth Claw',
         shortName: '4',
       },
-      dewClaw: {
+      dew: {
         id: 'dew',
         name: 'Dew Claw',
         shortName: 'D',
@@ -68,22 +68,22 @@ export const pawsData = {
     name: 'Back Left Paw',
     shortName: 'BL',
     claws: {
-      firstClaw: {
+      first: {
         id: 'first',
         name: 'First Claw',
         shortName: '1',
       },
-      secondClaw: {
+      second: {
         id: 'second',
         name: 'Second Claw',
         shortName: '2',
       },
-      thirdClaw: {
+      third: {
         id: 'third',
         name: 'Third Claw',
         shortName: '3',
       },
-      fourthClaw: {
+      fourth: {
         id: 'fourth',
         name: 'Fourth Claw',
         shortName: '4',
@@ -95,22 +95,22 @@ export const pawsData = {
     name: 'Back Right Paw',
     shortName: 'BR',
     claws: {
-      firstClaw: {
+      first: {
         id: 'first',
         name: 'First Claw',
         shortName: '1',
       },
-      secondClaw: {
+      second: {
         id: 'second',
         name: 'Second Claw',
         shortName: '2',
       },
-      thirdClaw: {
+      third: {
         id: 'third',
         name: 'Third Claw',
         shortName: '3',
       },
-      fourthClaw: {
+      fourth: {
         id: 'fourth',
         name: 'Fourth Claw',
         shortName: '4',

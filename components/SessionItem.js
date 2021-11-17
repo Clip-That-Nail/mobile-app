@@ -69,22 +69,22 @@ const SessionItem = props => {
                 <Ionicons name="paw" size={15} color='black' />
               </View>
               <Text style={styles.pawTitle}>FL</Text>
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.firstClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.secondClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.thirdClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.fourthClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.dewClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.first.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.second.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.third.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.fourth.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.dew.status} iconSize={15} boxSize={20} />
             </View>
             <View style={styles.paw}>
               <View style={styles.pawIcon}>
                 <Ionicons name="paw" size={15} color='black' />
               </View>
               <Text style={styles.pawTitle}>FR</Text>
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.firstClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.secondClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.thirdClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.fourthClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.dewClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.first.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.second.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.third.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.fourth.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.dew.status} iconSize={15} boxSize={20} />
             </View>
           </View>
           <View style={styles.footerRow}>
@@ -93,20 +93,20 @@ const SessionItem = props => {
                 <Ionicons name="paw" size={15} color='black' />
               </View>
               <Text style={styles.pawTitle}>BL</Text>
-              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.firstClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.secondClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.thirdClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.fourthClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.first.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.second.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.third.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.fourth.status} iconSize={15} boxSize={20} />
             </View>
             <View style={styles.paw}>
               <View style={styles.pawIcon}>
                 <Ionicons name="paw" size={15} color='black' />
               </View>
               <Text style={styles.pawTitle}>BR</Text>
-              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.firstClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.secondClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.thirdClaw.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.fourthClaw.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.first.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.second.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.third.status} iconSize={15} boxSize={20} />
+              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.fourth.status} iconSize={15} boxSize={20} />
             </View>
           </View>
         </View> */}

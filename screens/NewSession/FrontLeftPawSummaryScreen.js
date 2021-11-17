@@ -14,22 +14,22 @@ const FrontLeftPawSummaryScreen = (props) => {
 
   const petId = useSelector(state => state.newSession.pet.id);
   const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId)?.disabilities?.frontLeft);
-  const clawsData = useSelector(state => state.newSession.frontLeftPaw.claws);
-  const complete = useSelector(state => state.newSession.frontLeftPaw.complete);
+  const clawsData = useSelector(state => state.newSession.frontLeft.claws);
+  const complete = useSelector(state => state.newSession.frontLeft.complete);
 
   const [outcomes, setOutcomes] = useState({
-    firstClaw: disabilities.first === "empty" ? clawsData.firstClaw.outcome : disabilities.first,
-    secondClaw: disabilities.second === "empty" ? clawsData.secondClaw.outcome : disabilities.second,
-    thirdClaw: disabilities.third === "empty" ? clawsData.thirdClaw.outcome : disabilities.third,
-    fourthClaw: disabilities.fourth === "empty" ? clawsData.fourthClaw.outcome : disabilities.fourth,
-    dewClaw: disabilities.dew === "empty" ? clawsData.dewClaw.outcome : disabilities.dew,
+    first: disabilities?.first === 'empty' ? clawsData.first.outcome : disabilities?.first,
+    second: disabilities?.second === 'empty' ? clawsData.second.outcome : disabilities?.second,
+    third: disabilities?.third === 'empty' ? clawsData.third.outcome : disabilities?.third,
+    fourth: disabilities?.fourth === 'empty' ? clawsData.fourth.outcome : disabilities?.fourth,
+    dew: disabilities?.dew === 'empty' ? clawsData.dew.outcome : disabilities?.dew,
   });
   const [behaviours, setBehaviours] = useState({
-    firstClaw: disabilities.first === "empty" ? clawsData.firstClaw.behaviour : disabilities.first,
-    secondClaw: disabilities.second === "empty" ? clawsData.secondClaw.behaviour : disabilities.second,
-    thirdClaw: disabilities.third === "empty" ? clawsData.thirdClaw.behaviour : disabilities.third,
-    fourthClaw: disabilities.fourth === "empty" ? clawsData.fourthClaw.behaviour : disabilities.fourth,
-    dewClaw: disabilities.dew === "empty" ? clawsData.dewClaw.behaviour : disabilities.dew,
+    first: disabilities?.first === 'empty' ? clawsData.first.behaviour : disabilities?.first,
+    second: disabilities?.second === 'empty' ? clawsData.second.behaviour : disabilities?.second,
+    third: disabilities?.third === 'empty' ? clawsData.third.behaviour : disabilities?.third,
+    fourth: disabilities?.fourth === 'empty' ? clawsData.fourth.behaviour : disabilities?.fourth,
+    dew: disabilities?.dew === 'empty' ? clawsData.dew.behaviour : disabilities?.dew,
   });
 
   const dispatch = useDispatch();
@@ -87,27 +87,27 @@ const FrontLeftPawSummaryScreen = (props) => {
       />
       <View style={styles.summaryList}>
         <SummaryRow
-          claw={{ id: 'firstClaw', text: 'CLAW 1', ...clawsData.firstClaw }}
+          claw={{ id: 'first', text: 'CLAW 1', ...clawsData.first }}
           onOutcomeChange={handleOnOutcomeChange}
           onBehaviourChange={handleOnBehaviourChange}
         />
         <SummaryRow
-          claw={{ id: 'secondClaw', text: 'CLAW 2', ...clawsData.secondClaw }}
+          claw={{ id: 'second', text: 'CLAW 2', ...clawsData.second }}
           onOutcomeChange={handleOnOutcomeChange}
           onBehaviourChange={handleOnBehaviourChange}
         />
         <SummaryRow
-          claw={{ id: 'thirdClaw', text: 'CLAW 3', ...clawsData.thirdClaw }}
+          claw={{ id: 'third', text: 'CLAW 3', ...clawsData.third }}
           onOutcomeChange={handleOnOutcomeChange}
           onBehaviourChange={handleOnBehaviourChange}
         />
         <SummaryRow
-          claw={{ id: 'fourthClaw', text: 'CLAW 4', ...clawsData.fourthClaw }}
+          claw={{ id: 'fourth', text: 'CLAW 4', ...clawsData.fourth }}
           onOutcomeChange={handleOnOutcomeChange}
           onBehaviourChange={handleOnBehaviourChange}
         />
         <SummaryRow
-          claw={{ id: 'dewClaw', text: 'DEWCLAW', ...clawsData.dewClaw }}
+          claw={{ id: 'dew', text: 'DEWCLAW', ...clawsData.dew }}
           onOutcomeChange={handleOnOutcomeChange}
           onBehaviourChange={handleOnBehaviourChange}
         />

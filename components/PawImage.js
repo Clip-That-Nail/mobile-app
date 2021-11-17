@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 
-import frontLeftPaw from '../assets/images/paws/frontLeftPaw.png';
-import frontRightPaw from '../assets/images/paws/frontRightPaw.png';
-import backLeftPaw from '../assets/images/paws/backLeftPaw.png';
-import backRightPaw from '../assets/images/paws/backRightPaw.png';
+import frontLeftPaw from '../assets/images/paws/frontLeft.png';
+import frontRightPaw from '../assets/images/paws/frontRight.png';
+import backLeftPaw from '../assets/images/paws/backLeft.png';
+import backRightPaw from '../assets/images/paws/backRight.png';
 
 import FirstClaw from '../components/claws/FirstClaw';
 import SecondClaw from '../components/claws/SecondClaw';

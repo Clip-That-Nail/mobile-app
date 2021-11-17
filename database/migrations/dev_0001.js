@@ -16,86 +16,86 @@ export default async function (connection) {
 
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontLeft', 'firstClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontLeft', 'first', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontLeft', 'secondClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontLeft', 'second', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontLeft', 'thirdClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontLeft', 'third', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontLeft', 'fourthClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontLeft', 'fourth', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontLeft', 'dewClaw', 'unchecked', 'not-selected', 'not-selected']
-  );
-
-  await connection.execute(
-    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontRight', 'firstClaw', 'unchecked', 'not-selected', 'not-selected']
-  );
-  await connection.execute(
-    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontRight', 'secondClaw', 'unchecked', 'not-selected', 'not-selected']
-  );
-  await connection.execute(
-    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontRight', 'thirdClaw', 'unchecked', 'not-selected', 'not-selected']
-  );
-  await connection.execute(
-    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontRight', 'fourthClaw', 'unchecked', 'not-selected', 'not-selected']
-  );
-  await connection.execute(
-    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'frontRight', 'dewClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontLeft', 'dew', 'unchecked', 'not-selected', 'not-selected']
   );
 
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backLeft', 'firstClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontRight', 'first', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backLeft', 'secondClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontRight', 'second', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backLeft', 'thirdClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontRight', 'third', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backLeft', 'fourthClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontRight', 'fourth', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backLeft', 'dewClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'frontRight', 'dew', 'unchecked', 'not-selected', 'not-selected']
   );
 
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backRight', 'firstClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'backLeft', 'first', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backRight', 'secondClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'backLeft', 'second', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backRight', 'thirdClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'backLeft', 'third', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backRight', 'fourthClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'backLeft', 'fourth', 'unchecked', 'not-selected', 'not-selected']
   );
   await connection.execute(
     `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
-    ['1', 'backRight', 'dewClaw', 'unchecked', 'not-selected', 'not-selected']
+    ['1', 'backLeft', 'dew', 'unchecked', 'not-selected', 'not-selected']
+  );
+
+  await connection.execute(
+    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
+    ['1', 'backRight', 'first', 'unchecked', 'not-selected', 'not-selected']
+  );
+  await connection.execute(
+    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
+    ['1', 'backRight', 'second', 'unchecked', 'not-selected', 'not-selected']
+  );
+  await connection.execute(
+    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
+    ['1', 'backRight', 'third', 'unchecked', 'not-selected', 'not-selected']
+  );
+  await connection.execute(
+    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
+    ['1', 'backRight', 'fourth', 'unchecked', 'not-selected', 'not-selected']
+  );
+  await connection.execute(
+    `INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)`,
+    ['1', 'backRight', 'dew', 'unchecked', 'not-selected', 'not-selected']
   );
 
   // ##############  DISABILITIES  ##############

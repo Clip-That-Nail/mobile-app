@@ -18,10 +18,10 @@ const BackLeftPawScreen = (props) => {
   const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId)?.disabilities?.backLeft);
 
   const [toggleCheckBoxes, setToggleCheckBoxes] = useState({
-    first: disabilities.first === 'empty' ? 'unchecked' : disabilities.first,
-    second: disabilities.second === 'empty' ? 'unchecked' : disabilities.second,
-    third: disabilities.third === 'empty' ? 'unchecked' : disabilities.third,
-    fourth: disabilities.fourth === 'empty' ? 'unchecked' : disabilities.fourth,
+    first: disabilities?.first === 'empty' ? 'unchecked' : disabilities?.first,
+    second: disabilities?.second === 'empty' ? 'unchecked' : disabilities?.second,
+    third: disabilities?.third === 'empty' ? 'unchecked' : disabilities?.third,
+    fourth: disabilities?.fourth === 'empty' ? 'unchecked' : disabilities?.fourth,
   });
 
   const dispatch = useDispatch();

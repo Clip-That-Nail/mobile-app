@@ -18,11 +18,11 @@ const FrontRightPawScreen = (props) => {
   const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId)?.disabilities?.frontRight);
 
   const [toggleCheckBoxes, setToggleCheckBoxes] = useState({
-    first: disabilities.first === 'empty' ? 'unchecked' : disabilities.first,
-    second: disabilities.second === 'empty' ? 'unchecked' : disabilities.second,
-    third: disabilities.third === 'empty' ? 'unchecked' : disabilities.third,
-    fourth: disabilities.fourth === 'empty' ? 'unchecked' : disabilities.fourth,
-    dew: disabilities.dew === 'empty' ? 'unchecked' : disabilities.dew,
+    first: disabilities?.first === 'empty' ? 'unchecked' : disabilities?.first,
+    second: disabilities?.second === 'empty' ? 'unchecked' : disabilities?.second,
+    third: disabilities?.third === 'empty' ? 'unchecked' : disabilities?.third,
+    fourth: disabilities?.fourth === 'empty' ? 'unchecked' : disabilities?.fourth,
+    dew: disabilities?.dew === 'empty' ? 'unchecked' : disabilities?.dew,
   });
 
   const dispatch = useDispatch();

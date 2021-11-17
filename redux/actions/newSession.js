@@ -147,10 +147,10 @@ export const finishSession = (status) => {
   return async (dispatch, getState) => {
     const petId = getState().newSession.pet.id;
     const pet = getState().pets.pets.find(pet => pet.id === petId);
-    const frontLeftPawClaws = getState().newSession.frontLeftPaw.claws;
-    const frontRightPawClaws = getState().newSession.frontRightPaw.claws;
-    const backLeftPawClaws = getState().newSession.backLeftPaw.claws;
-    const backRightPawClaws = getState().newSession.backRightPaw.claws;
+    const frontLeftPawClaws = getState().newSession.frontLeft.claws;
+    const frontRightPawClaws = getState().newSession.frontRight.claws;
+    const backLeftPawClaws = getState().newSession.backLeft.claws;
+    const backRightPawClaws = getState().newSession.backRight.claws;
 
     try {
       const sessionData = {
