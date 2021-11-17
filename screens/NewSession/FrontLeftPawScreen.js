@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useLayoutEffect } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,10 +10,11 @@ import SpecialCheckbox from '../../components/SpecialCheckbox';
 import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
 import PawImage from '../../components/PawImage';
 import { updateFrontLeftPawStatus } from '../../redux/actions/newSession';
+import { completeSession } from '../../helpers/session';
 
 import Colors from '../../constants/Colors';
 
-const FrontLeftPawScreen = (props) => {
+const FrontLeftPawScreen = ({ navigation }) => {
   const petId = useSelector(state => state.newSession.pet.id);
   const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId)?.disabilities?.frontLeft);
 
@@ -55,6 +56,21 @@ const FrontLeftPawScreen = (props) => {
     handlePawDataChange();
   }, [handlePawDataChange]);
 
+  const completeSessionWithCallback = useCallback(async (status) => await completeSession(status, dispatch, navigation), [dispatch, navigation]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <CloseSessionHeaderButton
+          onYesNotFinishedPress={() => completeSessionWithCallback('unfinished')}
+          onYesPress={() => {
+            navigation.navigate('Home', { screen: 'Home' })
+          }}
+        />
+      </HeaderButtons>),
+    });
+  }, [navigation, completeSessionWithCallback]);
+
   return (
     <View style={styles.screen}>
       <LinearGradient
@@ -83,7 +99,7 @@ const FrontLeftPawScreen = (props) => {
         <SpecialCheckbox initialStatus={toggleCheckBoxes.dew} onPress={handleDewClawOnCheckboxPress} badgeText='D' />
       </View>
       <View style={styles.buttonWrapper}>
-        <Button icon="check" mode="contained" color={Colors.greenColor} onPress={() => props.navigation.navigate('FrontLeftPawSummary')}>
+        <Button icon="check" mode="contained" color={Colors.greenColor} onPress={() => navigation.navigate('FrontLeftPawSummary')}>
           Summarise
         </Button>
       </View>
@@ -94,17 +110,6 @@ const FrontLeftPawScreen = (props) => {
 export const screenOptions = (navData) => {
   return {
     headerTitle: 'Front Left Paw',
-    headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <CloseSessionHeaderButton
-        onYesNotFinishedPress={() => {
-          // TODO: use finish session action here but set it with unfinished status (probably I need to add status column to sessions table)
-          navData.navigation.navigate('Home', { screen: 'Home' })
-        }}
-        onYesPress={() => {
-          navData.navigation.navigate('Home', { screen: 'Home' })
-        }}
-      />
-    </HeaderButtons>),
     headerRight: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
       <Item title="Paw Summary" iconName='checkmark' onPress={() => {
         navData.navigation.navigate('FrontLeftPawSummary');

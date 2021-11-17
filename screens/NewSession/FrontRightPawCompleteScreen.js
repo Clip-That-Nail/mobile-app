@@ -9,8 +9,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import HeaderButton from '../../components/HeaderButton';
 import CompleteSpecialIcon from '../../components/CompleteSpecialIcon';
 import CloseSessionHeaderButton from '../../components/CloseSessionHeaderButton';
-import { updateCompleteFrontRightPaw, finishSession } from '../../redux/actions/newSession';
-import { goToNextPaw, isSessionComplete } from '../../helpers/session';
+import { updateCompleteFrontRightPaw } from '../../redux/actions/newSession';
+import { goToNextPaw, isSessionComplete, completeSession } from '../../helpers/session';
 
 import Colors from '../../constants/Colors';
 
@@ -24,16 +24,7 @@ const FrontRightPawCompleteScreen = (props) => {
 
   const dispatch = useDispatch();
 
-  const completeSession = useCallback(async () => {
-    try {
-      await dispatch(finishSession('finished'));
-      navigation.navigate('Home', { screen: 'Home' });
-    } catch (err) {
-      Alert.alert(`Something went wrong`, err.message, [
-        { text: 'Okay', style: 'default' },
-      ]);
-    }
-  }, [dispatch]);
+  const completeSessionWithCallback = useCallback(async (status) => await completeSession(status, dispatch, navigation), [dispatch, navigation]);
 
   useLayoutEffect(() => {
     if (frontLeftPawComplete && frontRightPawComplete && backLeftPawComplete && backRightPawComplete) {
@@ -43,14 +34,27 @@ const FrontRightPawCompleteScreen = (props) => {
             Alert.alert('Finish session?', 'Are you sure you want to finish this clipping session?', [
               { text: 'No', style: 'default' },
               {
-                text: 'Yes', style: 'destructive', onPress: completeSession
+                text: 'Yes', style: 'destructive', onPress: completeSessionWithCallback('finished')
               }
             ]);
           }} />
         </HeaderButtons>)
       });
     }
-  }, [navigation, frontLeftPawComplete, frontRightPawComplete, backLeftPawComplete, backRightPawComplete, completeSession]);
+  }, [navigation, frontLeftPawComplete, frontRightPawComplete, backLeftPawComplete, backRightPawComplete, completeSessionWithCallback]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <CloseSessionHeaderButton
+          onYesNotFinishedPress={() => completeSessionWithCallback('unfinished')}
+          onYesPress={() => {
+            navigation.navigate('Home', { screen: 'Home' })
+          }}
+        />
+      </HeaderButtons>),
+    });
+  }, [navigation, completeSessionWithCallback]);
 
   return (
     <View style={styles.screen}>
@@ -98,7 +102,7 @@ const FrontRightPawCompleteScreen = (props) => {
           onPress={() => {
             goToNextPaw(props.navigation);
             if (isSessionComplete()) {
-              completeSession();
+              completeSessionWithCallback('finished');
             } else {
               goToNextPaw(navigation);
             }
@@ -114,17 +118,6 @@ const FrontRightPawCompleteScreen = (props) => {
 export const screenOptions = (navData) => {
   return {
     headerTitle: 'Front Right Paw',
-    headerLeft: () => (<HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <CloseSessionHeaderButton
-        onYesNotFinishedPress={() => {
-          // TODO: use finish session action here but set it with unfinished status (probably I need to add status column to sessions table)
-          navData.navigation.navigate('Home', { screen: 'Home' })
-        }}
-        onYesPress={() => {
-          navData.navigation.navigate('Home', { screen: 'Home' })
-        }}
-      />
-    </HeaderButtons>),
   };
 };
 
