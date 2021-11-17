@@ -13,7 +13,7 @@ const BackRightPawSummaryScreen = (props) => {
   const { navigation } = props;
 
   const petId = useSelector(state => state.newSession.pet.id);
-  const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId).disabilities.backRight);
+  const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId)?.disabilities?.backRight);
   const clawsData = useSelector(state => state.newSession.backRightPaw.claws);
   const complete = useSelector(state => state.newSession.backRightPaw.complete);
 

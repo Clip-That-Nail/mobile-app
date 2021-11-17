@@ -15,7 +15,7 @@ import Colors from '../../constants/Colors';
 
 const FrontRightPawScreen = (props) => {
   const petId = useSelector(state => state.newSession.pet.id);
-  const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId).disabilities.frontRight);
+  const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId)?.disabilities?.frontRight);
 
   const [toggleCheckBoxes, setToggleCheckBoxes] = useState({
     first: disabilities.first === 'empty' ? 'unchecked' : disabilities.first,
