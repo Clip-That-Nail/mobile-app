@@ -36,6 +36,8 @@ export const updatePet = async (petId, name, type, breed, imageUri, disabled) =>
     WHERE id = ?`, [name, type, breed, imageUri, disabled, petId]);
   });
 
+  // TODO: update disabilities
+
   return result;
 }
 
@@ -47,6 +49,8 @@ export const removePet = async (petId) => {
   });
 
   // TODO: should I remove all pet related data like disabilities, skips, sessions etc.?
+
+  // TODO: remove disabilities
 
   return result;
 }
@@ -102,9 +106,9 @@ export const insertSession = async (petId, status, paws) => {
           'INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)',
           [sessionResult.insertId, 'frontLeft', key, claw.status, claw.outcome, claw.behaviour]
         );
-        pawInsertSuccess(clawsResult);
+        pawSuccess('insert', clawsResult);
       } catch (error) {
-        pawInsertFail(error);
+        pawFail(error);
       }
     });
 
@@ -116,9 +120,9 @@ export const insertSession = async (petId, status, paws) => {
           'INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)',
           [sessionResult.insertId, 'frontRight', key, claw.status, claw.outcome, claw.behaviour]
         );
-        pawInsertSuccess(clawsResult);
+        pawSuccess('insert', clawsResult);
       } catch (error) {
-        pawInsertFail(error);
+        pawFail(error);
       }
     });
 
@@ -130,9 +134,9 @@ export const insertSession = async (petId, status, paws) => {
           'INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)',
           [sessionResult.insertId, 'backLeft', key, claw.status, claw.outcome, claw.behaviour]
         );
-        pawInsertSuccess(clawsResult);
+        pawSuccess('insert', clawsResult);
       } catch (error) {
-        pawInsertFail(error);
+        pawFail(error);
       }
     });
 
@@ -144,13 +148,81 @@ export const insertSession = async (petId, status, paws) => {
           'INSERT INTO claws (sessionId, paw, claw, status, outcome, behaviour) VALUES (?,?,?,?,?,?)',
           [sessionResult.insertId, 'backRight', key, claw.status, claw.outcome, claw.behaviour]
         );
-        pawInsertSuccess(clawsResult);
+        pawSuccess('insert', clawsResult);
       } catch (error) {
-        pawInsertFail(error);
+        pawFail(error);
       }
     });
 
     sessionId = sessionResult.insertId;
+  });
+
+  return sessionId;
+}
+
+export const updateSession = async (sessionId, petId, status, paws) => {
+
+  await db.transaction(async connection => {
+    await connection.execute(`UPDATE sessions
+    SET petId = ?, status = ?
+    WHERE id = ?`, [petId, status, sessionId]);
+
+    // frontLeft paw
+    Object.keys(paws.frontLeft).map(async (key, index) => {
+      const claw = paws.frontLeft[key];
+      try {
+        const clawsResult = await connection.execute(
+          'UPDATE claws SET sessionId = ?, paw = ?, claw = ?, status = ?, outcome = ?, behaviour = ? WHERE id = ?',
+          [sessionId, claw.paw, claw.claw, claw.status, claw.outcome, claw.behaviour, claw.id]
+        );
+        pawSuccess('update', clawsResult);
+      } catch (error) {
+        pawFail(error);
+      }
+    });
+
+    // frontRight paw
+    Object.keys(paws.frontRight).map(async (key, index) => {
+      const claw = paws.frontRight[key];
+      try {
+        const clawsResult = await connection.execute(
+          'UPDATE claws SET sessionId = ?, paw = ?, claw = ?, status = ?, outcome = ?, behaviour = ? WHERE id = ?',
+          [sessionId, claw.paw, claw.claw, claw.status, claw.outcome, claw.behaviour, claw.id]
+        );
+        pawSuccess('update', clawsResult);
+      } catch (error) {
+        pawFail(error);
+      }
+    });
+
+    // backLeft paw
+    Object.keys(paws.backLeft).map(async (key, index) => {
+      const claw = paws.backLeft[key];
+      try {
+        const clawsResult = await connection.execute(
+          'UPDATE claws SET sessionId = ?, paw = ?, claw = ?, status = ?, outcome = ?, behaviour = ? WHERE id = ?',
+          [sessionId, claw.paw, claw.claw, claw.status, claw.outcome, claw.behaviour, claw.id]
+        );
+        pawSuccess('update', clawsResult);
+      } catch (error) {
+        pawFail(error);
+      }
+    });
+
+    // backRight paw
+    Object.keys(paws.backRight).map(async (key, index) => {
+      const claw = paws.backRight[key];
+      try {
+        const clawsResult = await connection.execute(
+          'UPDATE claws SET sessionId = ?, paw = ?, claw = ?, status = ?, outcome = ?, behaviour = ? WHERE id = ?',
+          [sessionId, claw.paw, claw.claw, claw.status, claw.outcome, claw.behaviour, claw.id]
+        );
+        pawSuccess('update', clawsResult);
+      } catch (error) {
+        pawFail(error);
+      }
+    });
+
   });
 
   return sessionId;
@@ -201,10 +273,10 @@ export const fetchSessions = async () => {
   return Object.values(sessions); // Convert session object to array
 }
 
-const pawInsertSuccess = (result) => {
-  console.log(`paw (${result.insertId}) insert success`);
+const pawSuccess = (type, result) => {
+  console.log(`paw (${result.insertId}) ${type} success`);
 }
 
-const pawInsertFail = (err) => {
-  console.log('paw insert fail, err.message: ' + err.message);
+const pawFail = (type, err) => {
+  console.log(`paw ${type} fail, err.message: ${err.message}`);
 }
