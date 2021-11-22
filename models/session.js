@@ -7,7 +7,7 @@ class Session {
     this.id = id.toString();
     this.status = status;
     this.createDate = createDate;
-    this.pet = new Pet(pet.id.toString(), pet.name, pet.breed, pet.imageUri);
+    this.pet = new Pet(pet.id.toString(), pet.name, pet.type, pet.breed, pet.imageUri, pet.disabled, pet.disabilities);
     this.frontLeft = new FrontPaw(frontLeft.first, frontLeft.second, frontLeft.third, frontLeft.fourth, frontLeft.dew);
     this.frontRight = new FrontPaw(frontRight.first, frontRight.second, frontRight.third, frontRight.fourth, frontRight.dew);
     this.backLeft = new BackPaw(backLeft.first, backLeft.second, backLeft.third, backLeft.fourth);
