@@ -26,19 +26,9 @@ const sessionReducer = (state = initialState, action) => {
       return {
         sessions: state.sessions.concat(newSession)
       }
-    // case sessionsTypes.ADD_SESSION:
-    //   const newSession = new Session(
-    //     action.sessionData.id.toString(),
-    //     action.sessionData.status,
-    //     Date.now(),
-    //     action.sessionData.paws.frontLeft,
-    //     action.sessionData.paws.frontRight,
-    //     action.sessionData.paws.backLeft,
-    //     action.sessionData.paws.backRight,
-    //   );
-    //   return {
-    //     sessions: state.sessions.concat(newSession)
-    //   }
+    case sessionsTypes.REMOVE_SESSION:
+      const updatedSession = state.sessions.filter(session => session.id !== action.sessionId);
+      return { sessions: updatedSession };
     default:
       return state;
   }
