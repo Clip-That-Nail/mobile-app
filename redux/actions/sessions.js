@@ -1,5 +1,5 @@
 import sessionsTypes from '../types/sessions';
-import { fetchSessions, insertSession } from '../../helpers/db';
+import { fetchSessions, updateSession as updateSessionInDB, removeSession as removeSessionFromDB } from '../../helpers/db';
 
 export const loadSessions = () => {
   return async (dispatch) => {
@@ -13,16 +13,43 @@ export const loadSessions = () => {
   }
 };
 
-// export const addSession = (petId, status, paws) => {
-//   return async (dispatch) => {
-//     try {
-//       const dbResult = await insertSession(petId, paws);
-//       console.log('addPet result:', dbResult);
+export const updateSession = (sessionId, status) => {
+  return async (dispatch, getState) => {
+    const petId = getState().newSession.pet.id;
+    const pet = getState().pets.pets.find(pet => pet.id === petId);
+    const frontLeftPawClaws = getState().newSession.frontLeft.claws;
+    const frontRightPawClaws = getState().newSession.frontRight.claws;
+    const backLeftPawClaws = getState().newSession.backLeft.claws;
+    const backRightPawClaws = getState().newSession.backRight.claws;
 
-//       dispatch({ type: sessionsTypes.ADD_SESSION, sessionData: { id: dbResult.insertId, status, paws } });
-//     } catch (err) {
-//       console.log('addPet error:', err);
-//       throw err;
-//     }
-//   }
-// };
+    try {
+      const sessionData = {
+        frontLeft: frontLeftPawClaws,
+        frontRight: frontRightPawClaws,
+        backLeft: backLeftPawClaws,
+        backRight: backRightPawClaws,
+      };
+
+      console.log('[updateSession sessionData]', sessionData);
+      const result = await updateSessionInDB(sessionId, petId, status, sessionData);
+      console.log('[updateSession sessionId]', result);
+      dispatch({ type: sessionsTypes.UPDATE_SESSION, sessionData: { id: sessionId, status, pet, paws: sessionData } });
+    } catch (err) {
+      console.log('updateSession error:', err);
+      throw err;
+    }
+  }
+};
+
+export const removeSession = (sessionId) => {
+  return async (dispatch) => {
+    try {
+      await removeSessionFromDB(sessionId);
+
+      dispatch({ type: sessionsTypes.REMOVE_SESSION, sessionId });
+    } catch (err) {
+      console.log('removeSession error:', err);
+      throw err;
+    }
+  }
+};
