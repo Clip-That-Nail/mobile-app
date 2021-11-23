@@ -228,6 +228,16 @@ export const updateSession = async (sessionId, petId, status, paws) => {
   return sessionId;
 }
 
+export const removeSession = async (sessionId) => {
+
+  await db.transaction(async connection => {
+    await connection.execute(`DELETE FROM sessions WHERE id = ?`, [sessionId]);
+    await connection.execute(`DELETE FROM claws WHERE sessionId = ?`, [sessionId]);
+  });
+
+  return sessionId;
+}
+
 export const fetchSessions = async () => {
   let sessions = {};
 
