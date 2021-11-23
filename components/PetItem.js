@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, Alert } from 'react-native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
@@ -50,8 +49,6 @@ const PetItem = props => {
     <Swipeable
       renderLeftActions={() => leftSwipeActions(handleOnPressLeftAction)}
       renderRightActions={() => rightSwipeActions(handleOnPressRightAction)}
-    // onSwipeableRightOpen={swipeFromRightOpen}
-    // onSwipeableLeftOpen={swipeFromLeftOpen}
     >
       <ListItem onSelect={props.onSelect}>
         <View style={styles.imageContainer}>
