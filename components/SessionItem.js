@@ -1,15 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-// import moment from 'moment';
+import moment from 'moment';
 
 import ListItem from './ListItem';
 import CircleActionButton from './CircleActionButton';
+import { removeSession } from '../redux/actions/sessions';
 
 const leftSwipeActions = (onPress) => {
   return (
     <CircleActionButton side="left" buttonSize={50} buttonType="edit" onPress={onPress}>
+      {/* https://blog.logrocket.com/react-native-gesture-handler-swipe-long-press-and-more/ */}
+      {/* https://blog.jscrambler.com/creating-swipeable-gestures-with-react-native-gesture-handler */}
+      {/* https://medium.com/@mendes.develop/swipe-gestures-in-react-native-with-react-native-gesture-handler-9131ea2ebd9 */}
       <Entypo name="edit" size={26} color="white" />
     </CircleActionButton>
   );
@@ -22,21 +27,24 @@ const rightSwipeActions = (onPress) => {
     </CircleActionButton>
   );
 };
-const swipeFromLeftOpen = () => {
-  alert('Swipe from left');
-};
-const swipeFromRightOpen = () => {
-  alert('Swipe from right');
-};
 
 const SessionItem = props => {
+  const dispatch = useDispatch();
 
   const handleOnPressLeftAction = () => {
-    alert('edit');
+    // props.navigation.navigate('EditPet', { petData: props.petData });
   };
 
   const handleOnPressRightAction = () => {
-    alert('remove');
+    Alert.alert('Are you sure?', 'Do you really want to remove this session?', [
+      { text: 'No', style: 'default' },
+      {
+        text: "Yes", style: 'destructive', onPress: () => {
+          dispatch(removeSession(props.session.id));
+          // TODO: find out how to close swiped item after deleting pet - some close() function?
+        }
+      }
+    ]);
   };
 
   return (
@@ -47,7 +55,21 @@ const SessionItem = props => {
     // onSwipeableLeftOpen={swipeFromLeftOpen}
     >
       <ListItem style={styles.sessionItem} onSelect={props.onSelect}>
-        <View style={styles.titleContainer}>
+        <View style={styles.details}>
+          <Text>{props.session.pet.name}</Text>
+          <Text>{props.session.pet.type}</Text>
+          <Text>{moment(props.session.createDate).startOf('hour').fromNow()}</Text>
+          <Text>{moment(props.session.createDate).format("hh:mm Do MMM YYYY")}</Text>
+          <Text>{moment(props.session.createDate).calendar()}</Text>
+        </View>
+        <View style={styles.status}>
+          <Text>STATUS</Text>
+          <Text>{props.session.status}</Text>
+          {/* TODO: add status icon for finished and button for unfinished */}
+          {/* TODO: maybe unfinished session should go straight to the edit mode and finished to the details screen */}
+          {/* TODO: check way to finish session - should it be possible to finish unfinished session? */}
+        </View>
+        {/* <View style={styles.titleContainer}>
           <Text style={styles.title}>{props.session.createDate}</Text>
         </View>
         <View style={styles.footer}>
@@ -57,58 +79,6 @@ const SessionItem = props => {
           <View style={styles.footerColumn}>
             <Text style={styles.status}>Status: {props.session.status}</Text>
           </View>
-        </View>
-        {/* TODO: move paws and claws to the swipe from left and add swipe from right buttons (delete + edit) */}
-        {/* https://blog.logrocket.com/react-native-gesture-handler-swipe-long-press-and-more/ */}
-        {/* https://blog.jscrambler.com/creating-swipeable-gestures-with-react-native-gesture-handler */}
-        {/* https://medium.com/@mendes.develop/swipe-gestures-in-react-native-with-react-native-gesture-handler-9131ea2ebd9 */}
-        {/* <View style={styles.footer}>
-          <View style={styles.footerRow}>
-            <View style={styles.paw}>
-              <View style={styles.pawIcon}>
-                <Ionicons name="paw" size={15} color='black' />
-              </View>
-              <Text style={styles.pawTitle}>FL</Text>
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.first.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.second.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.third.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.fourth.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontLeft.dew.status} iconSize={15} boxSize={20} />
-            </View>
-            <View style={styles.paw}>
-              <View style={styles.pawIcon}>
-                <Ionicons name="paw" size={15} color='black' />
-              </View>
-              <Text style={styles.pawTitle}>FR</Text>
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.first.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.second.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.third.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.fourth.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.frontRight.dew.status} iconSize={15} boxSize={20} />
-            </View>
-          </View>
-          <View style={styles.footerRow}>
-            <View style={styles.paw}>
-              <View style={styles.pawIcon}>
-                <Ionicons name="paw" size={15} color='black' />
-              </View>
-              <Text style={styles.pawTitle}>BL</Text>
-              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.first.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.second.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.third.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backLeft.fourth.status} iconSize={15} boxSize={20} />
-            </View>
-            <View style={styles.paw}>
-              <View style={styles.pawIcon}>
-                <Ionicons name="paw" size={15} color='black' />
-              </View>
-              <Text style={styles.pawTitle}>BR</Text>
-              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.first.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.second.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.third.status} iconSize={15} boxSize={20} />
-              <SummarySpecialIcon style={styles.claw} status={props.session.backRight.fourth.status} iconSize={15} boxSize={20} />
-            </View>
-          </View>
         </View> */}
       </ListItem>
     </Swipeable>
@@ -117,8 +87,14 @@ const SessionItem = props => {
 
 const styles = StyleSheet.create({
   sessionItem: {
-    flexDirection: 'column',
+    flexDirection: 'row',
     flex: 1,
+  },
+  details: {
+    flex: 1,
+  },
+  status: {
+
   },
   titleContainer: {
     flex: 1,
@@ -127,41 +103,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingBottom: 10
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 18
-  },
-  paw: {
-    width: '50%',
-    flexDirection: 'row',
-    paddingTop: 5
-  },
-  pawIcon: {
-    paddingRight: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  pawTitle: {
-    paddingRight: 5,
-  },
-  claw: {
-    marginRight: 2
-  },
-  footer: {
-    // flexDirection: 'row',
-    //   alignItems: 'center',
-    //   justifyContent: 'space-between',
-  },
-  footerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-  // infoContainer: {
-  //   marginLeft: 25,
-  //   justifyContent: 'center',
-  //   alignItems: 'flex-start'
-  // },
 });
 
 export default SessionItem;
