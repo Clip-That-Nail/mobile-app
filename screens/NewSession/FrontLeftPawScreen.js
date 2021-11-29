@@ -14,16 +14,19 @@ import { completeSession } from '../../helpers/session';
 
 import Colors from '../../constants/Colors';
 
-const FrontLeftPawScreen = ({ navigation }) => {
-  const petId = useSelector(state => state.newSession.pet.id);
+const FrontLeftPawScreen = ({ route, navigation }) => {
+  const session = route?.params?.session;
+
+  const petId = session ? session.pet.id : useSelector(state => state.newSession.pet.id);
   const disabilities = useSelector(state => state.pets.pets.find(pet => pet.id === petId)?.disabilities?.frontLeft);
+  const frontLeftData = useSelector(state => state.newSession.frontLeft);
 
   const [toggleCheckBoxes, setToggleCheckBoxes] = useState({
-    first: disabilities?.first === 'empty' ? 'unchecked' : disabilities?.first,
-    second: disabilities?.second === 'empty' ? 'unchecked' : disabilities?.second,
-    third: disabilities?.third === 'empty' ? 'unchecked' : disabilities?.third,
-    fourth: disabilities?.fourth === 'empty' ? 'unchecked' : disabilities?.fourth,
-    dew: disabilities?.dew === 'empty' ? 'unchecked' : disabilities?.dew,
+    first: disabilities?.first === 'empty' ? frontLeftData.claws.first.status : disabilities?.first,
+    second: disabilities?.second === 'empty' ? frontLeftData.claws.second.status : disabilities?.second,
+    third: disabilities?.third === 'empty' ? frontLeftData.claws.third.status : disabilities?.third,
+    fourth: disabilities?.fourth === 'empty' ? frontLeftData.claws.fourth.status : disabilities?.fourth,
+    dew: disabilities?.dew === 'empty' ? frontLeftData.claws.dew.status : disabilities?.dew,
   });
 
   const dispatch = useDispatch();
