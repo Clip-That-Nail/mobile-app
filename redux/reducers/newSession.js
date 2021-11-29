@@ -486,6 +486,11 @@ const sessionReducer = (state = INITIAL_STATE, action) => {
       return {
         ...INITIAL_STATE
       };
+    case sessionTypes.EDIT_SESSION:
+      return {
+        ...state,
+        ...action.sessionData
+      };
     default:
       return state;
   }
