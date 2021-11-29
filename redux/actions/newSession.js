@@ -170,3 +170,36 @@ export const finishSession = (status) => {
     }
   }
 };
+
+export const prepareEditSession = (session) => {
+  return async (dispatch) => {
+    const frontLeftComplete = Object.keys(session.frontLeft).filter((key) => session.frontLeft[key].behaviour === 'not-selected') > 0;
+    const frontRightComplete = Object.keys(session.frontRight).filter((key) => session.frontRight[key].behaviour === 'not-selected') > 0;
+    const backLeftComplete = Object.keys(session.backLeft).filter((key) => session.backLeft[key].behaviour === 'not-selected') > 0;
+    const backRightComplete = Object.keys(session.backRight).filter((key) => session.backRight[key].behaviour === 'not-selected') > 0;
+
+    const sessionData = {
+      pet: {
+        id: session.pet.id,
+      },
+      frontLeft: {
+        complete: frontLeftComplete,
+        claws: session.frontLeft
+      },
+      frontRight: {
+        complete: frontRightComplete,
+        claws: session.frontRight
+      },
+      backLeft: {
+        complete: backLeftComplete,
+        claws: session.backLeft
+      },
+      backRight: {
+        complete: backRightComplete,
+        claws: session.backRight
+      },
+    };
+
+    dispatch({ type: newSessionTypes.EDIT_SESSION, sessionData });
+  }
+};
