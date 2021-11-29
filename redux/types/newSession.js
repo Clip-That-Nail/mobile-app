@@ -22,6 +22,7 @@ const sessionTypes = {
   UPDATE_NEW_SESSION_PET_ID: 'UPDATE_NEW_SESSION_PET_ID',
 
   FINISH_SESSION: 'FINISH_SESSION',
+  EDIT_SESSION: 'EDIT_SESSION',
 };
 
 export default sessionTypes;
