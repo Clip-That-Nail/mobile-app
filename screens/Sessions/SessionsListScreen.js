@@ -9,6 +9,7 @@ import ScreenTitle from '../../components/titles/ScreenTitle';
 import ScreenActionButtons from '../../components/ScreenActionButtons';
 import EmptyList from '../../components/EmptyList';
 import { loadSessions } from '../../redux/actions/sessions';
+import { prepareEditSession } from '../../redux/actions/newSession';
 
 const SessionsListScreen = (props) => {
   const dispatch = useDispatch();
@@ -45,7 +46,12 @@ const SessionsListScreen = (props) => {
         data={sessions}
         keyExtractor={item => item.id}
         renderItem={itemData => <SessionItem session={itemData.item} onSelect={() => {
-          props.navigation.navigate('SessionDetail', { sessionId: itemData.item.id, sessionCreateDate: itemData.item.createDate });
+          if (itemData.item.status === 'unfinished') {
+            dispatch(prepareEditSession(itemData.item));
+            props.navigation.navigate('NewSession', { screen: 'Paws', params: { screen: 'FrontLeftPaw', params: { screen: 'FrontLeftPawChecker', params: { session: itemData.item } } } });
+          } else {
+            props.navigation.navigate('SessionDetail', { sessionId: itemData.item.id, sessionCreateDate: itemData.item.createDate });
+          }
         }} />}
         ListEmptyComponent={() => <EmptyList text="You haven't added any sessions yet" />}
       />
