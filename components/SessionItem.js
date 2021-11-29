@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import ListItem from './ListItem';
 import CircleActionButton from './CircleActionButton';
+import SessionStatusIcon from './SessionStatusIcon';
 import { removeSession } from '../redux/actions/sessions';
 
 const leftSwipeActions = (onPress) => {
@@ -56,15 +57,14 @@ const SessionItem = props => {
     >
       <ListItem style={styles.sessionItem} onSelect={props.onSelect}>
         <View style={styles.details}>
-          <Text>{props.session.pet.name}</Text>
+          <Text style={styles.title}>{props.session.pet.name}</Text>
           <Text>{props.session.pet.type}</Text>
-          <Text>{moment(props.session.createDate).startOf('hour').fromNow()}</Text>
-          <Text>{moment(props.session.createDate).format("hh:mm Do MMM YYYY")}</Text>
+          {/* <Text>{moment(props.session.createDate).startOf('hour').fromNow()}</Text> */}
+          {/* <Text>{moment(props.session.createDate).format("hh:mm Do MMM YYYY")}</Text> */}
           <Text>{moment(props.session.createDate).calendar()}</Text>
         </View>
         <View style={styles.status}>
-          <Text>STATUS</Text>
-          <Text>{props.session.status}</Text>
+          <SessionStatusIcon status={props.session.status} iconSize={40} />
           {/* TODO: add status icon for finished and button for unfinished */}
           {/* TODO: maybe unfinished session should go straight to the edit mode and finished to the details screen */}
           {/* TODO: check way to finish session - should it be possible to finish unfinished session? */}
@@ -89,9 +89,15 @@ const styles = StyleSheet.create({
   sessionItem: {
     flexDirection: 'row',
     flex: 1,
+    padding: 20,
   },
   details: {
     flex: 1,
+  },
+  title: {
+    fontSize: 17,
+    fontWeight: '700',
+    color: '#333',
   },
   status: {
 
@@ -101,7 +107,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderBottomColor: '#d8d8d8',
     borderBottomWidth: 1,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
 });
 
